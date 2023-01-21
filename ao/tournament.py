@@ -27,6 +27,25 @@ womens_singles = (match.Event("WomensSingles", 3)
                              (8, Vekic, Fruhvirtova)))
 
 
+# TeamGelatoGiants
+TeamGelatoGiants.event(mens_singles).match("1.1").winner(Nishioka).in_sets(4)
+TeamGelatoGiants.event(mens_singles).match("1.2").winner(Korda).in_sets(3)
+TeamGelatoGiants.event(mens_singles).match("1.3").winner(Tsitsipas).in_sets(3)
+TeamGelatoGiants.event(mens_singles).match("1.4").winner("Auger-Aliassime").in_set(3)
+TeamGelatoGiants.event(mens_singles).match("1.5").winner("Rublev").in_sets(3)
+TeamGelatoGiants.event(mens_singles).match("1.6").winner("Djokovic").in_sets(4)
+TeamGelatoGiants.event(mens_singles).match("1.7").winner("Wolf").in_sets(3)
+TeamGelatoGiants.event(mens_singles).match("1.8").winner("Bautista-Agut).in_sets(4)
+
+TeamGelatoGiants.event(womens_singles).match("1.1").winner(Swiatek).in_sets(2)
+TeamGelatoGiants.event(womens_singles).match("1.2").winner(Gauff)in_sets(2)
+TeamGelatoGiants.event(womens_singles).match("1.3").winner(Pegula).in_sets(2)
+TeamGelatoGiants.event(womens_singles).match("1.4").winner(Azarenka).in_sets(3)
+TeamGelatoGiants.event(womens_singles).match("1.5").winner(Pliskova).in_sets(3)
+TeamGelatoGiants.event(womens_singles).match("1.6").winner(Linette).in_sets(3)
+TeamGelatoGiants.event(womens_singles).match("1.7").winner(Sabalenka).in_sets(3)
+TeamGelatoGiants.event(womens_singles).match("1.8").winner(Vekic).in_sets(2)
+
 # TeamMusicalBears
 TeamMusicalBears.event(mens_singles).match("1.1").winner(Khachanov).in_sets(4)
 TeamMusicalBears.event(mens_singles).match("1.2").winner(Korda).in_sets(4)
