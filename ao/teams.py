@@ -1,9 +1,9 @@
 from .fantasy import Team
 
-Team1 = Team("TeamOne", "Bronzie, Juki & Lemmie")
-Team2 = Team("TeamTwo", "IceT, Pepsi, Rollie & Gertie")
-Team3 = Team("TeamThree", "Marmalade, Richmond, Greenwich")
-Team4 = Team("TeamFour", "Fraser, Tom, Frank, Spencer & Duck")
+TeamGelatoGiants = Team("Team Gelato Giants", "Bronzie, Juki & Lemmie")
+TeamPolarPrecision = Team("Team Polar Precision", "IceT, Pepsi, Rollie & Gertie")
+TeamHeroHangouts = Team("Team Hero Hangouts", "Marmalade, Richmond, Greenwich")
+TeamBearNecessities = Team("Team Bear Necessities", "Fraser, Tom, Frank, Spencer & Duck")
 TeamMusicalBears = Team("Team Musical Bears", "Rinksy, Beetie, Motzie")
 TeamFauve = Team("Team Fauve", "Perky")
 TeamClojo = Team("Team Clojo", "Claudie, Fyodoro")
