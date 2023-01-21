@@ -27,7 +27,7 @@ def _player_predicate(player_to_find, player):
 def _player_name_predicate(player_name_to_find, player):
     if not player:
         return None
-    return player_name_to_find == player.name
+    return player_name_to_find in player.name
 
 
 class Player:
@@ -191,6 +191,9 @@ class Match:
             return ""
         chevon = "<" if player == self.match_winner else ""
         return f"{' '.join([str(s) for s in self.scores[player]])}  {chevon}"
+
+    def find_player_by_player(self, player):
+        return find_player(player, [self.player1, self.player2])
 
     def player_from_player_name(self, player_name):
         if not self.has_draw():

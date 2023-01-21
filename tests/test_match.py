@@ -22,8 +22,8 @@ def test_create_match(event, players):
     assert not r2_m1.player1
 
 
-def test_results(event):
-    pl1, pl2, pl3, pl4 = players()
+def test_results(event, players):
+    pl1, pl2, pl3, pl4 = players
 
     event.for_round(1).for_match(1).score(pl1, (6, 6, 6)).score(pl2, (4, 4, 4))
 
@@ -61,8 +61,8 @@ Matches:
 
 
 
-def test_show_round_matches_with_scores(capsys, event):
-    pl1, pl2, pl3, pl4 = players()
+def test_show_round_matches_with_scores(capsys, event, players):
+    pl1, pl2, pl3, pl4 = players
 
     event.for_round(1).for_match(1).score(pl1, (6, 6, 6)).score(pl2, (4, 4, 4))
 

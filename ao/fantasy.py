@@ -1,7 +1,7 @@
 from functools import partial
 from . import match, error
 
-from .util import fn, identity
+from .util import fn, identity, echo
 
 
 class Team:
@@ -17,6 +17,10 @@ class Team:
             self.fantasy_events.append(fantasy)
         return fantasy
 
+    def show_event(self, event: match.Event):
+        ev = self._find_fantasy_event(event)
+        ev.show()
+
     def _find_fantasy_event(self, event):
         return fn.find(partial(self._event_predicate, event), self.fantasy_events)
 
@@ -29,6 +33,12 @@ class FantasyEvent:
         self.event = event
         self.team = team
         self.match_selections = {}
+
+    def show(self):
+        echo.echo(f"Event: {self.event.name}")
+        for rd_id, matches in self.match_selections.items():
+            for mt_id, selection in matches.items():
+                selection.show()
 
     def match(self, match_id):
         rd_id, mt_id = identity.split_match_id(match_id)
@@ -57,11 +67,19 @@ class Selection:
         self.selected_winner = None
         self.in_number_sets = None
 
+    def show(self):
+        self.match.show()
+        echo.echo(f"     |_ Selected Winner        : {self.selected_winner.name}")
+        echo.echo(f"     |_ Selected Number of Sets: {self.in_number_sets}")
+
     def _find_match(self, event, round_id, match_id):
         return event.for_round(round_id).for_match(match_id)
 
     def winner(self, player_name):
-        self.selected_winner = self.match.player_from_player_name(player_name)
+        if isinstance(player_name, match.Player):
+            self.selected_winner = self.match.find_player_by_player(player_name)
+        else:
+            self.selected_winner = self.match.player_from_player_name(player_name)
         return self
 
     def in_sets(self, number_of_sets):
