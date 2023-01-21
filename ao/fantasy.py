@@ -21,6 +21,9 @@ class Team:
         ev = self._find_fantasy_event(event)
         ev.show()
 
+    def total_points(self):
+        return sum([fantasy_event.total_points() for fantasy_event in self.fantasy_events])
+
     def _find_fantasy_event(self, event):
         return fn.find(partial(self._event_predicate, event), self.fantasy_events)
 
@@ -39,6 +42,9 @@ class FantasyEvent:
         for rd_id, matches in self.match_selections.items():
             for mt_id, selection in matches.items():
                 selection.show()
+
+    def total_points(self):
+        return sum([sel.points() for selections in self.match_selections.values() for sel in selections.values()])
 
     def match(self, match_id):
         rd_id, mt_id = identity.split_match_id(match_id)
@@ -67,6 +73,11 @@ class Selection:
         self.selected_winner = None
         self.in_number_sets = None
 
+    def points(self):
+        if not self.match.is_finished():
+            return 0
+        return sum([points_strategy() for points_strategy in self.points_strategy_fns()])
+
     def show(self):
         self.match.show()
         echo.echo(f"     |_ Selected Winner        : {self.selected_winner.name}")
@@ -85,3 +96,21 @@ class Selection:
     def in_sets(self, number_of_sets):
         self.in_number_sets = number_of_sets
         return self
+
+    def points_strategy_fns(self):
+        return [self.selected_correct_winner, self.selected_correct_sets, self.lost_but_in_max_sets]
+
+    def selected_correct_winner(self):
+        if self.match.match_winner == self.selected_winner:
+            return 5
+        return 0
+
+    def selected_correct_sets(self):
+        if self.in_number_sets == self.match.number_of_sets_played():
+            return 2
+        return 0
+
+    def lost_but_in_max_sets(self):
+        if (self.match.match_winner != self.selected_winner) and self.match.max_sets_played():
+            return 1
+        return 0

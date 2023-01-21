@@ -5,7 +5,7 @@ from ao import match
 @pytest.fixture
 def event(players):
     pl1, pl2, pl3, pl4 = players
-    ev = (match.Event("MensSingles", best_of=3)
+    ev = (match.Event("MensSingles", best_of=5)
           .draw_size(number_of_matches=2)
           .init_draw((1, pl1, pl2),
                      (2, pl3, pl4)))

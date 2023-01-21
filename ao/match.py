@@ -223,10 +223,16 @@ class Match:
         self.winner()
         return self
 
+    def number_of_sets_played(self):
+        return len(fn.remove_none([s.winner for s in self.sets]))
+
+    def max_sets_played(self):
+        return self.best_of == self.number_of_sets_played()
+
     def is_finished(self):
         if not self.scores:
             return False
-        return all([len(sc) == self.best_of for sc in self.scores.values()])
+        return all([len(sc) >= math.ceil(self.best_of / 2) for sc in self.scores.values()])
 
     def has_draw(self):
         return self.player1 and self.player2
@@ -241,7 +247,7 @@ class Match:
         return self.match_winner
 
     def _determine_winner(self):
-        winners_by_sets = [s.winner for s in self.sets]
+        winners_by_sets = fn.remove_none([s.winner for s in self.sets])
         if winners_by_sets.count(self.player1) > winners_by_sets.count(self.player2):
             return self.player1
         return self.player2
