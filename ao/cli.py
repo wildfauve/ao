@@ -1,6 +1,6 @@
 import click
 
-from . import tournament
+from . import tournament, teams
 
 
 @click.group()
@@ -31,7 +31,9 @@ def show_round(round_number, event):
     pass
 
 @click.command()
-@click.option("--team-name", "-t", type=str, help="team name to explain points")
+@click.option("--team-name", "-t",
+              type=click.Choice(teams.symbolised_names()),
+              help="team name to explain points")
 def explain_team_score(team_name):
     """
     Shows the round of an event

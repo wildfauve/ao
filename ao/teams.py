@@ -22,6 +22,9 @@ teams = [TeamGelatoGiants,
          TeamLightHouse,
          TeamFauve]
 
+def symbolised_names():
+    return [t.symbolic_name for t in teams]
+
 def explain_points_for_team(team_name, teams):
     team = find_team(team_name, teams)
     if not team:
