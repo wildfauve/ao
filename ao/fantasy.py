@@ -106,6 +106,8 @@ class Selection:
         return 0
 
     def selected_correct_sets(self):
+        if self.match.match_winner != self.selected_winner:
+            return 0
         if self.in_number_sets == self.match.number_of_sets_played():
             return 2
         return 0

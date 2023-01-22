@@ -1,4 +1,8 @@
+from . import teams
 from ao.util import echo
+
+def current_leaderboard():
+    show(teams.teams)
 
 def show(teams):
     rankings = sorted_teams(teams)

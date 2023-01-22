@@ -8,3 +8,7 @@ TeamMusicalBears = Team("Team Musical Bears", "Rinksy, Beetie, Motzie")
 TeamFauve = Team("Team Fauve", "Perky")
 TeamClojo = Team("Team Clojo", "Claudie, Fyodoro")
 TeamLightHouse = Team("Team LightHouse", "Edouard, Piri")
+
+
+teams = [Team1, Team2, Team3, Team4, TeamMusicalBears, TeamClojo, TeamLightHouse, TeamFauve]
+

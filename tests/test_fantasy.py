@@ -105,15 +105,15 @@ def test_allocate_points(event, event2, players, fantasy_team):
 
     # 2 for the right number of sets
     event.for_round(1).for_match(2).score(pl3, (4, 4, 4)).score(pl4, (6, 6, 6))
-    assert fantasy_team.total_points() == 9
+    assert fantasy_team.total_points() == 7
 
     # adds 5 points for the right winner
     event2.for_round(1).for_match(2).score(pl3, (6, 6)).score(pl4, (4, 4))
-    assert fantasy_team.total_points() == 14
+    assert fantasy_team.total_points() == 12
 
     # adds 2 points for right sets, 1 point for lost but max sets
     event2.for_round(1).for_match(1).score(pl2, (6, 4, 6)).score(pl1, (4, 6, 4))
-    assert fantasy_team.total_points() == 17
+    assert fantasy_team.total_points() == 13
 
 
 def test_match_doesnt_exist(event, players, fantasy_team):
