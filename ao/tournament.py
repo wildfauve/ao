@@ -4,7 +4,7 @@ from . import results, fantasy_selections, leaderboard, teams
 from .util import echo
 
 def show_leaderboard():
-    show_leaderboard(apply_fantasy(start()))
+    leaderboard_for_teams(apply_fantasy(start()))
     pass
 
 def show_round(event_name, round_number):
@@ -27,7 +27,7 @@ def apply_fantasy(event_tuple):
     mens_singles, womens_singles = event_tuple
     return fantasy_selections.apply(mens_singles, womens_singles)
 
-def show_leaderboard(teams):
+def leaderboard_for_teams(teams):
     leaderboard.show(teams)
 
 # Mens Singles
