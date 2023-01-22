@@ -84,7 +84,7 @@ class Event:
     def for_round(self, round_id):
         rd = fn.find(partial(self._round_number_predicate, round_id), self.rounds)
         if not rd:
-            raise error.ConfigException
+            raise error.ConfigException(f"Round id: {round_id} does not exist")
         return rd
 
     def advance_winner(self, match):
