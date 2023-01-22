@@ -11,7 +11,7 @@ mens_singles = (match.Event("MensSingles", 5)
                            (3, Tsitsipas, Sinner),
                            (4, Lehecka, Auger_Aliassime),
                            (5, Rublev, Rune),
-                           (6, deMinaur, Djokovic),
+                           (6, DeMinaur, Djokovic),
                            (7, Shelton, Wolf),
                            (8, BautistaAgut, Paul)))
 
@@ -27,15 +27,21 @@ womens_singles = (match.Event("WomensSingles", 3)
                              (8, Vekic, Fruhvirtova)))
 
 
+# 4th Round Results
+womens_singles.for_round(1).for_match(1).score(Rybakina, (6, 6)).score(Swiatek, (4, 4))
+womens_singles.for_round(1).for_match(2).score(Ostapenko, (7, 6)).score(Gauff, (6, 4))
+
+
+
 # TeamGelatoGiants
 TeamGelatoGiants.event(mens_singles).match("1.1").winner(Nishioka).in_sets(4)
 TeamGelatoGiants.event(mens_singles).match("1.2").winner(Korda).in_sets(3)
 TeamGelatoGiants.event(mens_singles).match("1.3").winner(Tsitsipas).in_sets(3)
-TeamGelatoGiants.event(mens_singles).match("1.4").winner("Auger-Aliassime").in_set(3)
-TeamGelatoGiants.event(mens_singles).match("1.5").winner("Rublev").in_sets(3)
-TeamGelatoGiants.event(mens_singles).match("1.6").winner("Djokovic").in_sets(4)
-TeamGelatoGiants.event(mens_singles).match("1.7").winner("Wolf").in_sets(3)
-TeamGelatoGiants.event(mens_singles).match("1.8").winner("Bautista-Agut").in_sets(4)
+TeamGelatoGiants.event(mens_singles).match("1.4").winner(Auger_Aliassime).in_sets(3)
+TeamGelatoGiants.event(mens_singles).match("1.5").winner(Rublev).in_sets(3)
+TeamGelatoGiants.event(mens_singles).match("1.6").winner(Djokovic).in_sets(4)
+TeamGelatoGiants.event(mens_singles).match("1.7").winner(Wolf).in_sets(3)
+TeamGelatoGiants.event(mens_singles).match("1.8").winner(BautistaAgut).in_sets(4)
 
 TeamGelatoGiants.event(womens_singles).match("1.1").winner(Swiatek).in_sets(2)
 TeamGelatoGiants.event(womens_singles).match("1.2").winner(Gauff).in_sets(2)
@@ -51,11 +57,11 @@ TeamGelatoGiants.event(womens_singles).match("1.8").winner(Vekic).in_sets(2)
 TeamPolarPrecision.event(mens_singles).match("1.1").winner(Nishioka).in_sets(5)
 TeamPolarPrecision.event(mens_singles).match("1.2").winner(Korda).in_sets(4)
 TeamPolarPrecision.event(mens_singles).match("1.3").winner(Tsitsipas).in_sets(4)
-TeamPolarPrecision.event(mens_singles).match("1.4").winner("Auger-Aliassime").in_set(4)
+TeamPolarPrecision.event(mens_singles).match("1.4").winner(Auger_Aliassime).in_sets(4)
 TeamPolarPrecision.event(mens_singles).match("1.5").winner("Rublev").in_sets(4)
-TeamPolarPrecision.event(mens_singles).match("1.6").winner("deMinaur").in_sets(5)
+TeamPolarPrecision.event(mens_singles).match("1.6").winner(DeMinaur).in_sets(5)
 TeamPolarPrecision.event(mens_singles).match("1.7").winner("Shelton").in_sets(5)
-TeamPolarPrecision.event(mens_singles).match("1.8").winner("Bautista-Agut").in_sets(5)
+TeamPolarPrecision.event(mens_singles).match("1.8").winner(BautistaAgut).in_sets(5)
 
 TeamPolarPrecision.event(womens_singles).match("1.1").winner(Rybakina).in_sets(3)
 TeamPolarPrecision.event(womens_singles).match("1.2").winner(Gauff).in_sets(3)
@@ -63,7 +69,7 @@ TeamPolarPrecision.event(womens_singles).match("1.3").winner(Pegula).in_sets(3)
 TeamPolarPrecision.event(womens_singles).match("1.4").winner(Zhu).in_sets(3)
 TeamPolarPrecision.event(womens_singles).match("1.5").winner(Zhang).in_sets(3)
 TeamPolarPrecision.event(womens_singles).match("1.6").winner(Garcia).in_sets(3)
-TeamPolarPrecision.event(womens_singles).match("1.7").winner(Benecic).in_sets(3)
+TeamPolarPrecision.event(womens_singles).match("1.7").winner(Bencic).in_sets(3)
 TeamPolarPrecision.event(womens_singles).match("1.8").winner(Vekic).in_sets(3)
                                                            
  
@@ -71,11 +77,11 @@ TeamPolarPrecision.event(womens_singles).match("1.8").winner(Vekic).in_sets(3)
 TeamHeroHangouts.event(mens_singles).match("1.1").winner(Khachanov).in_sets(4)
 TeamHeroHangouts.event(mens_singles).match("1.2").winner(Hurkacz).in_sets(4)
 TeamHeroHangouts.event(mens_singles).match("1.3").winner(Tsitsipas).in_sets(5)
-TeamHeroHangouts.event(mens_singles).match("1.4").winner("Auger-Aliassime").in_set(5)
+TeamHeroHangouts.event(mens_singles).match("1.4").winner(Auger_Aliassime).in_sets(5)
 TeamHeroHangouts.event(mens_singles).match("1.5").winner("Rune").in_sets(5)
 TeamHeroHangouts.event(mens_singles).match("1.6").winner("Djokovic").in_sets(5)
 TeamHeroHangouts.event(mens_singles).match("1.7").winner("Wolf").in_sets(4)
-TeamHeroHangouts.event(mens_singles).match("1.8").winner("Bautista-Agut").in_sets(5)
+TeamHeroHangouts.event(mens_singles).match("1.8").winner(BautistaAgut).in_sets(5)
 
 TeamHeroHangouts.event(womens_singles).match("1.1").winner(Swiatek).in_sets(3)
 TeamHeroHangouts.event(womens_singles).match("1.2").winner(Gauff).in_sets(3)
@@ -91,9 +97,9 @@ TeamHeroHangouts.event(womens_singles).match("1.8").winner(Fruhvirtova).in_sets(
 TeamBearNecessities.event(mens_singles).match("1.1").winner(Khachanov).in_sets(5)
 TeamBearNecessities.event(mens_singles).match("1.2").winner(Korda).in_sets(5)
 TeamBearNecessities.event(mens_singles).match("1.3").winner(Tsitsipas).in_sets(4)
-TeamBearNecessities.event(mens_singles).match("1.4").winner("Auger-Aliassime").in_set(4)
+TeamBearNecessities.event(mens_singles).match("1.4").winner(Auger_Aliassime).in_sets(4)
 TeamBearNecessities.event(mens_singles).match("1.5").winner("Rublev").in_sets(4)
-TeamBearNecessities.event(mens_singles).match("1.6").winner("deMinaur").in_sets(5)
+TeamBearNecessities.event(mens_singles).match("1.6").winner(DeMinaur).in_sets(5)
 TeamBearNecessities.event(mens_singles).match("1.7").winner("Wolf").in_sets(5)
 TeamBearNecessities.event(mens_singles).match("1.8").winner("Paul").in_sets(5)
 
@@ -131,7 +137,7 @@ TeamMusicalBears.event(womens_singles).match("1.8").winner(Fruhvirtova).in_sets(
 TeamFauve.event(mens_singles).match("1.1").winner("Khachanov").in_sets(3)
 TeamFauve.event(mens_singles).match("1.2").winner("Hurkacz").in_sets(3)
 TeamFauve.event(mens_singles).match("1.3").winner(Tsitsipas).in_sets(5)
-TeamFauve.event(mens_singles).match("1.4").winner("Auger-Aliassime").in_sets(4)
+TeamFauve.event(mens_singles).match("1.4").winner(Auger_Aliassime).in_sets(4)
 TeamFauve.event(mens_singles).match("1.5").winner("Rublev").in_sets(5)
 TeamFauve.event(mens_singles).match("1.6").winner("Djokovic").in_sets(3)
 TeamFauve.event(mens_singles).match("1.7").winner("Shelton").in_sets(4)
@@ -171,7 +177,7 @@ TeamClojo.event(womens_singles).match("1.8").winner(Vekic).in_sets(2)
 TeamLightHouse.event(mens_singles).match("1.1").winner("Khachanov").in_sets(5)
 TeamLightHouse.event(mens_singles).match("1.2").winner("Korda").in_sets(4)
 TeamLightHouse.event(mens_singles).match("1.3").winner(Tsitsipas).in_sets(5)
-TeamLightHouse.event(mens_singles).match("1.4").winner("Auger-Aliassime").in_sets(3)
+TeamLightHouse.event(mens_singles).match("1.4").winner(Auger_Aliassime).in_sets(3)
 TeamLightHouse.event(mens_singles).match("1.5").winner("Rublev").in_sets(4)
 TeamLightHouse.event(mens_singles).match("1.6").winner("Djokovic").in_sets(3)
 TeamLightHouse.event(mens_singles).match("1.7").winner("Wolf").in_sets(5)
