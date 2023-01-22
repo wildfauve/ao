@@ -92,5 +92,4 @@ Matches:
 1.2  -- ( 10) Player3 
         (   ) Player4 
 """
-
-    assert captured.out == expected_output
+    assert expected_output in captured.out

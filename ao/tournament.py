@@ -1,12 +1,10 @@
 from . import match
 from .players import *
-from . import results
-from . import fantasy_selections
-from . import leaderboard
+from . import results, fantasy_selections, leaderboard, teams
 from .util import echo
 
-def runner():
-    apply_fantasy(start())
+def show_leaderboard():
+    show_leaderboard(apply_fantasy(start()))
     pass
 
 def show_round(event_name, round_number):
@@ -16,15 +14,21 @@ def show_round(event_name, round_number):
         echo.echo(f"Event with name {event_name} not found")
     ev.for_round(round_number).show()
 
+
+def explain_team_points(team_name):
+    teams.explain_points_for_team(team_name, apply_fantasy(start()))
+    pass
+
 def start():
     return results.add_results(events())
 
 
 def apply_fantasy(event_tuple):
     mens_singles, womens_singles = event_tuple
-    teams = fantasy_selections.apply(mens_singles, womens_singles)
-    leaderboard.show(teams)
+    return fantasy_selections.apply(mens_singles, womens_singles)
 
+def show_leaderboard(teams):
+    leaderboard.show(teams)
 
 # Mens Singles
 def events():
