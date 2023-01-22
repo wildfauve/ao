@@ -5,6 +5,8 @@ def current_leaderboard():
     show(teams.teams)
 
 def show(teams):
+    echo.echo("Leaderboard:")
+    echo.echo("------------")
     rankings = sorted_teams(teams)
     ljust_len = int(len(str(max([r[1] for r in rankings]))))
     for team, score in sorted_teams(teams):

@@ -2,22 +2,30 @@ from typing import Tuple, Callable
 from functools import partial
 import math
 
-from .error import ConfigException
+from . import error
 from .util import fn, echo, identity
+
+
+def find_event(event_name, events):
+    return fn.find(partial(_event_name_predicate, event_name), events)
 
 
 def find_player(player, players):
     pl = fn.find(partial(_player_predicate, player), players)
     if not pl:
-        raise ConfigException
+        raise error.ConfigException
     return pl
 
 
 def find_player_by_name(player_name, players):
     pl = fn.find(partial(_player_name_predicate, player_name), players)
     if not pl:
-        raise ConfigException(f"Player with name {player_name} not found")
+        raise error.ConfigException(f"Player with name {player_name} not found")
     return pl
+
+
+def _event_name_predicate(event_name, event):
+    return event_name == event.name
 
 
 def _player_predicate(player_to_find, player):
@@ -69,14 +77,14 @@ class Event:
 
     def init_draw(self, *match_ups):
         if len(match_ups) != self.number_of_matches:
-            raise ConfigException
+            raise error.ConfigException
         [self._place_in_first_round(match_up) for match_up in match_ups]
         return self
 
     def for_round(self, round_id):
         rd = fn.find(partial(self._round_number_predicate, round_id), self.rounds)
         if not rd:
-            raise ConfigException
+            raise error.ConfigException
         return rd
 
     def advance_winner(self, match):
@@ -92,7 +100,7 @@ class Event:
     def _next_rd_match_number(self, rd_id, this_rd_match_number):
         if len(self.rounds[rd_id].matches) == 1:
             return 1
-        return math.ceil(this_rd_match_number / len(self.rounds[rd_id].matches))
+        return math.ceil(this_rd_match_number / 2)
 
     def _build_draw(self, round_id, number_of_slots):
         self.rounds.append(Round(round_id,
@@ -130,7 +138,7 @@ class Round:
 
     def add_winner_to_match(self, match_number, player):
         if len(self.matches) < match_number:
-            raise ConfigException
+            raise error.ConfigException(f"Match number {match_number} over total matches {len(self.matches)}")
 
         mt = self._find_match(match_number)
         return mt.add_player(player)
@@ -146,7 +154,7 @@ class Round:
     def _find_match(self, match_number):
         mt = fn.find(partial(self._match_number_predicate, match_number), self.matches)
         if not mt:
-            raise ConfigException
+            raise error.ConfigException
         return mt
 
     def _build_match_slots(self):
@@ -197,12 +205,16 @@ class Match:
 
     def player_from_player_name(self, player_name):
         if not self.has_draw():
-            raise ConfigException("No draw has been set for match")
+            raise error.ConfigException("No draw has been set for match")
         return find_player_by_name(player_name, [self.player1, self.player2])
 
     def add_player(self, player):
         if self.player1 and self.player2:
-            raise ConfigException
+            raise error.PlayerAdvanceError(
+                f"Can't advance player, match {self.match_id} full with {self.player1.name} and {self.player2.name}")
+
+        echo.echo(f"Add {player.name} to match {self.match_id}")
+
         if not self.player1:
             self.player1 = player
         else:
@@ -243,8 +255,20 @@ class Match:
         if self.match_winner:
             return self.match_winner
         self.match_winner = self._determine_winner()
+
+        echo.echo(f"""Match {self.match_id} Winner {self.match_winner.name} 
+        {self.match_winner.name}: {self.show_set_and_winner(self.match_winner)}
+        {self._losing_player().name}: {self.show_set_and_winner(self._losing_player())}""")
+
         self.advance_winner_fn(self)
         return self.match_winner
+
+    def _losing_player(self):
+        if not self.is_finished():
+            return None
+        if self.player1 == self.match_winner:
+            return self.player2
+        return self.player1
 
     def _determine_winner(self):
         winners_by_sets = fn.remove_none([s.winner for s in self.sets])
@@ -275,5 +299,5 @@ class Set:
         pl1, pl1_games = self.games[0]
         pl2, pl2_games = self.games[1]
         if pl1_games == pl2_games:
-            raise ConfigException
+            raise error.ConfigException
         return pl1 if pl1_games > pl2_games else pl2
