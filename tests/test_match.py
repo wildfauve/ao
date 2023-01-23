@@ -93,3 +93,8 @@ Matches:
         (   ) Player4 
 """
     assert expected_output in captured.out
+
+
+def test_result_template(capsys, event, players):
+    results = event.for_round(1).result_template("mens_singles")
+    breakpoint()

@@ -14,6 +14,16 @@ def show_round(event_name, round_number):
         echo.echo(f"Event with name {event_name} not found")
     ev.for_round(round_number).show()
 
+def result_template(event_name, round_number, template_name):
+    events = start()
+    ev = match.find_event(event_name, events)
+    if not ev:
+        echo.echo(f"Event with name {event_name} not found")
+    results = ev.for_round(round_number).result_template(template_name)
+    for result in results:
+        echo.echo(result)
+
+
 
 def explain_team_points(team_name):
     teams.explain_points_for_team(team_name, apply_fantasy(start()))

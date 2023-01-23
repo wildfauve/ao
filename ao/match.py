@@ -136,6 +136,9 @@ class Round:
         for match in self.matches:
             match.show()
 
+    def result_template(self, event_name):
+        return [match.result_template(event_name, self.round_id) for match in self.matches]
+
     def add_winner_to_match(self, match_number, player):
         if len(self.matches) < match_number:
             raise error.ConfigException(f"Match number {match_number} over total matches {len(self.matches)}")
@@ -199,6 +202,14 @@ class Match:
             return ""
         chevon = "<" if player == self.match_winner else ""
         return f"{' '.join([str(s) for s in self.scores[player]])}  {chevon}"
+
+    def result_template(self, event_name, round_number):
+        match_part = f"{event_name}.for_round({round_number}).for_match({self.number})"
+        if self.has_draw():
+            score_part = f"score({self.player1.name}, ()).score({self.player2.name}, ())"
+        else:
+            score_part = f"score(?, ()).score(?, ())"
+        return f"{match_part}.{score_part}"
 
     def find_player_by_player(self, player):
         return find_player(player, [self.player1, self.player2])
