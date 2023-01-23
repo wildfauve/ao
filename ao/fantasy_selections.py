@@ -216,7 +216,7 @@ def team_musical_bears(mens_singles, womens_singles):
     TeamMusicalBears.event(womens_singles).match("2.1").winner(Ostapenko).in_sets(3)
     TeamMusicalBears.event(womens_singles).match("2.2").winner(Pegula).in_sets(2)
     TeamMusicalBears.event(womens_singles).match("2.3").winner(Linette).in_sets(3)
-    TeamMusicalBears.event(womens_singles).match("2.4").winner(Sabalenka).in_sets(3)
+    TeamMusicalBears.event(womens_singles).match("2.4").winner(Vekic).in_sets(3)
 
     # Semis
     TeamMusicalBears.event(mens_singles).match("3.1").winner().in_sets()
