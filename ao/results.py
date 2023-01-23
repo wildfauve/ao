@@ -26,10 +26,10 @@ def results(mens_singles, womens_singles):
     womens_singles.for_round(1).for_match(2).score(Ostapenko, (7, 6)).score(Gauff, (6, 4))
     womens_singles.for_round(1).for_match(3).score(Pegula, (7, 6)).score(Krejcikova, (5, 2))
     womens_singles.for_round(1).for_match(4).score(Azarenka, (4, 6, 6)).score(Zhu, (6, 1, 4))
-    womens_singles.for_round(1).for_match(5).score(Pliskova, ()).score(Zhang, ())
-    womens_singles.for_round(1).for_match(6).score(Linette, ()).score(Garcia, ())
+    womens_singles.for_round(1).for_match(5).score(Pliskova, (6, 6)).score(Zhang, (0, 4))
+    womens_singles.for_round(1).for_match(6).score(Linette, (7, 6)).score(Garcia, (4, 4))
     womens_singles.for_round(1).for_match(7).score(Sabalenka, (7, 6)).score(Bencic, (5, 2))
-    womens_singles.for_round(1).for_match(8).score(Vekic, ()).score(Fruhvirtova, ())
+    womens_singles.for_round(1).for_match(8).score(Vekic, (6, 1, 6)).score(Fruhvirtova, (2, 6, 3))
 
     # Quarter Final Results
 
