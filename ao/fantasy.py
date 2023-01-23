@@ -102,10 +102,10 @@ class Selection:
         if not self.match.is_finished():
             return {
                 "match": self.match.match_id,
-                "between": f"{self.match.player1.name}, {self.match.player2.name}",
+                "between": f"{self.match.player1.name}, {self.match.player2.name}" if self.match.has_draw() else None,
                 "result-winner": "Not Finished",
-                "selected-winner": self.selected_winner.name,
-                "selected-in-sets": self.in_number_sets,
+                "selected-winner": self.selected_winner.name if self.selected_winner else None,
+                "selected-in-sets": self.in_number_sets if self.in_number_sets else None,
                 "points": []
             }
 
@@ -114,8 +114,8 @@ class Selection:
             "between": f"{self.match.player1.name}, {self.match.player2.name}",
             "result-winner": self.match.match_winner.name,
             "result-in-sets": self.match.number_of_sets_played(),
-            "selected-winner": self.selected_winner.name,
-            "selected-in-sets": self.in_number_sets,
+            "selected-winner": self.selected_winner.name if self.selected_winner else None,
+            "selected-in-sets": self.in_number_sets if self.in_number_sets else None,
             "points": [points_strategy(explain=True) for points_strategy in self.points_strategy_fns()]
         }
 
@@ -165,7 +165,7 @@ class Selection:
     def calc(self, points_type, explain: bool = False, when_no_points: Points = None):
         points_name, value = points_type.value
         if points_type == Points.NO_POINTS:
-            return value if not explain else {when_no_points.value[1]: value}
+            return value if not explain else {when_no_points.value[0]: value}
         return self.points_with_factor(value) if not explain else {points_name: self.points_with_factor(value)}
 
     def points_with_factor(self, points):
