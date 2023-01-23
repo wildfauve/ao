@@ -1,7 +1,15 @@
+from enum import Enum
 from functools import partial
 from . import match, error
 
 from .util import fn, identity, echo
+
+
+class Points(Enum):
+    NO_POINTS = ('', 0)
+    WINNER = ('correct-winner', 5)
+    NUMBER_OF_SETS = ('correct-sets', 2)
+    LOST_WITH_MAX_SETS = ('bonus-for-loss-in-max-sets', 1)
 
 
 class Team:
@@ -80,6 +88,7 @@ class FantasyEvent:
 
 class Selection:
     def __init__(self, event, round_id, match_id):
+        self.round_id = round_id
         self.match = self._find_match(event, round_id, match_id)
         self.selected_winner = None
         self.in_number_sets = None
@@ -118,14 +127,18 @@ class Selection:
     def _find_match(self, event, round_id, match_id):
         return event.for_round(round_id).for_match(match_id)
 
-    def winner(self, player_name):
+    def winner(self, player_name = None):
+        if not player_name:
+            return self
         if isinstance(player_name, match.Player):
             self.selected_winner = self.match.find_player_by_player(player_name)
         else:
             self.selected_winner = self.match.player_from_player_name(player_name)
         return self
 
-    def in_sets(self, number_of_sets):
+    def in_sets(self, number_of_sets = None):
+        if not number_of_sets:
+            return self
         self.in_number_sets = number_of_sets
         return self
 
@@ -134,18 +147,31 @@ class Selection:
 
     def selected_correct_winner(self, explain: bool = False):
         if self.match.match_winner == self.selected_winner:
-            return 5 if not explain else {"correct-winner": 5}
-        return 0 if not explain else {"correct-winner": 0}
+            return self.calc(Points.WINNER, explain)
+        return self.calc(Points.NO_POINTS, explain, Points.WINNER)
 
     def selected_correct_sets(self, explain: bool = False):
         if self.match.match_winner != self.selected_winner:
-            return 0 if not explain else {"correct-sets": 0}
+            return self.calc(Points.NO_POINTS, explain, Points.NUMBER_OF_SETS)
         if self.in_number_sets == self.match.number_of_sets_played():
-            return 2 if not explain else {"correct-sets": 2}
-        return 0 if not explain else {"correct-sets": 0}
+            return self.calc(Points.NUMBER_OF_SETS, explain)
+        return self.calc(Points.NO_POINTS, explain, Points.NUMBER_OF_SETS)
 
     def lost_but_in_max_sets(self, explain: bool = False):
         if (self.match.match_winner != self.selected_winner) and self.match.max_sets_played():
+            return self.calc(Points.LOST_WITH_MAX_SETS, explain)
+        return self.calc(Points.NO_POINTS, explain, Points.LOST_WITH_MAX_SETS)
+
+    def calc(self, points_type, explain: bool = False, when_no_points: Points = None):
+        points_name, value = points_type.value
+        if points_type == Points.NO_POINTS:
+            return value if not explain else {when_no_points.value[1]: value}
+        return self.points_with_factor(value) if not explain else {points_name: self.points_with_factor(value)}
+
+    def points_with_factor(self, points):
+        return points * self.round_factor()
+
+    def round_factor(self):
+        if self.round_id == 1:
             return 1
-            return 1 if not explain else {"bonus-for-loss-in-max-sets": 1}
-        return 0 if not explain else {"bonus-for-loss-in-max-sets": 0}
+        return (self.round_id - 1) * 2

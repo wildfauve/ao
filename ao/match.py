@@ -13,7 +13,7 @@ def find_event(event_name, events):
 def find_player(player, players):
     pl = fn.find(partial(_player_predicate, player), players)
     if not pl:
-        raise error.ConfigException
+        raise error.ConfigException(f"{player.name} is either not found or is not in the game")
     return pl
 
 
@@ -91,7 +91,8 @@ class Event:
         rd_id, mt_id = identity.split_match_id(match.match_id)
         if len(self.rounds) < rd_id + 1:
             # we are finished
-            breakpoint()
+            echo.echo(f"Event Finished: Winner {match.winner().name}")
+            return self
         next_rd_match_number = self._next_rd_match_number(rd_id, mt_id)
         # This is the next round
         # rd_id is indexed from 1, so next rd in rounds list is the same number
@@ -228,15 +229,18 @@ class Match:
 
         if not self.player1:
             self.player1 = player
+            self._init_scores(player)
         else:
             self.player2 = player
+            self._init_scores(player)
         return self
+
 
     def add_players(self, player1, player2):
         self.player1 = player1
+        self._init_scores(player1)
         self.player2 = player2
-        self.scores = {self.player1: tuple(), self.player2: tuple()}
-        self.sets = [Set(set_num, player1, player2) for set_num in range(1, self.best_of + 1)]
+        self._init_scores(player2)
         return self
 
     def score(self, player, set_games: Tuple[int, int, int]):
@@ -273,6 +277,16 @@ class Match:
 
         self.advance_winner_fn(self)
         return self.match_winner
+
+    def _init_scores(self, for_player):
+        if not self.scores:
+            self.scores = {for_player: tuple()}
+        else:
+            self.scores[for_player] = tuple()
+        if self.has_draw():
+            self.sets = [Set(set_num, self.player1, self.player2) for set_num in range(1, self.best_of + 1)]
+        return self
+
 
     def _losing_player(self):
         if not self.is_finished():
