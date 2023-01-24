@@ -28,15 +28,15 @@ def team_gelato_giants(mens_singles, womens_singles):
     TeamGelatoGiants.event(womens_singles).match("1.8").winner(Vekic).in_sets(2)
     
     # Quarters
-    TeamGelatoGiants.event(mens_singles).match("2.1").winner().in_sets()
-    TeamGelatoGiants.event(mens_singles).match("2.2").winner().in_sets()
-    TeamGelatoGiants.event(mens_singles).match("2.3").winner().in_sets()
-    TeamGelatoGiants.event(mens_singles).match("2.4").winner().in_sets()
+    TeamGelatoGiants.event(mens_singles).match("2.1").winner(Khachanov).in_sets(3)
+    TeamGelatoGiants.event(mens_singles).match("2.2").winner(Tsitsipas).in_sets(4)
+    TeamGelatoGiants.event(mens_singles).match("2.3").winner(Djokovic).in_sets(3)
+    TeamGelatoGiants.event(mens_singles).match("2.4").winner(Shelton).in_sets(4)
 
-    TeamGelatoGiants.event(womens_singles).match("2.1").winner().in_sets()
-    TeamGelatoGiants.event(womens_singles).match("2.2").winner().in_sets()
-    TeamGelatoGiants.event(womens_singles).match("2.3").winner().in_sets()
-    TeamGelatoGiants.event(womens_singles).match("2.4").winner().in_sets()
+    TeamGelatoGiants.event(womens_singles).match("2.1").winner(Rybakina).in_sets(3)
+    TeamGelatoGiants.event(womens_singles).match("2.2").winner(Pegula).in_sets(3)
+    TeamGelatoGiants.event(womens_singles).match("2.3").winner(Pliskova).in_sets(3)
+    TeamGelatoGiants.event(womens_singles).match("2.4").winner(Sabalenka).in_sets(2)
     
     # Semis
     TeamGelatoGiants.event(mens_singles).match("3.1").winner().in_sets()
@@ -73,15 +73,15 @@ def team_polar_precision(mens_singles, womens_singles):
     TeamPolarPrecision.event(womens_singles).match("1.8").winner(Vekic).in_sets(3)
     
     # Quarters
-    TeamPolarPrecision.event(mens_singles).match("2.1").winner().in_sets()
-    TeamPolarPrecision.event(mens_singles).match("2.2").winner().in_sets()
-    TeamPolarPrecision.event(mens_singles).match("2.3").winner().in_sets()
-    TeamPolarPrecision.event(mens_singles).match("2.4").winner().in_sets()
+    TeamPolarPrecision.event(mens_singles).match("2.1").winner(Khachanov).in_sets(4)
+    TeamPolarPrecision.event(mens_singles).match("2.2").winner(Tsitsipas).in_sets(5)
+    TeamPolarPrecision.event(mens_singles).match("2.3").winner(Djokovic).in_sets(4)
+    TeamPolarPrecision.event(mens_singles).match("2.4").winner(Shelton).in_sets(5)
 
-    TeamPolarPrecision.event(womens_singles).match("2.1").winner().in_sets()
-    TeamPolarPrecision.event(womens_singles).match("2.2").winner().in_sets()
-    TeamPolarPrecision.event(womens_singles).match("2.3").winner().in_sets()
-    TeamPolarPrecision.event(womens_singles).match("2.4").winner().in_sets()
+    TeamPolarPrecision.event(womens_singles).match("2.1").winner(Ostapenko).in_sets(2)
+    TeamPolarPrecision.event(womens_singles).match("2.2").winner(Azarenka).in_sets(3)
+    TeamPolarPrecision.event(womens_singles).match("2.3").winner(Linette).in_sets(3)
+    TeamPolarPrecision.event(womens_singles).match("2.4").winner(Sabalenka).in_sets(3)
 
     # Semis
     TeamPolarPrecision.event(mens_singles).match("3.1").winner().in_sets()
@@ -118,15 +118,15 @@ def team_hero_hangouts(mens_singles, womens_singles):
     TeamHeroHangouts.event(womens_singles).match("1.8").winner(Fruhvirtova).in_sets(3)
     
     # Quarters
-    TeamHeroHangouts.event(mens_singles).match("2.1").winner().in_sets()
-    TeamHeroHangouts.event(mens_singles).match("2.2").winner().in_sets()
-    TeamHeroHangouts.event(mens_singles).match("2.3").winner().in_sets()
-    TeamHeroHangouts.event(mens_singles).match("2.4").winner().in_sets()
+    TeamHeroHangouts.event(mens_singles).match("2.1").winner(Korda).in_sets(5)
+    TeamHeroHangouts.event(mens_singles).match("2.2").winner(Lehecka).in_sets(5)
+    TeamHeroHangouts.event(mens_singles).match("2.3").winner(Djokovic).in_sets(5)
+    TeamHeroHangouts.event(mens_singles).match("2.4").winner(Paul).in_sets(5)
 
-    TeamHeroHangouts.event(womens_singles).match("2.1").winner().in_sets()
-    TeamHeroHangouts.event(womens_singles).match("2.2").winner().in_sets()
-    TeamHeroHangouts.event(womens_singles).match("2.3").winner().in_sets()
-    TeamHeroHangouts.event(womens_singles).match("2.4").winner().in_sets()
+    TeamHeroHangouts.event(womens_singles).match("2.1").winner(Ostapenko).in_sets(3)
+    TeamHeroHangouts.event(womens_singles).match("2.2").winner(Azarenka).in_sets(3)
+    TeamHeroHangouts.event(womens_singles).match("2.3").winner(Linette).in_sets(3)
+    TeamHeroHangouts.event(womens_singles).match("2.4").winner(Vekic).in_sets(3)
 
     # Semis
     TeamHeroHangouts.event(mens_singles).match("3.1").winner().in_sets()
@@ -163,15 +163,15 @@ def team_bear_necessities(mens_singles, womens_singles):
     TeamBearNecessities.event(womens_singles).match("1.8").winner(Vekic).in_sets(3)
     
     # Quarters
-    TeamBearNecessities.event(mens_singles).match("2.1").winner().in_sets()
-    TeamBearNecessities.event(mens_singles).match("2.2").winner().in_sets()
-    TeamBearNecessities.event(mens_singles).match("2.3").winner().in_sets()
-    TeamBearNecessities.event(mens_singles).match("2.4").winner().in_sets()
+    TeamBearNecessities.event(mens_singles).match("2.1").winner(Khachanov).in_sets(5)
+    TeamBearNecessities.event(mens_singles).match("2.2").winner(Tsitsipas).in_sets(5)
+    TeamBearNecessities.event(mens_singles).match("2.3").winner(Djokovic).in_sets(3)
+    TeamBearNecessities.event(mens_singles).match("2.4").winner(Shelton).in_sets(5)
 
-    TeamBearNecessities.event(womens_singles).match("2.1").winner().in_sets()
-    TeamBearNecessities.event(womens_singles).match("2.2").winner().in_sets()
-    TeamBearNecessities.event(womens_singles).match("2.3").winner().in_sets()
-    TeamBearNecessities.event(womens_singles).match("2.4").winner().in_sets()
+    TeamBearNecessities.event(womens_singles).match("2.1").winner(Rybakina).in_sets(2)
+    TeamBearNecessities.event(womens_singles).match("2.2").winner(Pegula).in_sets(2)
+    TeamBearNecessities.event(womens_singles).match("2.3").winner(Pliskova).in_sets(2)
+    TeamBearNecessities.event(womens_singles).match("2.4").winner(Sabalenka).in_sets(3)
 
     # Semis
     TeamBearNecessities.event(mens_singles).match("3.1").winner().in_sets()
