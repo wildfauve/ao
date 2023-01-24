@@ -33,12 +33,12 @@ def results(mens_singles, womens_singles):
 
     # Quarter Final Results
 
-    # mens_singles.for_round(2).for_match(1).score(Khachanov, ()).score(Korda, ())
-    # mens_singles.for_round(2).for_match(2).score(Tsitsipas, ()).score(Lehecka, ())
+    mens_singles.for_round(2).for_match(1).score(Khachanov, (7, 6, 3)).score(Korda, (6, 3, 0))
+    mens_singles.for_round(2).for_match(2).score(Tsitsipas, (6, 7, 6)).score(Lehecka, (3, 6, 4))
     # mens_singles.for_round(2).for_match(3).score(Rublev, ()).score(Djokovic, ())
     # mens_singles.for_round(2).for_match(4).score(Shelton, ()).score(Paul, ())
 
-    # womens_singles.for_round(2).for_match(1).score(Rybakina, ()).score(Ostapenko, ())
-    # womens_singles.for_round(2).for_match(2).score(Pegula, ()).score(Azarenka, ())
+    womens_singles.for_round(2).for_match(1).score(Rybakina, (6, 6)).score(Ostapenko, (2, 4))
+    womens_singles.for_round(2).for_match(2).score(Pegula, (4, 1)).score(Azarenka, (6, 6))
     # womens_singles.for_round(2).for_match(3).score(Pliskova, ()).score(Linette, ())
     # womens_singles.for_round(2).for_match(4).score(Sabalenka, ()).score(Vekic, ())
