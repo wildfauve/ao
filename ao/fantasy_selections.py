@@ -223,8 +223,8 @@ def team_musical_bears(mens_singles, womens_singles):
     TeamMusicalBears.event(mens_singles).match("3.1").winner().in_sets()
     TeamMusicalBears.event(mens_singles).match("3.2").winner().in_sets()
 
-    TeamMusicalBears.event(womens_singles).match("3.1").winner().in_sets()
-    TeamMusicalBears.event(womens_singles).match("3.2").winner().in_sets()
+    TeamMusicalBears.event(womens_singles).match("3.1").winner(Azarenka).in_sets(3)
+    TeamMusicalBears.event(womens_singles).match("3.2").winner(Sabalenka).in_sets(3)
 
     # Finals
     TeamMusicalBears.event(mens_singles).match("4.1").winner().in_sets()
@@ -268,8 +268,8 @@ def team_fauve(mens_singles, womens_singles):
     TeamFauve.event(mens_singles).match("3.1").winner().in_sets()
     TeamFauve.event(mens_singles).match("3.2").winner().in_sets()
 
-    TeamFauve.event(womens_singles).match("3.1").winner().in_sets()
-    TeamFauve.event(womens_singles).match("3.2").winner().in_sets()
+    TeamFauve.event(womens_singles).match("3.1").winner(Azarenka).in_sets(2)
+    TeamFauve.event(womens_singles).match("3.2").winner(Sabalenka).in_sets(2)
 
     # Finals
     TeamFauve.event(mens_singles).match("4.1").winner().in_sets()
@@ -313,8 +313,8 @@ def team_clojo(mens_singles, womens_singles):
     TeamClojo.event(mens_singles).match("3.1").winner().in_sets()
     TeamClojo.event(mens_singles).match("3.2").winner().in_sets()
 
-    TeamClojo.event(womens_singles).match("3.1").winner().in_sets()
-    TeamClojo.event(womens_singles).match("3.2").winner().in_sets()
+    TeamClojo.event(womens_singles).match("3.1").winner(Rybakina).in_sets(3)
+    TeamClojo.event(womens_singles).match("3.2").winner(Sabalenka).in_sets(3)
 
     # Finals
     TeamClojo.event(mens_singles).match("4.1").winner().in_sets()
@@ -358,8 +358,8 @@ def team_light_house(mens_singles, womens_singles):
     TeamLightHouse.event(mens_singles).match("3.1").winner().in_sets()
     TeamLightHouse.event(mens_singles).match("3.2").winner().in_sets()
 
-    TeamLightHouse.event(womens_singles).match("3.1").winner().in_sets()
-    TeamLightHouse.event(womens_singles).match("3.2").winner().in_sets()
+    TeamLightHouse.event(womens_singles).match("3.1").winner(Rybakina).in_sets(2)
+    TeamLightHouse.event(womens_singles).match("3.2").winner(Linette).in_sets(3)
 
     # Finals
     TeamLightHouse.event(mens_singles).match("4.1").winner().in_sets()
