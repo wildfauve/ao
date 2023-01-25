@@ -152,10 +152,6 @@ def test_round_factor(event, event2, players, fantasy_team):
     assert fantasy_team.total_points() == 28
 
 
-
-
-
-
 def test_match_doesnt_exist(event, players, fantasy_team):
     with pytest.raises(error.ConfigException):
         fantasy_team.event(event).match("1.3").winner("Player1").in_sets(3)

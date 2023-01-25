@@ -35,10 +35,18 @@ def results(mens_singles, womens_singles):
 
     mens_singles.for_round(2).for_match(1).score(Khachanov, (7, 6, 3)).score(Korda, (6, 3, 0))
     mens_singles.for_round(2).for_match(2).score(Tsitsipas, (6, 7, 6)).score(Lehecka, (3, 6, 4))
-    # mens_singles.for_round(2).for_match(3).score(Rublev, ()).score(Djokovic, ())
-    # mens_singles.for_round(2).for_match(4).score(Shelton, ()).score(Paul, ())
+    mens_singles.for_round(2).for_match(3).score(Rublev, (1, 2, 4)).score(Djokovic, (6, 6, 6))
+    mens_singles.for_round(2).for_match(4).score(Shelton, (6, 3, 7, 4)).score(Paul, (7, 6, 5, 6))
 
     womens_singles.for_round(2).for_match(1).score(Rybakina, (6, 6)).score(Ostapenko, (2, 4))
     womens_singles.for_round(2).for_match(2).score(Pegula, (4, 1)).score(Azarenka, (6, 6))
-    # womens_singles.for_round(2).for_match(3).score(Pliskova, ()).score(Linette, ())
-    # womens_singles.for_round(2).for_match(4).score(Sabalenka, ()).score(Vekic, ())
+    womens_singles.for_round(2).for_match(3).score(Pliskova, (3, 5)).score(Linette, (6, 7))
+    womens_singles.for_round(2).for_match(4).score(Sabalenka, (6, 6)).score(Vekic, (3, 2))
+
+    # Semis
+
+    mens_singles.for_round(3).for_match(1).score(Khachanov, ()).score(Tsitsipas, ())
+    mens_singles.for_round(3).for_match(2).score(Djokovic, ()).score(Paul, ())
+
+    womens_singles.for_round(3).for_match(1).score(Rybakina, ()).score(Azarenka, ())
+    womens_singles.for_round(3).for_match(2).score(Linette, ()).score(Sabalenka, ())

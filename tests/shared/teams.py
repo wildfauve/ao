@@ -9,3 +9,11 @@ def fantasy_team():
 @pytest.fixture
 def fantasy_team_2():
     return fantasy.Team("FantasyTeam2", "Member2")
+
+@pytest.fixture
+def fantasy_team_3():
+    return fantasy.Team("FantasyTeam3", "Member3")
+
+@pytest.fixture
+def fantasy_team_4():
+    return fantasy.Team("FantasyTeam4", "Member4")

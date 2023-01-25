@@ -30,8 +30,8 @@ class Team:
         ev = self._find_fantasy_event(event)
         ev.show()
 
-    def total_points(self):
-        return sum([fantasy_event.total_points() for fantasy_event in self.fantasy_events])
+    def total_points(self, for_round=None):
+        return sum([fantasy_event.total_points(for_round) for fantasy_event in self.fantasy_events])
 
     def explain_points(self):
         return [fantasy_event.explain_points() for fantasy_event in self.fantasy_events]
@@ -41,6 +41,13 @@ class Team:
 
     def _event_predicate(self, test_ev: match.Event, fantasy_event):
         return test_ev == fantasy_event.event
+
+    def __hash__(self):
+        return hash((self.symbolic_name,))
+
+    def __eq__(self, other):
+        return self.symbolic_name == other.symbolic_name
+
 
 
 class FantasyEvent:
@@ -55,7 +62,11 @@ class FantasyEvent:
             for mt_id, selection in matches.items():
                 selection.show()
 
-    def total_points(self):
+    def total_points(self, for_round=None):
+        if for_round:
+            if for_round not in self.match_selections.keys():
+                return 0
+            return sum([sel.points() for sel in self.match_selections[for_round].values()])
         return sum([sel.points() for selections in self.match_selections.values() for sel in selections.values()])
 
     def explain_points(self):

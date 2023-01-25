@@ -26,7 +26,7 @@ def symbolised_names():
     return [t.symbolic_name for t in teams]
 
 def explain_points_for_team(team_name, teams):
-    team = find_team(team_name, teams)
+    team = find_team_by_name(team_name, teams)
     if not team:
         echo.echo("Team Not Found")
         return None
@@ -34,9 +34,18 @@ def explain_points_for_team(team_name, teams):
     pass
 
 
-def find_team(team_name, teams):
+def find_team_by_name(team_name, teams):
+    breakpoint()
     return fn.find(partial(_team_name_predicate, team_name), teams)
+
+def find_team(team, teams):
+    return fn.find(partial(_team_predicate, team), teams)
+
 
 
 def _team_name_predicate(team_name, team):
     return team_name == team.symbolic_name
+
+
+def _team_predicate(team_to_find, team):
+    return team_to_find == team

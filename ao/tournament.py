@@ -3,8 +3,8 @@ from .players import *
 from . import results, fantasy_selections, leaderboard, teams
 from .util import echo
 
-def show_leaderboard():
-    leaderboard_for_teams(apply_fantasy(start()))
+def show_leaderboard(board_type, round_number=None):
+    leaderboard_for_teams(apply_fantasy(start()), board_type, round_number)
     pass
 
 def show_round(event_name, round_number):
@@ -37,8 +37,8 @@ def apply_fantasy(event_tuple):
     mens_singles, womens_singles = event_tuple
     return fantasy_selections.apply(mens_singles, womens_singles)
 
-def leaderboard_for_teams(teams):
-    leaderboard.show(teams)
+def leaderboard_for_teams(teams, board_type, round_number):
+    leaderboard.current_leaderboard(teams, board_type, round_number)
 
 # Mens Singles
 def events():

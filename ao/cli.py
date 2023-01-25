@@ -9,11 +9,16 @@ def cli():
 
 
 @click.command()
-def leaderboard():
+@click.option("--round_number", "-r", type=int, default=None, help="Leaderboard for specific round")
+@click.option("--board_type", "-t",
+              type=click.Choice(['f1', 'fantasy']),
+              default='fantasy',
+              help="Either the Fantasy Leaderboard or the F1 leaderboard")
+def leaderboard(round_number, board_type):
     """
     Starts the tournament,  applies the results, applies the fantasy selection and prints the leaderboard
     """
-    tournament.show_leaderboard()
+    tournament.show_leaderboard(board_type, round_number)
     pass
 
 
