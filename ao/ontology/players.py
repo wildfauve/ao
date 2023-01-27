@@ -36,3 +36,12 @@ Sabalenka = Player("A. Sabalenka", 5)
 Bencic = Player("B. Bencic", 12)
 Vekic = Player("D. Vekic", None)
 Fruhvirtova = Player("L. Fruhvirtova", None)
+
+# plrs = [Auger_Aliassime, Azarenka, BautistaAgut, Bencic, DeMinaur, Djokovic, Fruhvirtova, Garcia,
+#         Gauff, Hurkacz, Khachanov, Korda, Krejcikova, Lehecka, Linette, Nishioka, Ostapenko, Paul,
+#         Pegula, Pliskova, Rublev, Rune, Rybakina, Sabalenka, Shelton, Sinner, Swiatek,
+#         Tsitsipas, Vekic, Wolf, Zhang, Zhu]
+#
+# ttl = "\n".join([p.to_ttl_entry() for p in plrs] + [p.to_ttl_player() for p in plrs])
+#
+# breakpoint()

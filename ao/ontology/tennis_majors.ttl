@@ -96,10 +96,162 @@ fau-ten-ind:AustralianOpen2023WomensSingles
     skos:notation "Australian Open 2023 Women's Singles" .
 
 
+fau-ten-ind:AliassimeAO2023Entry
+    a                        fau-ten:QualifiedPlayer ;
+    fau-ten:hasSeed          6 ;
+    fau-ten:isEntryForPlayer fau-ten-ind:Aliassime .
+
+
+fau-ten-ind:AzarenkaAO2023Entry
+    a                        fau-ten:QualifiedPlayer ;
+    fau-ten:hasSeed          24 ;
+    fau-ten:isEntryForPlayer fau-ten-ind:Azarenka .
+
+
+fau-ten-ind:AgutAO2023Entry
+    a                        fau-ten:QualifiedPlayer ;
+    fau-ten:hasSeed          24 ;
+    fau-ten:isEntryForPlayer fau-ten-ind:Agut .
+
+
+fau-ten-ind:BencicAO2023Entry
+    a                        fau-ten:QualifiedPlayer ;
+    fau-ten:hasSeed          12 ;
+    fau-ten:isEntryForPlayer fau-ten-ind:Bencic .
+
+
+fau-ten-ind:MinaurAO2023Entry
+    a                        fau-ten:QualifiedPlayer ;
+    fau-ten:hasSeed          22 ;
+    fau-ten:isEntryForPlayer fau-ten-ind:Minaur .
+
+
 fau-ten-ind:DjokovicAO2023Entry
     a                        fau-ten:QualifiedPlayer ;
     fau-ten:hasSeed          4 ;
     fau-ten:isEntryForPlayer fau-ten-ind:Djokovic .
+
+
+fau-ten-ind:FruhvirtovaAO2023Entry
+    a                        fau-ten:QualifiedPlayer ;
+    fau-ten:isEntryForPlayer fau-ten-ind:Fruhvirtova .
+
+
+fau-ten-ind:GarciaAO2023Entry
+    a                        fau-ten:QualifiedPlayer ;
+    fau-ten:hasSeed          4 ;
+    fau-ten:isEntryForPlayer fau-ten-ind:Garcia .
+
+
+fau-ten-ind:GauffAO2023Entry
+    a                        fau-ten:QualifiedPlayer ;
+    fau-ten:hasSeed          7 ;
+    fau-ten:isEntryForPlayer fau-ten-ind:Gauff .
+
+
+fau-ten-ind:HurkaczAO2023Entry
+    a                        fau-ten:QualifiedPlayer ;
+    fau-ten:hasSeed          10 ;
+    fau-ten:isEntryForPlayer fau-ten-ind:Hurkacz .
+
+
+fau-ten-ind:KhachanovAO2023Entry
+    a                        fau-ten:QualifiedPlayer ;
+    fau-ten:hasSeed          18 ;
+    fau-ten:isEntryForPlayer fau-ten-ind:Khachanov .
+
+
+fau-ten-ind:KordaAO2023Entry
+    a                        fau-ten:QualifiedPlayer ;
+    fau-ten:hasSeed          29 ;
+    fau-ten:isEntryForPlayer fau-ten-ind:Korda .
+
+
+fau-ten-ind:KrejcikovaAO2023Entry
+    a                        fau-ten:QualifiedPlayer ;
+    fau-ten:hasSeed          20 ;
+    fau-ten:isEntryForPlayer fau-ten-ind:Krejcikova .
+
+
+fau-ten-ind:LeheckaAO2023Entry
+    a                        fau-ten:QualifiedPlayer ;
+    fau-ten:isEntryForPlayer fau-ten-ind:Lehecka .
+
+
+fau-ten-ind:LinetteAO2023Entry
+    a                        fau-ten:QualifiedPlayer ;
+    fau-ten:isEntryForPlayer fau-ten-ind:Linette .
+
+
+fau-ten-ind:NishiokaAO2023Entry
+    a                        fau-ten:QualifiedPlayer ;
+    fau-ten:hasSeed          31 ;
+    fau-ten:isEntryForPlayer fau-ten-ind:Nishioka .
+
+
+fau-ten-ind:OstapenkoAO2023Entry
+    a                        fau-ten:QualifiedPlayer ;
+    fau-ten:hasSeed          17 ;
+    fau-ten:isEntryForPlayer fau-ten-ind:Ostapenko .
+
+
+fau-ten-ind:PaulAO2023Entry
+    a                        fau-ten:QualifiedPlayer ;
+    fau-ten:isEntryForPlayer fau-ten-ind:Paul .
+
+
+fau-ten-ind:PegulaAO2023Entry
+    a                        fau-ten:QualifiedPlayer ;
+    fau-ten:hasSeed          3 ;
+    fau-ten:isEntryForPlayer fau-ten-ind:Pegula .
+
+
+fau-ten-ind:PliskovaAO2023Entry
+    a                        fau-ten:QualifiedPlayer ;
+    fau-ten:hasSeed          30 ;
+    fau-ten:isEntryForPlayer fau-ten-ind:Pliskova .
+
+
+fau-ten-ind:RublevAO2023Entry
+    a                        fau-ten:QualifiedPlayer ;
+    fau-ten:hasSeed          5 ;
+    fau-ten:isEntryForPlayer fau-ten-ind:Rublev .
+
+
+fau-ten-ind:RuneAO2023Entry
+    a                        fau-ten:QualifiedPlayer ;
+    fau-ten:hasSeed          9 ;
+    fau-ten:isEntryForPlayer fau-ten-ind:Rune .
+
+
+fau-ten-ind:RybakinaAO2023Entry
+    a                        fau-ten:QualifiedPlayer ;
+    fau-ten:hasSeed          22 ;
+    fau-ten:isEntryForPlayer fau-ten-ind:Rybakina .
+
+
+fau-ten-ind:SabalenkaAO2023Entry
+    a                        fau-ten:QualifiedPlayer ;
+    fau-ten:hasSeed          5 ;
+    fau-ten:isEntryForPlayer fau-ten-ind:Sabalenka .
+
+
+fau-ten-ind:SheltonAO2023Entry
+    a                        fau-ten:QualifiedPlayer ;
+    fau-ten:isEntryForPlayer fau-ten-ind:Shelton .
+
+
+fau-ten-ind:SinnerAO2023Entry
+    a                        fau-ten:QualifiedPlayer ;
+    fau-ten:hasSeed          15 ;
+    fau-ten:isEntryForPlayer fau-ten-ind:Sinner .
+
+
+fau-ten-ind:SwiatekAO2023Entry
+    a                        fau-ten:QualifiedPlayer ;
+    fau-ten:hasSeed          1 ;
+    fau-ten:isEntryForPlayer fau-ten-ind:Swiatek .
+
 
 fau-ten-ind:TsitsipasAO2023Entry
     a                        fau-ten:QualifiedPlayer ;
@@ -107,11 +259,186 @@ fau-ten-ind:TsitsipasAO2023Entry
     fau-ten:isEntryForPlayer fau-ten-ind:Tsitsipas .
 
 
+fau-ten-ind:VekicAO2023Entry
+    a                        fau-ten:QualifiedPlayer ;
+    fau-ten:isEntryForPlayer fau-ten-ind:Vekic .
+
+
+fau-ten-ind:WolfAO2023Entry
+    a                        fau-ten:QualifiedPlayer ;
+    fau-ten:isEntryForPlayer fau-ten-ind:Wolf .
+
+
+fau-ten-ind:ZhangAO2023Entry
+    a                        fau-ten:QualifiedPlayer ;
+    fau-ten:hasSeed          23 ;
+    fau-ten:isEntryForPlayer fau-ten-ind:Zhang .
+
+
+fau-ten-ind:ZhuAO2023Entry
+    a                        fau-ten:QualifiedPlayer ;
+    fau-ten:isEntryForPlayer fau-ten-ind:Zhu .
+
+
+fau-ten-ind:Aliassime
+    a         fau-ten:Player, owl:NamedIndividual ;
+    foaf:name "F. Auger Aliassime" .
+
+
+fau-ten-ind:Azarenka
+    a         fau-ten:Player, owl:NamedIndividual ;
+    foaf:name "V. Azarenka" .
+
+
+fau-ten-ind:Agut
+    a         fau-ten:Player, owl:NamedIndividual ;
+    foaf:name "R. Bautista Agut" .
+
+
+fau-ten-ind:Bencic
+    a         fau-ten:Player, owl:NamedIndividual ;
+    foaf:name "B. Bencic" .
+
+
+fau-ten-ind:Minaur
+    a         fau-ten:Player, owl:NamedIndividual ;
+    foaf:name "A. de Minaur" .
+
 
 fau-ten-ind:Djokovic
     a         fau-ten:Player, owl:NamedIndividual ;
     foaf:name "N. Djokovic" .
 
+
+fau-ten-ind:Fruhvirtova
+    a         fau-ten:Player, owl:NamedIndividual ;
+    foaf:name "L. Fruhvirtova" .
+
+
+fau-ten-ind:Garcia
+    a         fau-ten:Player, owl:NamedIndividual ;
+    foaf:name "C. Garcia" .
+
+
+fau-ten-ind:Gauff
+    a         fau-ten:Player, owl:NamedIndividual ;
+    foaf:name "C. Gauff" .
+
+
+fau-ten-ind:Hurkacz
+    a         fau-ten:Player, owl:NamedIndividual ;
+    foaf:name "H. Hurkacz" .
+
+
+fau-ten-ind:Khachanov
+    a         fau-ten:Player, owl:NamedIndividual ;
+    foaf:name "K. Khachanov" .
+
+
+fau-ten-ind:Korda
+    a         fau-ten:Player, owl:NamedIndividual ;
+    foaf:name "S. Korda" .
+
+
+fau-ten-ind:Krejcikova
+    a         fau-ten:Player, owl:NamedIndividual ;
+    foaf:name "B. Krejcikova" .
+
+
+fau-ten-ind:Lehecka
+    a         fau-ten:Player, owl:NamedIndividual ;
+    foaf:name "J. Lehecka" .
+
+
+fau-ten-ind:Linette
+    a         fau-ten:Player, owl:NamedIndividual ;
+    foaf:name "M. Linette" .
+
+
+fau-ten-ind:Nishioka
+    a         fau-ten:Player, owl:NamedIndividual ;
+    foaf:name "Y. Nishioka" .
+
+
+fau-ten-ind:Ostapenko
+    a         fau-ten:Player, owl:NamedIndividual ;
+    foaf:name "J. Ostapenko" .
+
+
+fau-ten-ind:Paul
+    a         fau-ten:Player, owl:NamedIndividual ;
+    foaf:name "T. Paul" .
+
+
+fau-ten-ind:Pegula
+    a         fau-ten:Player, owl:NamedIndividual ;
+    foaf:name "J. Pegula" .
+
+
+fau-ten-ind:Pliskova
+    a         fau-ten:Player, owl:NamedIndividual ;
+    foaf:name "K. Pliskova" .
+
+
+fau-ten-ind:Rublev
+    a         fau-ten:Player, owl:NamedIndividual ;
+    foaf:name "A. Rublev" .
+
+
+fau-ten-ind:Rune
+    a         fau-ten:Player, owl:NamedIndividual ;
+    foaf:name "H. Rune" .
+
+
+fau-ten-ind:Rybakina
+    a         fau-ten:Player, owl:NamedIndividual ;
+    foaf:name "E. Rybakina" .
+
+
+fau-ten-ind:Sabalenka
+    a         fau-ten:Player, owl:NamedIndividual ;
+    foaf:name "A. Sabalenka" .
+
+
+fau-ten-ind:Shelton
+    a         fau-ten:Player, owl:NamedIndividual ;
+    foaf:name "B. Shelton" .
+
+
+fau-ten-ind:Sinner
+    a         fau-ten:Player, owl:NamedIndividual ;
+    foaf:name "J. Sinner" .
+
+
+fau-ten-ind:Swiatek
+    a         fau-ten:Player, owl:NamedIndividual ;
+    foaf:name "I. Swiatek" .
+
+
 fau-ten-ind:Tsitsipas
     a         fau-ten:Player, owl:NamedIndividual ;
     foaf:name "S. Tsitsipas" .
+
+
+fau-ten-ind:Vekic
+    a         fau-ten:Player, owl:NamedIndividual ;
+    foaf:name "D. Vekic" .
+
+
+fau-ten-ind:Wolf
+    a         fau-ten:Player, owl:NamedIndividual ;
+    foaf:name "J. Wolf" .
+
+
+fau-ten-ind:Zhang
+    a         fau-ten:Player, owl:NamedIndividual ;
+    foaf:name "S. Zhang" .
+
+
+fau-ten-ind:Zhu
+    a         fau-ten:Player, owl:NamedIndividual ;
+    foaf:name "L. Zhu" .
+
+
+
+

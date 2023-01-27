@@ -45,7 +45,7 @@ def results(mens_singles, womens_singles):
 
     # Semis
 
-    mens_singles.for_round(3).for_match(1).score(Khachanov, ()).score(Tsitsipas, ())
+    mens_singles.for_round(3).for_match(1).score(Khachanov, (6, 4, 7, 3)).score(Tsitsipas, (7, 6, 6, 6))
     mens_singles.for_round(3).for_match(2).score(Djokovic, ()).score(Paul, ())
 
     womens_singles.for_round(3).for_match(1).score(Rybakina, (7, 6)).score(Azarenka, (6, 3))
