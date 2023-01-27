@@ -47,9 +47,9 @@ def team_gelato_giants(mens_singles, womens_singles):
     TeamGelatoGiants.event(womens_singles).match("3.2").winner(Sabalenka).in_sets(2)
 
     # Finals
-    TeamGelatoGiants.event(mens_singles).match("4.1").winner().in_sets()
+    TeamGelatoGiants.event(mens_singles).match("4.1").winner(Djokovic).in_sets(3)
 
-    TeamGelatoGiants.event(womens_singles).match("4.1").winner().in_sets()
+    TeamGelatoGiants.event(womens_singles).match("4.1").winner(Sabalenka).in_sets(2)
 
     return TeamGelatoGiants
 
@@ -92,9 +92,9 @@ def team_polar_precision(mens_singles, womens_singles):
     TeamPolarPrecision.event(womens_singles).match("3.2").winner(Linette).in_sets(3)
 
     # Finals
-    TeamPolarPrecision.event(mens_singles).match("4.1").winner().in_sets()
+    TeamPolarPrecision.event(mens_singles).match("4.1").winner(Djokovic).in_sets(5)
 
-    TeamPolarPrecision.event(womens_singles).match("4.1").winner().in_sets()
+    TeamPolarPrecision.event(womens_singles).match("4.1").winner(Sabalenka).in_sets(3)
 
     return TeamPolarPrecision
 
@@ -137,9 +137,9 @@ def team_hero_hangouts(mens_singles, womens_singles):
     TeamHeroHangouts.event(womens_singles).match("3.2").winner(Sabalenka).in_sets(3)
 
     # Finals
-    TeamHeroHangouts.event(mens_singles).match("4.1").winner().in_sets()
+    TeamHeroHangouts.event(mens_singles).match("4.1").winner(Tsitsipas).in_sets(4)
 
-    TeamHeroHangouts.event(womens_singles).match("4.1").winner().in_sets()
+    TeamHeroHangouts.event(womens_singles).match("4.1").winner(Rybakina).in_sets(2)
 
     return TeamHeroHangouts
 
@@ -182,9 +182,9 @@ def team_bear_necessities(mens_singles, womens_singles):
     TeamBearNecessities.event(womens_singles).match("3.2").winner(Sabalenka).in_sets(2)
 
     # Finals
-    TeamBearNecessities.event(mens_singles).match("4.1").winner().in_sets()
+    TeamBearNecessities.event(mens_singles).match("4.1").winner(Djokovic).in_sets(4)
 
-    TeamBearNecessities.event(womens_singles).match("4.1").winner().in_sets()
+    TeamBearNecessities.event(womens_singles).match("4.1").winner(Sabalenka).in_sets(2)
 
     return TeamBearNecessities
 
