@@ -1,15 +1,18 @@
 from functools import reduce, partial
+from enum import Enum
 
-from . import teams
 from ao.util import echo, fn
 
 total_rounds = 4
 
 f1_points = [15, 10, 8, 5, 4, 3, 2, 1]
 
+class BoardType(Enum):
+    FANTASY = "fantasy"
+    F1 = "f1"
 
-def current_leaderboard(fantasy_teams, board_type, round_number=None):
-    if board_type == "fantasy":
+def current_leaderboard(fantasy_teams, board_type: BoardType=BoardType.FANTASY, round_number=None):
+    if board_type == BoardType.FANTASY:
         show(fantasy_teams, round_number)
     else:
         show_f1_leaderboard(fantasy_teams)

@@ -1,7 +1,7 @@
 import sys
 import re
-from .teams import *
-from .players import *
+from ao.fantasy.teams import *
+from ao.ontology.players import *
 
 def apply(mens_singles, womens_singles):
     return [getattr(sys.modules[__name__], team_fn)(mens_singles, womens_singles) for team_fn in apply_functions_for_teams()]
@@ -220,8 +220,8 @@ def team_musical_bears(mens_singles, womens_singles):
     TeamMusicalBears.event(womens_singles).match("2.4").winner(Vekic).in_sets(3)
 
     # Semis
-    TeamMusicalBears.event(mens_singles).match("3.1").winner().in_sets()
-    TeamMusicalBears.event(mens_singles).match("3.2").winner().in_sets()
+    TeamMusicalBears.event(mens_singles).match("3.1").winner(Tsitsipas).in_sets(5)
+    TeamMusicalBears.event(mens_singles).match("3.2").winner(Djokovic).in_sets(3)
 
     TeamMusicalBears.event(womens_singles).match("3.1").winner(Azarenka).in_sets(3)
     TeamMusicalBears.event(womens_singles).match("3.2").winner(Sabalenka).in_sets(3)
@@ -265,8 +265,8 @@ def team_fauve(mens_singles, womens_singles):
     TeamFauve.event(womens_singles).match("2.4").winner(Sabalenka).in_sets(2)
 
     # Semis
-    TeamFauve.event(mens_singles).match("3.1").winner().in_sets()
-    TeamFauve.event(mens_singles).match("3.2").winner().in_sets()
+    TeamFauve.event(mens_singles).match("3.1").winner(Tsitsipas).in_sets(4)
+    TeamFauve.event(mens_singles).match("3.2").winner(Djokovic).in_sets(4)
 
     TeamFauve.event(womens_singles).match("3.1").winner(Azarenka).in_sets(2)
     TeamFauve.event(womens_singles).match("3.2").winner(Sabalenka).in_sets(2)
@@ -310,8 +310,8 @@ def team_clojo(mens_singles, womens_singles):
     TeamClojo.event(womens_singles).match("2.4").winner(Sabalenka).in_sets(3)
 
     # Semis
-    TeamClojo.event(mens_singles).match("3.1").winner().in_sets()
-    TeamClojo.event(mens_singles).match("3.2").winner().in_sets()
+    TeamClojo.event(mens_singles).match("3.1").winner(Khachanov).in_sets(4)
+    TeamClojo.event(mens_singles).match("3.2").winner(Djokovic).in_sets(3)
 
     TeamClojo.event(womens_singles).match("3.1").winner(Rybakina).in_sets(3)
     TeamClojo.event(womens_singles).match("3.2").winner(Sabalenka).in_sets(3)
@@ -355,8 +355,8 @@ def team_light_house(mens_singles, womens_singles):
     TeamLightHouse.event(womens_singles).match("2.4").winner(Sabalenka).in_sets(2)
 
     # Semis
-    TeamLightHouse.event(mens_singles).match("3.1").winner().in_sets()
-    TeamLightHouse.event(mens_singles).match("3.2").winner().in_sets()
+    TeamLightHouse.event(mens_singles).match("3.1").winner(Tsitsipas).in_sets(5)
+    TeamLightHouse.event(mens_singles).match("3.2").winner(Djokovic).in_sets(4)
 
     TeamLightHouse.event(womens_singles).match("3.1").winner(Rybakina).in_sets(2)
     TeamLightHouse.event(womens_singles).match("3.2").winner(Linette).in_sets(3)

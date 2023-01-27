@@ -2,7 +2,8 @@ import pytest
 
 from tests.shared import *
 
-from ao import fantasy, error
+from ao import fantasy
+from ao.util import error
 
 
 def test_create_pick(event, players, fantasy_team):

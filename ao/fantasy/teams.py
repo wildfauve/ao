@@ -1,17 +1,17 @@
 from functools import partial
 import json
 
-from .fantasy import Team
-from .util import fn, echo
+from ao.model import fantasy
+from ao.util import fn, echo
 
-TeamGelatoGiants = Team("Team Gelato Giants", "Bronzie, Juki & Lemmie")
-TeamPolarPrecision = Team("Team Polar Precision", "IceT, Pepsi, Rollie & Gertie")
-TeamHeroHangouts = Team("Team Hero Hangouts", "Marmalade, Richmond, Greenwich")
-TeamBearNecessities = Team("Team Bear Necessities", "Fraser, Tom, Frank, Spencer & Duck")
-TeamMusicalBears = Team("Team Musical Bears", "Rinksy, Beetie, Motzie")
-TeamFauve = Team("Team Fauve", "Perky")
-TeamClojo = Team("Team Clojo", "Claudie, Fyodoro")
-TeamLightHouse = Team("Team LightHouse", "Edouard, Piri")
+TeamGelatoGiants = fantasy.Team("Team Gelato Giants", "Bronzie, Juki & Lemmie")
+TeamPolarPrecision = fantasy.Team("Team Polar Precision", "IceT, Pepsi, Rollie & Gertie")
+TeamHeroHangouts = fantasy.Team("Team Hero Hangouts", "Marmalade, Richmond, Greenwich")
+TeamBearNecessities = fantasy.Team("Team Bear Necessities", "Fraser, Tom, Frank, Spencer & Duck")
+TeamMusicalBears = fantasy.Team("Team Musical Bears", "Rinksy, Beetie, Motzie")
+TeamFauve = fantasy.Team("Team Fauve", "Perky")
+TeamClojo = fantasy.Team("Team Clojo", "Claudie, Fyodoro")
+TeamLightHouse = fantasy.Team("Team LightHouse", "Edouard, Piri")
 
 teams = [TeamGelatoGiants,
          TeamPolarPrecision,

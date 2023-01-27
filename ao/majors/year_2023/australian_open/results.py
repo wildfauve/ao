@@ -1,4 +1,4 @@
-from .players import *
+from ao.ontology.players import *
 
 
 def add_results(events):
@@ -48,5 +48,5 @@ def results(mens_singles, womens_singles):
     mens_singles.for_round(3).for_match(1).score(Khachanov, ()).score(Tsitsipas, ())
     mens_singles.for_round(3).for_match(2).score(Djokovic, ()).score(Paul, ())
 
-    womens_singles.for_round(3).for_match(1).score(Rybakina, ()).score(Azarenka, ())
-    womens_singles.for_round(3).for_match(2).score(Linette, ()).score(Sabalenka, ())
+    womens_singles.for_round(3).for_match(1).score(Rybakina, (7, 6)).score(Azarenka, (6, 3))
+    womens_singles.for_round(3).for_match(2).score(Linette, (6, 2)).score(Sabalenka, (7, 6))

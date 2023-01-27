@@ -1,6 +1,8 @@
 import click
 
-from . import tournament, teams
+from . import tournament
+from .leaderboard import BoardType
+from .fantasy import teams
 
 
 @click.group()
@@ -18,7 +20,7 @@ def leaderboard(round_number, board_type):
     """
     Starts the tournament,  applies the results, applies the fantasy selection and prints the leaderboard
     """
-    tournament.show_leaderboard(board_type, round_number)
+    tournament.show_leaderboard(BoardType(board_type), round_number)
     pass
 
 

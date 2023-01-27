@@ -1,4 +1,4 @@
-from .match import Player
+from ao.model.player import Player
 
 # Mens Singles Players
 

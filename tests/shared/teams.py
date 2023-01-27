@@ -1,6 +1,6 @@
 import pytest
 
-from ao import fantasy
+from ao.model import fantasy
 
 @pytest.fixture
 def fantasy_team():

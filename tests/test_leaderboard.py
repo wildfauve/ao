@@ -23,14 +23,13 @@ def test_allocate_points(capsys, event, event2, players, fantasy_team, fantasy_t
     event.for_round(1).for_match(1).score(pl1, (6, 6, 6)).score(pl2, (4, 4, 4))
     event2.for_round(1).for_match(1).score(pl1, (6, 4, 6)).score(pl2, (4, 6, 4))
 
-    leaderboard.current_leaderboard([fantasy_team, fantasy_team_2])
+    leaderboard.current_leaderboard([fantasy_team, fantasy_team_2], leaderboard.BoardType.FANTASY)
 
     captured = capsys.readouterr()
 
-    expected = """14  FantasyTeam1
+    expected = """21  FantasyTeam1
 1   FantasyTeam2
 """
-
     assert expected in captured.out
 
 

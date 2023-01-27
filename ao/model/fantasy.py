@@ -1,8 +1,9 @@
 from enum import Enum
 from functools import partial
-from . import match, error
+from ao.model.event import Event
+from ao.model.player import Player
 
-from .util import fn, identity, echo
+from ao.util import fn, identity, echo, error
 
 
 class Points(Enum):
@@ -19,15 +20,15 @@ class Team:
         self.members = members
         self.fantasy_events = []
 
-    def event(self, event: match.Event):
-        fantasy = self._find_fantasy_event(event)
+    def event(self, for_event: Event):
+        fantasy = self._find_fantasy_event(for_event)
         if not fantasy:
-            fantasy = FantasyEvent(event, self)
+            fantasy = FantasyEvent(for_event, self)
             self.fantasy_events.append(fantasy)
         return fantasy
 
-    def show_event(self, event: match.Event):
-        ev = self._find_fantasy_event(event)
+    def show_event(self, for_event: Event):
+        ev = self._find_fantasy_event(for_event)
         ev.show()
 
     def total_points(self, for_round=None):
@@ -36,10 +37,10 @@ class Team:
     def explain_points(self):
         return [fantasy_event.explain_points() for fantasy_event in self.fantasy_events]
 
-    def _find_fantasy_event(self, event):
-        return fn.find(partial(self._event_predicate, event), self.fantasy_events)
+    def _find_fantasy_event(self, for_event):
+        return fn.find(partial(self._event_predicate, for_event), self.fantasy_events)
 
-    def _event_predicate(self, test_ev: match.Event, fantasy_event):
+    def _event_predicate(self, test_ev: Event, fantasy_event):
         return test_ev == fantasy_event.event
 
     def __hash__(self):
@@ -51,7 +52,7 @@ class Team:
 
 
 class FantasyEvent:
-    def __init__(self, event: match.Event, team: Team):
+    def __init__(self, event: Event, team: Team):
         self.event = event
         self.team = team
         self.match_selections = {}
@@ -141,7 +142,7 @@ class Selection:
     def winner(self, player_name = None):
         if not player_name:
             return self
-        if isinstance(player_name, match.Player):
+        if isinstance(player_name, Player):
             self.selected_winner = self.match.find_player_by_player(player_name)
         else:
             self.selected_winner = self.match.player_from_player_name(player_name)
