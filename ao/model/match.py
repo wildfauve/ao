@@ -45,8 +45,8 @@ class Match:
             score_part = f"score(?, ()).score(?, ())"
         return f"{match_part}.{score_part}"
 
-    def find_player_by_player(self, for_player):
-        return player.find_player(for_player, [self.player1, self.player2])
+    def find_player_by_player(self, for_player: player.Player):
+        return entry.find_player_from_entry(for_player, [self.player1, self.player2])
 
     def player_from_player_name(self, player_name):
         if not self.has_draw():

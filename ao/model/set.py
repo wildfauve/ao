@@ -1,4 +1,4 @@
-from . import player
+from . import player, entry
 from ao.util import error
 
 
@@ -11,8 +11,8 @@ class Set:
         self.winner = None
 
     def result_for_player(self, for_player, score):
-        pl = player.find_player(for_player, [self.player1, self.player2])
-        self.games.append((pl, score))
+        en = entry.find_player_from_entry(for_player, [self.player1, self.player2])
+        self.games.append((en, score))
         if self._set_completed():
             self.winner = self.determine_winner()
         return self

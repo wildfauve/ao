@@ -84,7 +84,7 @@ class Draw:
         rd_id, mt_id = match.split_match_id(for_match.match_id)
         if len(self.rounds) < rd_id + 1:
             # we are finished
-            echo.echo(f"Draw Finished: Winner {for_match.winner().name}")
+            echo.echo(f"Draw Finished: Winner {for_match.winner().player().name}")
             return self
         next_rd_match_number = self._next_rd_match_number(rd_id, mt_id)
         # This is the next round

@@ -1,6 +1,7 @@
 from enum import Enum
 from functools import partial
 from ao.model.tournament_event import TournamentEvent
+from ao.model.draw import Draw
 from ao.model.player import Player
 
 from ao.util import fn, identity, echo, error
@@ -18,37 +19,36 @@ class Team:
         self.name = name
         self.symbolic_name = name.replace(" ", "")
         self.members = members
-        self.fantasy_events = []
+        self.fantasy_draws = []
 
-    def event(self, for_event: TournamentEvent):
-        fantasy = self._find_fantasy_event(for_event)
+    def draw(self, for_draw: Draw):
+        fantasy = self._find_fantasy_draw(for_draw)
         if not fantasy:
-            fantasy = FantasyEvent(for_event, self)
-            self.fantasy_events.append(fantasy)
+            fantasy = FantasyEvent(for_draw, self)
+            self.fantasy_draws.append(fantasy)
         return fantasy
 
-    def show_event(self, for_event: TournamentEvent):
-        ev = self._find_fantasy_event(for_event)
+    def show_draw(self, for_draw: Draw):
+        ev = self._find_fantasy_draw(for_draw)
         ev.show()
 
     def total_points(self, for_round=None):
-        return sum([fantasy_event.total_points(for_round) for fantasy_event in self.fantasy_events])
+        return sum([fantasy_draw.total_points(for_round) for fantasy_draw in self.fantasy_draws])
 
     def explain_points(self):
-        return [fantasy_event.explain_points() for fantasy_event in self.fantasy_events]
+        return [fantasy_draw.explain_points() for fantasy_draw in self.fantasy_draws]
 
-    def _find_fantasy_event(self, for_event):
-        return fn.find(partial(self._event_predicate, for_event), self.fantasy_events)
+    def _find_fantasy_draw(self, for_draw):
+        return fn.find(partial(self._draw_predicate, for_draw), self.fantasy_draws)
 
-    def _event_predicate(self, test_ev: TournamentEvent, fantasy_event):
-        return test_ev == fantasy_event.event
+    def _draw_predicate(self, test_draw: Draw, fantasy_draw: Draw):
+        return test_draw == fantasy_draw.event
 
     def __hash__(self):
         return hash((self.symbolic_name,))
 
     def __eq__(self, other):
         return self.symbolic_name == other.symbolic_name
-
 
 
 class FantasyEvent:
@@ -139,7 +139,7 @@ class Selection:
     def _find_match(self, event, round_id, match_id):
         return event.for_round(round_id).for_match(match_id)
 
-    def winner(self, player_name = None):
+    def winner(self, player_name=None):
         if not player_name:
             return self
         if isinstance(player_name, Player):
@@ -148,7 +148,7 @@ class Selection:
             self.selected_winner = self.match.player_from_player_name(player_name)
         return self
 
-    def in_sets(self, number_of_sets = None):
+    def in_sets(self, number_of_sets=None):
         if not number_of_sets:
             return self
         self.in_number_sets = number_of_sets

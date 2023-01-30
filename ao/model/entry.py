@@ -1,5 +1,12 @@
+from typing import List, Union
+from functools import partial
 from rdflib import Graph, RDF, URIRef, Literal
+
 from ao.graph import rdf_prefix
+from ao.model import player
+from ao.util import fn, error
+
+
 class Entry:
     """
     <https://fauve.io/ao/2023/entries/Aliassime>
@@ -18,7 +25,6 @@ class Entry:
     def player(self):
         return self.is_entry_for_player
 
-
     def seeding(self):
         if not self.has_seed:
             return "   "
@@ -31,3 +37,29 @@ class Entry:
         return g
 
 
+def find_player_from_entry(for_player: Union[Entry, player.Player], players: List[Entry]):
+    predicate = _player_entry_predicate if isinstance(for_player, Entry) else _player_predicate
+    pl = fn.find(partial(predicate, for_player), players)
+    if not pl:
+        raise error.ConfigException(f"{for_player.player().name} is either not found or is not in the game")
+    return pl
+
+
+def find_player_by_name(player_name, players):
+    pl = fn.find(partial(_player_name_predicate, player_name), players)
+    if not pl:
+        raise error.ConfigException(f"Player with name {player_name} not found")
+    return pl
+
+
+def _player_entry_predicate(player_to_find, player_entry):
+    return player_to_find.player() == player_entry.player()
+
+def _player_predicate(player_to_find: player.Player, player_entry: Entry):
+    return player_to_find == player_entry.player()
+
+
+def _player_name_predicate(player_name_to_find, player):
+    if not player:
+        return None
+    return player_name_to_find in player.name
