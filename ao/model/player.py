@@ -1,4 +1,6 @@
 from functools import partial
+from rdflib import Graph, URIRef, Literal, RDF
+from ao.graph import rdf_prefix
 from ao.util import fn, error
 
 
@@ -16,7 +18,6 @@ def find_player_by_name(player_name, players):
     return pl
 
 
-
 def _player_predicate(player_to_find, player):
     return player_to_find == player
 
@@ -32,11 +33,7 @@ class Player:
     def __init__(self, name, seed=None):
         self.name = name
         self.seed = seed
-
-    def seeding(self):
-        if not self.seed:
-            return "   "
-        return str(self.seed).rjust(3)
+        self.subject = rdf_prefix.fau_ten_ind[self.uri_name()]
 
     def uri_name(self):
         return self.name.split(" ")[-1]
@@ -67,4 +64,3 @@ class Player:
         fau-ten:hasSeed          {self.seed} ;
         fau-ten:isEntryForPlayer fau-ten-ind:{self.uri_name()} .
         """
-

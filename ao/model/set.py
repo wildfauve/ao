@@ -14,13 +14,15 @@ class Set:
         pl = player.find_player(for_player, [self.player1, self.player2])
         self.games.append((pl, score))
         if self._set_completed():
-            self.winner = self._determine_winner()
+            self.winner = self.determine_winner()
         return self
 
     def _set_completed(self):
         return len([g for pl, g in self.games]) == 2
 
-    def _determine_winner(self):
+    def determine_winner(self) -> bool:
+        if not self.games or len(self.games) != 2:
+            return None
         pl1, pl1_games = self.games[0]
         pl2, pl2_games = self.games[1]
         if pl1_games == pl2_games:

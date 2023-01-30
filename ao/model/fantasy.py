@@ -1,6 +1,6 @@
 from enum import Enum
 from functools import partial
-from ao.model.event import Event
+from ao.model.tournament_event import TournamentEvent
 from ao.model.player import Player
 
 from ao.util import fn, identity, echo, error
@@ -20,14 +20,14 @@ class Team:
         self.members = members
         self.fantasy_events = []
 
-    def event(self, for_event: Event):
+    def event(self, for_event: TournamentEvent):
         fantasy = self._find_fantasy_event(for_event)
         if not fantasy:
             fantasy = FantasyEvent(for_event, self)
             self.fantasy_events.append(fantasy)
         return fantasy
 
-    def show_event(self, for_event: Event):
+    def show_event(self, for_event: TournamentEvent):
         ev = self._find_fantasy_event(for_event)
         ev.show()
 
@@ -40,7 +40,7 @@ class Team:
     def _find_fantasy_event(self, for_event):
         return fn.find(partial(self._event_predicate, for_event), self.fantasy_events)
 
-    def _event_predicate(self, test_ev: Event, fantasy_event):
+    def _event_predicate(self, test_ev: TournamentEvent, fantasy_event):
         return test_ev == fantasy_event.event
 
     def __hash__(self):
@@ -52,7 +52,7 @@ class Team:
 
 
 class FantasyEvent:
-    def __init__(self, event: Event, team: Team):
+    def __init__(self, event: TournamentEvent, team: Team):
         self.event = event
         self.team = team
         self.match_selections = {}
@@ -186,4 +186,4 @@ class Selection:
     def round_factor(self):
         if self.round_id == 1:
             return 1
-        return (self.round_id - 1) * 2
+        return 2 ** (self.round_id - 1)

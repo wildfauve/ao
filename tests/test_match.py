@@ -1,62 +1,78 @@
 from tests.shared import *
 
-def test_create_match(event, players):
-    pl1, pl2, pl3, pl4 = players
-    assert len(event.rounds) == 2
+from ao.model import draw
 
-    r1_m1, r1_m2 = event.for_round(1).matches
+
+def test_create_match(test_tournament):
+    mens_singles = draw.find_draw_by_cls(draw.MensSingles, test_tournament.draws)
+
+    assert len(mens_singles.rounds) == 2
+
+    r1_m1, r1_m2 = mens_singles.for_round(1).matches
 
     assert r1_m1.number == 1
     assert r1_m1.match_id == "1.1"
-    assert r1_m1.player1 == pl1
-    assert r1_m1.player2 == pl2
+    assert r1_m1.player1.player() == players.Hurkacz
+    assert r1_m1.player2.player() == players.Khachanov
     assert r1_m2.number == 2
     assert r1_m2.match_id == "1.2"
-    assert r1_m2.player1 == pl3
-    assert r1_m2.player2 == pl4
+    assert r1_m2.player1.player() == players.Korda
+    assert r1_m2.player2.player() == players.Tsitsipas
 
-    r2_m1, = event.rounds[1].matches
+    r2_m1, = mens_singles.rounds[1].matches
 
     assert r2_m1.number == 1
     assert r2_m1.match_id == "2.1"
     assert not r2_m1.player1
 
 
-def test_results(event, players):
-    pl1, pl2, pl3, pl4 = players
+def test_results(test_tournament):
+    mens_singles = draw.find_draw_by_cls(draw.MensSingles, test_tournament.draws)
 
-    event.for_round(1).for_match(1).score(pl1, (6, 4, 6, 4, 6)).score(pl2, (4, 6, 4, 6, 4))
+    (mens_singles
+     .for_round(1)
+     .for_match(1)
+     .score(players.Hurkacz, (6, 4, 6, 4, 6))
+     .score(players.Khachanov, (4, 6, 4, 6, 4)))
 
-    mt = event.for_round(1).for_match(1)
+    mt1 = mens_singles.for_round(1).for_match(1)
 
-    assert mt.is_finished()
-    assert mt.winner() == pl1
+    assert mt1.is_finished()
+    assert mt1.winner().player() == players.Hurkacz
 
-    next_rd_mt = event.for_round(2).for_match(1)
-    assert next_rd_mt.player1 == pl1
+    next_rd_mt = mens_singles.for_round(2).for_match(1)
+    assert next_rd_mt.player1.player() == players.Hurkacz
     assert not next_rd_mt.player2
 
     # When game not finished
-    event.for_round(1).for_match(2).score(pl3, (6, 3, 6)).score(pl4, (4, 6, 4))
+    mens_singles.for_round(1).for_match(2).score(players.Korda, (6, 3, 6)).score(players.Tsitsipas, (4, 6, 4))
 
-    assert next_rd_mt.player1 == pl1
-    assert next_rd_mt.player2 == pl3
+    mt2 = mens_singles.for_round(1).for_match(2)
+
+    assert not mt2.is_finished()
+
+    assert not next_rd_mt.player2
     assert not next_rd_mt.is_finished()
 
 
-def test_results_when_not_max_sets(event, players):
-    pl1, pl2, pl3, pl4 = players
+def test_results_when_not_max_sets(test_tournament):
+    mens_singles = draw.find_draw_by_cls(draw.MensSingles, test_tournament.draws)
 
-    event.for_round(1).for_match(1).score(pl1, (6, 6, 6)).score(pl2, (4, 4, 4))
+    (mens_singles
+     .for_round(1)
+     .for_match(1)
+     .score(players.Hurkacz, (6, 6, 6))
+     .score(players.Khachanov, (4, 4, 4)))
 
-    mt = event.for_round(1).for_match(1)
+    mt1 = mens_singles.for_round(1).for_match(1)
 
-    assert mt.is_finished()
-    assert mt.winner() == pl1
+    assert mt1.is_finished()
+    assert mt1.winner().player() == players.Hurkacz
 
 
-def test_show_round_matches(capsys, event):
-    rd = event.for_round(1)
+def test_show_round_matches(capsys, test_tournament):
+    mens_singles = draw.find_draw_by_cls(draw.MensSingles, test_tournament.draws)
+    rd = mens_singles.for_round(1)
 
     rd.show()
 
@@ -64,22 +80,21 @@ def test_show_round_matches(capsys, event):
 
     expected_output = """Round: 1
 Matches:
-1.1  -- (  1) Player1 
-        (   ) Player2 
-1.2  -- ( 10) Player3 
-        (   ) Player4 
+1.1  -- ( 10) H. Hurkacz 
+        ( 18) K. Khachanov 
+1.2  -- ( 29) S. Korda 
+        (  3) S. Tsitsipas 
 """
 
-    assert captured.out == expected_output
+    assert expected_output in captured.out
 
 
+def test_show_round_matches_with_scores(capsys, test_tournament):
+    mens_singles = draw.find_draw_by_cls(draw.MensSingles, test_tournament.draws)
 
-def test_show_round_matches_with_scores(capsys, event, players):
-    pl1, pl2, pl3, pl4 = players
+    rd = mens_singles.for_round(1)
 
-    event.for_round(1).for_match(1).score(pl1, (6, 6, 6)).score(pl2, (4, 4, 4))
-
-    rd = event.for_round(1)
+    rd.for_match(1).score(players.Hurkacz, (6, 6, 6)).score(players.Khachanov, (4, 4, 4))
 
     rd.show()
 
@@ -87,14 +102,20 @@ def test_show_round_matches_with_scores(capsys, event, players):
 
     expected_output = """Round: 1
 Matches:
-1.1  -- (  1) Player1 6 6 6  <
-        (   ) Player2 4 4 4  
-1.2  -- ( 10) Player3 
-        (   ) Player4 
+1.1  -- ( 10) H. Hurkacz 6 6 6  <
+        ( 18) K. Khachanov 4 4 4  
+1.2  -- ( 29) S. Korda 
+        (  3) S. Tsitsipas 
 """
     assert expected_output in captured.out
 
 
-def test_result_template(capsys, event, players):
-    results = event.for_round(1).result_template("mens_singles")
-    breakpoint()
+def test_result_template(capsys, test_tournament):
+    mens_singles = draw.find_draw_by_cls(draw.MensSingles, test_tournament.draws)
+
+    results = mens_singles.for_round(1).result_template("mens_singles")
+
+    expected = ['mens_singles.for_round(1).for_match(1).score(H. Hurkacz, ()).score(K. Khachanov, ())',
+                'mens_singles.for_round(1).for_match(2).score(S. Korda, ()).score(S. Tsitsipas, ())']
+
+    assert results == expected

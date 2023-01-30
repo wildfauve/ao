@@ -1,7 +1,7 @@
 from .model import match
 from . import fantasy_selections, leaderboard
 from .fantasy import teams
-from .majors.year_2023 import australian_open
+from .majors.year_2023.australian_open import results, events
 from .util import echo
 
 
@@ -34,7 +34,7 @@ def explain_team_points(team_name):
 
 
 def start():
-    return australian_open.add_results(australian_open.events())
+    return results.add_results(events.events())
 
 
 def apply_fantasy(event_tuple):

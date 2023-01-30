@@ -1,7 +1,7 @@
 from typing import Callable
 from functools import partial
 
-from ao.model import match
+from ao.model import match, entry
 from ao.util import fn, error, echo
 
 
@@ -31,7 +31,7 @@ class Round:
         mt = self._find_match(match_number)
         return mt.add_player(player)
 
-    def build_match(self, match_number, player1, player2):
+    def build_match(self, match_number, player1: entry.Entry, player2: entry.Entry):
         mt = self._find_match(match_number)
         mt.add_players(player1, player2)
         return self
@@ -52,9 +52,9 @@ class Round:
 
     def _match_constructor(self, match_number):
         return match.Match(self.round_id,
-                     match_number,
-                     self.games_best_of,
-                     self.advance_winner_fn)
+                           match_number,
+                           self.games_best_of,
+                           self.advance_winner_fn)
 
     def _match_number_predicate(self, number, match):
         return match.number == number

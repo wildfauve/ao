@@ -1,34 +1,33 @@
 import pytest
 
-from ao.model import player
-from ao.model.event import Event
+from ao.model import player, tournament_event, tournament, draw
+from ao.players import players
 
 
 @pytest.fixture
-def event(players):
-    pl1, pl2, pl3, pl4 = players
-    ev = (Event("MensSingles", best_of=5)
-          .draw_size(number_of_matches=2)
-          .init_draw((1, pl1, pl2),
-                     (2, pl3, pl4)))
-    return ev
+def test_tournament():
+    return build_tournament()
 
 
-@pytest.fixture
-def event2(players):
-    pl1, pl2, pl3, pl4 = players
-    ev = (Event("WomensSingles", best_of=3)
-          .draw_size(number_of_matches=2)
-          .init_draw((1, pl1, pl2),
-                     (2, pl3, pl4)))
-    return ev
+def build_tournament():
+    TestMajor2023 = tournament_event.TournamentEvent(
+        event_of=tournament.GrandSlam(name="Test Open", subject_name="TestOpen", perma_id="to"),
+        year=2023)
 
+    T2023MensSingles = (draw.MensSingles(name="MensSingles", best_of=5, tournament=TestMajor2023)
+                        .draw_size(number_of_matches=2))
 
-@pytest.fixture
-def players():
-    pl1 = player.Player(name="Player1", seed=1)
-    pl2 = player.Player(name="Player2")
-    pl3 = player.Player(name="Player3", seed=10)
-    pl4 = player.Player(name="Player4")
+    T2023WomensSingles = (draw.WomensSingles(name="WomensSingles", best_of=3, tournament=TestMajor2023)
+                          .draw_size(number_of_matches=2))
 
-    return pl1, pl2, pl3, pl4
+    TestMajor2023.has_draw(T2023MensSingles)
+
+    T2023MensSingles.has_entry(players.Khachanov, seed=18)
+    T2023MensSingles.has_entry(players.Hurkacz, seed=10)
+    T2023MensSingles.has_entry(players.Korda, seed=29)
+    T2023MensSingles.has_entry(players.Tsitsipas, seed=3)
+
+    T2023MensSingles.init_draw((1, players.Hurkacz, players.Khachanov),
+                               (2, players.Korda, players.Tsitsipas))
+
+    return TestMajor2023

@@ -1,7 +1,7 @@
 from typing import Callable, Tuple
 import math
 
-from . import player, set
+from . import player, set, entry, draw
 from ao.util import fn, error, echo
 
 
@@ -18,7 +18,7 @@ class Match:
         self.player1 = None
         self.player2 = None
         self.scores = None
-        self.sets = None
+        self.sets = []
         self.match_winner = None
 
     def show(self):
@@ -26,21 +26,21 @@ class Match:
         echo.echo(f"{self.match_id}  -- {self.show_player(self.player1)}")
         echo.echo(f"{' ' * (sp + 4)} {self.show_player(self.player2)}")
 
-    def show_player(self, player):
-        if not player:
+    def show_player(self, for_player: entry.Entry):
+        if not for_player:
             return "?"
-        return f"({player.seeding()}) {player.name} {self.show_set_and_winner(player)}"
+        return f"({for_player.seeding()}) {for_player.player().name} {self.show_set_and_winner(for_player)}"
 
-    def show_set_and_winner(self, player):
+    def show_set_and_winner(self, for_player: entry.Entry):
         if not self.is_finished():
             return ""
-        chevon = "<" if player == self.match_winner else ""
-        return f"{' '.join([str(s) for s in self.scores[player]])}  {chevon}"
+        chevon = "<" if for_player == self.match_winner else ""
+        return f"{' '.join([str(s) for s in self.scores[for_player]])}  {chevon}"
 
     def result_template(self, event_name, round_number):
         match_part = f"{event_name}.for_round({round_number}).for_match({self.number})"
         if self.has_draw():
-            score_part = f"score({self.player1.name}, ()).score({self.player2.name}, ())"
+            score_part = f"score({self.player1.player().name}, ()).score({self.player2.player().name}, ())"
         else:
             score_part = f"score(?, ()).score(?, ())"
         return f"{match_part}.{score_part}"
@@ -53,22 +53,22 @@ class Match:
             raise error.ConfigException("No draw has been set for match")
         return player.find_player_by_name(player_name, [self.player1, self.player2])
 
-    def add_player(self, player):
+    def add_player(self, player_to_add: entry.Entry):
         if self.player1 and self.player2:
             raise error.PlayerAdvanceError(
-                f"Can't advance player, match {self.match_id} full with {self.player1.name} and {self.player2.name}")
+                f"Can't advance player, match {self.match_id} full with {self.player1.player().name} and {self.player2.player().name}")
 
-        echo.echo(f"Add {player.name} to match {self.match_id}")
+        echo.echo(f"Add {player_to_add.player().name} to match {self.match_id}")
 
         if not self.player1:
-            self.player1 = player
-            self._init_scores(player)
+            self.player1 = player_to_add
+            self._init_scores(player_to_add)
         else:
-            self.player2 = player
-            self._init_scores(player)
+            self.player2 = player_to_add
+            self._init_scores(player_to_add)
         return self
 
-    def add_players(self, player1, player2):
+    def add_players(self, player1: entry.Entry, player2: entry.Entry):
         self.player1 = player1
         self._init_scores(player1)
         self.player2 = player2
@@ -76,7 +76,7 @@ class Match:
         return self
 
     def score(self, for_player, set_games: Tuple[int, int, int]):
-        pl = player.find_player(for_player, [self.player1, self.player2])
+        pl = draw.find_entry_for_player(for_player, [self.player1, self.player2])
         self.scores[pl] = set_games
         [self.sets[set_number].result_for_player(pl, set_games[set_number]) for set_number in range(len(set_games))]
         self.winner()
@@ -88,10 +88,13 @@ class Match:
     def max_sets_played(self):
         return self.best_of == self.number_of_sets_played()
 
-    def is_finished(self):
+    def is_finished(self) -> bool:
         if not self.scores:
             return False
-        return all([len(sc) >= math.ceil(self.best_of / 2) for sc in self.scores.values()])
+        set_winners = fn.remove_none([s.determine_winner() for s in self.sets])
+        if not set_winners:
+            return False
+        return (max([set_winners.count(self.player1), set_winners.count(self.player2)])) >= math.ceil(self.best_of / 2)
 
     def has_draw(self):
         return self.player1 and self.player2
@@ -103,9 +106,9 @@ class Match:
             return self.match_winner
         self.match_winner = self._determine_winner()
 
-        echo.echo(f"""Match {self.match_id} Winner {self.match_winner.name} 
-        {self.match_winner.name}: {self.show_set_and_winner(self.match_winner)}
-        {self._losing_player().name}: {self.show_set_and_winner(self._losing_player())}""")
+        echo.echo(f"""Match {self.match_id} Winner {self.match_winner.player().name} 
+        {self.match_winner.player().name}: {self.show_set_and_winner(self.match_winner)}
+        {self._losing_player().player().name}: {self.show_set_and_winner(self._losing_player())}""")
 
         self.advance_winner_fn(self)
         return self.match_winner

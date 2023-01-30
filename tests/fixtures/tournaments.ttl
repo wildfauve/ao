@@ -1,0 +1,107 @@
+@prefix fau-ten: <https://fauve.io/ontology/TENNIS/> .
+@prefix fau-ten-ind: <https://fauve.io/ontology/TENNIS/Ind/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://fauve.io/AustralianOpen/2023> a fau-ten:Event ;
+    skos:notation "Australian Open 2023" ;
+    fau-ten:hasDraw <https://fauve.io/AustralianOpen/2023/MensSingles>,
+        <https://fauve.io/AustralianOpen/2023/WomensSingles> ;
+    fau-ten:isEventOf <https://fauve.io/AustralianOpen> .
+
+<https://fauve.io/AustralianOpen> a fau-ten:GrandSlam ;
+    skos:notation "Australian Open" .
+
+<https://fauve.io/AustralianOpen/2023/MensSingles> a fau-ten:Draw ;
+    fau-ten:hasBestOfSets 5 ;
+    fau-ten:hasInitialDrawSize 8 ;
+    fau-ten:hasQualifiedPlayer <https://fauve.io/AustralianOpen/2023/MensSingles/Nishioka> .
+
+<https://fauve.io/AustralianOpen/2023/MensSingles/Nishioka> a fau-ten:QualifiedPlayer ;
+    fau-ten:hasSeed 31 ;
+    fau-ten:isEntryForPlayer fau-ten-ind:Nishioka .
+
+<https://fauve.io/AustralianOpen/2023/WomensSingles> a fau-ten:Draw ;
+    fau-ten:hasBestOfSets 3 ;
+    fau-ten:hasInitialDrawSize 8 ;
+    fau-ten:hasQualifiedPlayer <https://fauve.io/AustralianOpen/2023/WomensSingles/Azarenka>,
+        <https://fauve.io/AustralianOpen/2023/WomensSingles/Bencic>,
+        <https://fauve.io/AustralianOpen/2023/WomensSingles/Fruhvirtova>,
+        <https://fauve.io/AustralianOpen/2023/WomensSingles/Garcia>,
+        <https://fauve.io/AustralianOpen/2023/WomensSingles/Gauff>,
+        <https://fauve.io/AustralianOpen/2023/WomensSingles/Krejcikova>,
+        <https://fauve.io/AustralianOpen/2023/WomensSingles/Linette>,
+        <https://fauve.io/AustralianOpen/2023/WomensSingles/Ostapenko>,
+        <https://fauve.io/AustralianOpen/2023/WomensSingles/Pegula>,
+        <https://fauve.io/AustralianOpen/2023/WomensSingles/Pliskova>,
+        <https://fauve.io/AustralianOpen/2023/WomensSingles/Rybakina>,
+        <https://fauve.io/AustralianOpen/2023/WomensSingles/Sabalenka>,
+        <https://fauve.io/AustralianOpen/2023/WomensSingles/Swiatek>,
+        <https://fauve.io/AustralianOpen/2023/WomensSingles/Vekic>,
+        <https://fauve.io/AustralianOpen/2023/WomensSingles/Zhang>,
+        <https://fauve.io/AustralianOpen/2023/WomensSingles/Zhu> .
+
+<https://fauve.io/AustralianOpen/2023/WomensSingles/Azarenka> a fau-ten:QualifiedPlayer ;
+    fau-ten:hasSeed 24 ;
+    fau-ten:isEntryForPlayer fau-ten-ind:Azarenka .
+
+<https://fauve.io/AustralianOpen/2023/WomensSingles/Bencic> a fau-ten:QualifiedPlayer ;
+    fau-ten:hasSeed 12 ;
+    fau-ten:isEntryForPlayer fau-ten-ind:Bencic .
+
+<https://fauve.io/AustralianOpen/2023/WomensSingles/Fruhvirtova> a fau-ten:QualifiedPlayer ;
+    fau-ten:hasSeed "None" ;
+    fau-ten:isEntryForPlayer fau-ten-ind:Fruhvirtova .
+
+<https://fauve.io/AustralianOpen/2023/WomensSingles/Garcia> a fau-ten:QualifiedPlayer ;
+    fau-ten:hasSeed 4 ;
+    fau-ten:isEntryForPlayer fau-ten-ind:Garcia .
+
+<https://fauve.io/AustralianOpen/2023/WomensSingles/Gauff> a fau-ten:QualifiedPlayer ;
+    fau-ten:hasSeed 7 ;
+    fau-ten:isEntryForPlayer fau-ten-ind:Gauff .
+
+<https://fauve.io/AustralianOpen/2023/WomensSingles/Krejcikova> a fau-ten:QualifiedPlayer ;
+    fau-ten:hasSeed 20 ;
+    fau-ten:isEntryForPlayer fau-ten-ind:Krejcikova .
+
+<https://fauve.io/AustralianOpen/2023/WomensSingles/Linette> a fau-ten:QualifiedPlayer ;
+    fau-ten:hasSeed "None" ;
+    fau-ten:isEntryForPlayer fau-ten-ind:Linette .
+
+<https://fauve.io/AustralianOpen/2023/WomensSingles/Ostapenko> a fau-ten:QualifiedPlayer ;
+    fau-ten:hasSeed 17 ;
+    fau-ten:isEntryForPlayer fau-ten-ind:Ostapenko .
+
+<https://fauve.io/AustralianOpen/2023/WomensSingles/Pegula> a fau-ten:QualifiedPlayer ;
+    fau-ten:hasSeed 3 ;
+    fau-ten:isEntryForPlayer fau-ten-ind:Pegula .
+
+<https://fauve.io/AustralianOpen/2023/WomensSingles/Pliskova> a fau-ten:QualifiedPlayer ;
+    fau-ten:hasSeed 30 ;
+    fau-ten:isEntryForPlayer fau-ten-ind:Pliskova .
+
+<https://fauve.io/AustralianOpen/2023/WomensSingles/Rybakina> a fau-ten:QualifiedPlayer ;
+    fau-ten:hasSeed 22 ;
+    fau-ten:isEntryForPlayer fau-ten-ind:Rybakina .
+
+<https://fauve.io/AustralianOpen/2023/WomensSingles/Sabalenka> a fau-ten:QualifiedPlayer ;
+    fau-ten:hasSeed 5 ;
+    fau-ten:isEntryForPlayer fau-ten-ind:Sabalenka .
+
+<https://fauve.io/AustralianOpen/2023/WomensSingles/Swiatek> a fau-ten:QualifiedPlayer ;
+    fau-ten:hasSeed 1 ;
+    fau-ten:isEntryForPlayer fau-ten-ind:Swiatek .
+
+<https://fauve.io/AustralianOpen/2023/WomensSingles/Vekic> a fau-ten:QualifiedPlayer ;
+    fau-ten:hasSeed "None" ;
+    fau-ten:isEntryForPlayer fau-ten-ind:Vekic .
+
+<https://fauve.io/AustralianOpen/2023/WomensSingles/Zhang> a fau-ten:QualifiedPlayer ;
+    fau-ten:hasSeed 23 ;
+    fau-ten:isEntryForPlayer fau-ten-ind:Zhang .
+
+<https://fauve.io/AustralianOpen/2023/WomensSingles/Zhu> a fau-ten:QualifiedPlayer ;
+    fau-ten:hasSeed "None" ;
+    fau-ten:isEntryForPlayer fau-ten-ind:Zhu .
+

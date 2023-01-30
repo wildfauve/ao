@@ -50,3 +50,8 @@ def results(mens_singles, womens_singles):
 
     womens_singles.for_round(3).for_match(1).score(Rybakina, (7, 6)).score(Azarenka, (6, 3))
     womens_singles.for_round(3).for_match(2).score(Linette, (6, 2)).score(Sabalenka, (7, 6))
+
+    # Finals
+
+    womens_singles.for_round(4).for_match(1).score(Rybakina, (6, 3, 4)).score(Sabalenka, (4, 6, 6))
+    mens_singles.for_round(4).for_match(1).score(Djokovic, (6, 7, 7)).score(Tsitsipas, (3, 6, 6))
