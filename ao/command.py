@@ -1,9 +1,10 @@
 from functools import partial
 
 from .model import match, tournament_event, draw
-from . import fantasy_selections, leaderboard
+from . import leaderboard
 from .fantasy import teams
 from .majors import tournaments
+from . import fantasy
 from .util import echo, fn
 
 
@@ -15,26 +16,36 @@ def show_leaderboard(tournament_name, board_type, round_number=None):
     pass
 
 
-def show_round(event_name, round_number):
-    events = start()
-    ev = match.find_event(event_name, events)
-    if not ev:
-        echo.echo(f"Event with name {event_name} not found")
-    ev.for_round(round_number).show()
+def show_round(tournament_name, draw_name, round_number):
+    tournie = find_tournament_by_name(tournament_name)
+    if not tournie:
+        return
+    start(tournie)
+    for_draw = draw.find_draw(draw_name, tournie.draws)
+    if not for_draw:
+        echo.echo(f"Draw with name {draw_name} not found in {tournie.label}")
+    for_draw.for_round(round_number).show()
 
 
-def result_template(event_name, round_number, template_name):
-    events = start()
-    ev = match.find_event(event_name, events)
-    if not ev:
-        echo.echo(f"Event with name {event_name} not found")
-    results = ev.for_round(round_number).result_template(template_name)
+def result_template(tournament_name, draw_name, round_number, template_name):
+    tournie = find_tournament_by_name(tournament_name)
+    if not tournie:
+        return
+    start(tournie)
+    for_draw = draw.find_draw(draw_name, tournie.draws)
+    if not for_draw:
+        echo.echo(f"Draw with name {draw_name} not found in {tournie.label}")
+        return
+    results = for_draw.for_round(round_number).result_template(template_name)
     for result in results:
         echo.echo(result)
 
 
-def explain_team_points(team_name):
-    teams.explain_points_for_team(team_name, apply_fantasy(start()))
+def explain_team_points(tournament_name, team_name):
+    tournie = find_tournament_by_name(tournament_name)
+    if not tournie:
+        return
+    teams.explain_points_for_team(team_name, apply_fantasy(start(tournie)))
     pass
 
 
@@ -46,7 +57,13 @@ def apply_fantasy(tournie):
     mens_singles = draw.find_draw_by_cls(draw.MensSingles, tournie.draws)
     womens_singles = draw.find_draw_by_cls(draw.WomensSingles, tournie.draws)
 
-    return fantasy_selections.apply(mens_singles, womens_singles)
+    fantasy_module = fantasy.FantasyTournaments.get(tournie.name, None)
+
+    if not fantasy_module:
+        echo.echo(f"No fantasy selections for {tournie.name}")
+        return
+
+    return fantasy_module.apply(mens_singles, womens_singles)
 
 
 def leaderboard_for_teams(teams, board_type, round_number):

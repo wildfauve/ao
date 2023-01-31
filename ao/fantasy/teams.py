@@ -35,7 +35,6 @@ def explain_points_for_team(team_name, teams):
 
 
 def find_team_by_name(team_name, teams):
-    breakpoint()
     return fn.find(partial(_team_name_predicate, team_name), teams)
 
 def find_team(team, teams):
