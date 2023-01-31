@@ -1,3 +1,4 @@
+from . import results
 from ao.majors import tournaments
 from ao.players import players
 from ao.model import tournament_event, draw
@@ -63,3 +64,5 @@ AO2023WomensSingles.init_draw((1, players.Swiatek, players.Rybakina),
                               (6, players.Linette, players.Garcia),
                               (7, players.Sabalenka, players.Bencic),
                               (8, players.Vekic, players.Fruhvirtova))
+
+results.add_results([AO2023MensSingles, AO2023WomensSingles])

@@ -59,7 +59,7 @@ def _player_predicate(player_to_find: player.Player, player_entry: Entry):
     return player_to_find == player_entry.player()
 
 
-def _player_name_predicate(player_name_to_find, player):
+def _player_name_predicate(for_player_name, player: Entry):
     if not player:
         return None
-    return player_name_to_find in player.name
+    return for_player_name in player.player().name

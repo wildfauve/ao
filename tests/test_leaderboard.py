@@ -33,40 +33,42 @@ def test_allocate_points(capsys, test_tournament,  fantasy_team, fantasy_team_2)
     assert expected in captured.out
 
 
-def test_f1_fantasy(capsys, event, event2, players, fantasy_team, fantasy_team_2, fantasy_team_3, fantasy_team_4):
-    pl1, pl2, pl3, pl4 = players
-
-    event.for_round(1).for_match(1).score(pl1, (6, 6, 6)).score(pl2, (4, 4, 4))
-    event.for_round(1).for_match(2).score(pl4, (4, 4, 4)).score(pl3, (6, 6, 6))
-    event.for_round(2).for_match(1).score(pl1, (6, 4, 6, 4, 6)).score(pl3, (4, 6, 4, 6, 4))
+def test_f1_fantasy(capsys, test_tournament, fantasy_team, fantasy_team_2, fantasy_team_3, fantasy_team_4):
+    mens_singles = draw.find_draw_by_cls(draw.MensSingles, test_tournament.draws)
 
 
-    fantasy_team.event(event).match("1.1").winner(pl1).in_sets(3)
-    fantasy_team.event(event).match("1.2").winner(pl3).in_sets(3)
-    fantasy_team.event(event).match("2.1").winner(pl1).in_sets(5)
+    mens_singles.for_round(1).for_match(1).score(players.Hurkacz, (6, 6, 6)).score(players.Khachanov, (4, 4, 4))
+    mens_singles.for_round(1).for_match(2).score(players.Korda, (4, 4, 4)).score(players.Tsitsipas, (6, 6, 6))
+    mens_singles.for_round(2).for_match(1).score(players.Tsitsipas, (6, 5, 6, 5, 6)).score(players.Hurkacz,
+                                                                                           (4, 7, 4, 7, 5))
+    
+    fantasy_team.draw(mens_singles).match("1.1").winner(players.Hurkacz).in_sets(3)
+    fantasy_team.draw(mens_singles).match("1.2").winner(players.Korda).in_sets(3)
+    fantasy_team.draw(mens_singles).match("2.1").winner(players.Hurkacz).in_sets(5)
 
-    fantasy_team_2.event(event).match("1.1").winner(pl1).in_sets(5)
-    fantasy_team_2.event(event).match("1.2").winner(pl3).in_sets(5)
-    fantasy_team_2.event(event).match("2.1").winner(pl1).in_sets(3)
+    fantasy_team_2.draw(mens_singles).match("1.1").winner(players.Hurkacz).in_sets(5)
+    fantasy_team_2.draw(mens_singles).match("1.2").winner(players.Korda).in_sets(5)
+    fantasy_team_2.draw(mens_singles).match("2.1").winner(players.Hurkacz).in_sets(3)
 
-    fantasy_team_3.event(event).match("1.1").winner(pl2).in_sets(3)
-    fantasy_team_3.event(event).match("1.2").winner(pl3).in_sets(3)
-    fantasy_team_3.event(event).match("2.1").winner(pl3).in_sets(5)
+    fantasy_team_3.draw(mens_singles).match("1.1").winner(players.Khachanov).in_sets(3)
+    fantasy_team_3.draw(mens_singles).match("1.2").winner(players.Korda).in_sets(3)
+    fantasy_team_3.draw(mens_singles).match("2.1").winner(players.Tsitsipas).in_sets(5)
 
-    fantasy_team_4.event(event).match("1.1").winner(pl2).in_sets(3)
-    fantasy_team_4.event(event).match("1.2").winner(pl3).in_sets(4)
-    fantasy_team_4.event(event).match("2.1").winner(pl1).in_sets(4)
+    fantasy_team_4.draw(mens_singles).match("1.1").winner(players.Khachanov).in_sets(3)
+    fantasy_team_4.draw(mens_singles).match("1.2").winner(players.Korda).in_sets(4)
+    fantasy_team_4.draw(mens_singles).match("2.1").winner(players.Hurkacz).in_sets(4)
 
     leaderboard.current_leaderboard([fantasy_team, fantasy_team_2, fantasy_team_3, fantasy_team_4], "f1")
 
     captured = capsys.readouterr()
 
+
     expected = """F1 Leaderboard:
 ---------------
-30  FantasyTeam1
-20  FantasyTeam2
-13  FantasyTeam3
-13  FantasyTeam4
+15  FantasyTeam3
+10  FantasyTeam1
+8   FantasyTeam2
+5   FantasyTeam4
 """
 
     assert expected in captured.out

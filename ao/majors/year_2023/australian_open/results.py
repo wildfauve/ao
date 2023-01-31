@@ -1,14 +1,13 @@
-from ao.ontology.players import *
+from typing import List
+from ao.model import draw
+from ao.players.players import *
 
 
-def add_results(events):
-    mens_singles, womens_singles = get_events(events)
+def add_results(draws: List[draw.Draw]):
+    mens_singles = draw.find_draw_by_cls(draw.MensSingles, draws)
+    womens_singles = draw.find_draw_by_cls(draw.WomensSingles, draws)
     results(mens_singles, womens_singles)
     return mens_singles, womens_singles
-
-
-def get_events(events):
-    return events['MensSingles'], events['WomensSingles']
 
 
 def results(mens_singles, womens_singles):

@@ -12,9 +12,4 @@ def test_tournament_graph():
 
     graph.write_to_ttl(g, file=ttl_file)
 
-    breakpoint()
-
-
-def test_build_tournament_draw():
-    tournament.AO2023WomensSingles.for_round(1).show()
 

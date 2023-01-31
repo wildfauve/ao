@@ -6,163 +6,162 @@ from ao import fantasy
 from ao.util import error
 
 
-def test_create_pick(event, players, fantasy_team):
-    pl1, pl2, pl3, pl4 = players
+def test_create_pick(test_tournament,  fantasy_team):
+    mens_singles = draw.find_draw_by_cls(draw.MensSingles, test_tournament.draws)
 
-    selection = fantasy_team.event(event).match("1.1").winner("Player1").in_sets(3)
+    selection = fantasy_team.draw(mens_singles).match("1.1").winner(players.Hurkacz).in_sets(3)
 
-    assert len(fantasy_team.fantasy_events) == 1
-    assert fantasy_team.fantasy_events[0].event.name == "MensSingles"
+    assert len(fantasy_team.fantasy_draws) == 1
+    assert fantasy_team.fantasy_draws[0].draw.name == "MensSingles"
 
     assert selection.match.match_id == "1.1"
-    assert selection.selected_winner == pl1
+    assert selection.selected_winner.player() == players.Hurkacz
     assert selection.in_number_sets == 3
 
 
-def test_create_pick_with_player_object(event, players, fantasy_team):
-    pl1, pl2, pl3, pl4 = players
 
-    selection = fantasy_team.event(event).match("1.1").winner(pl1).in_sets(3)
+def test_sub_string_of_player_name(test_tournament,  fantasy_team):
+    mens_singles = draw.find_draw_by_cls(draw.MensSingles, test_tournament.draws)
 
-    assert selection.selected_winner == pl1
+    selection = fantasy_team.draw(mens_singles).match("1.1").winner("urk").in_sets(3)
 
-
-def test_sub_string_of_player_name(event, players, fantasy_team):
-    pl1, pl2, pl3, pl4 = players
-
-    selection = fantasy_team.event(event).match("1.1").winner("er1").in_sets(3)
-
-    assert selection.selected_winner == pl1
+    assert selection.selected_winner.player() == players.Hurkacz
 
 
-def test_create_multiple_picks(event, players, fantasy_team):
-    pl1, pl2, pl3, pl4 = players
+def test_create_multiple_picks(test_tournament,  fantasy_team):
+    mens_singles = draw.find_draw_by_cls(draw.MensSingles, test_tournament.draws)
 
-    fantasy_team.event(event).match("1.1").winner("Player1").in_sets(3)
-    fantasy_team.event(event).match("1.2").winner("Player3").in_sets(3)
+    fantasy_team.draw(mens_singles).match("1.1").winner(players.Hurkacz).in_sets(3)
+    fantasy_team.draw(mens_singles).match("1.2").winner(players.Korda).in_sets(3)
 
-    assert len(fantasy_team.fantasy_events) == 1
-    assert fantasy_team.fantasy_events[0].event.name == "MensSingles"
+    assert len(fantasy_team.fantasy_draws) == 1
+    assert fantasy_team.fantasy_draws[0].draw.name == "MensSingles"
 
-    assert fantasy_team.fantasy_events[0].selection_for(1, 1).selected_winner == pl1
-    assert fantasy_team.fantasy_events[0].selection_for(1, 2).selected_winner == pl3
-
-
-def test_multiple_picks_multiple_events(event, event2, players, fantasy_team):
-    pl1, pl2, pl3, pl4 = players
-
-    fantasy_team.event(event).match("1.1").winner("Player1").in_sets(3)
-    fantasy_team.event(event).match("1.2").winner("Player3").in_sets(3)
-    fantasy_team.event(event2).match("1.1").winner("Player1").in_sets(3)
-    fantasy_team.event(event2).match("1.2").winner("Player3").in_sets(3)
-
-    assert len(fantasy_team.fantasy_events) == 2
-
-    assert fantasy_team.fantasy_events[0].event.name == "MensSingles"
-    assert fantasy_team.fantasy_events[0].selection_for(1, 1).selected_winner == pl1
-    assert fantasy_team.fantasy_events[0].selection_for(1, 2).selected_winner == pl3
-
-    assert fantasy_team.fantasy_events[1].event.name == "WomensSingles"
-    assert fantasy_team.fantasy_events[1].selection_for(1, 1).selected_winner == pl1
-    assert fantasy_team.fantasy_events[1].selection_for(1, 2).selected_winner == pl3
+    assert fantasy_team.fantasy_draws[0].selection_for(1, 1).selected_winner.player() == players.Hurkacz
+    assert fantasy_team.fantasy_draws[0].selection_for(1, 2).selected_winner.player() == players.Korda
 
 
-def test_show_event(capsys, event, event2, players, fantasy_team):
-    fantasy_team.event(event).match("1.1").winner("Player1").in_sets(3)
-    fantasy_team.event(event).match("1.2").winner("Player3").in_sets(3)
-    fantasy_team.event(event2).match("1.1").winner("Player1").in_sets(3)
-    fantasy_team.event(event2).match("1.2").winner("Player3").in_sets(3)
+def test_multiple_picks_multiple_events(test_tournament,  fantasy_team):
+    mens_singles = draw.find_draw_by_cls(draw.MensSingles, test_tournament.draws)
+    womens_singles = draw.find_draw_by_cls(draw.WomensSingles, test_tournament.draws)
 
-    fantasy_team.show_event(event)
+    fantasy_team.draw(mens_singles).match("1.1").winner(players.Hurkacz).in_sets(3)
+    fantasy_team.draw(mens_singles).match("1.2").winner(players.Korda).in_sets(3)
+    fantasy_team.draw(womens_singles).match("1.1").winner(players.Sabalenka).in_sets(3)
+    fantasy_team.draw(womens_singles).match("1.2").winner(players.Rybakina).in_sets(3)
+
+    assert len(fantasy_team.fantasy_draws) == 2
+
+    assert fantasy_team.fantasy_draws[0].draw.name == "MensSingles"
+    assert fantasy_team.fantasy_draws[0].selection_for(1, 1).selected_winner.player() == players.Hurkacz
+    assert fantasy_team.fantasy_draws[0].selection_for(1, 2).selected_winner.player() == players.Korda
+
+    assert fantasy_team.fantasy_draws[1].draw.name == "WomensSingles"
+    assert fantasy_team.fantasy_draws[1].selection_for(1, 1).selected_winner.player() == players.Sabalenka
+    assert fantasy_team.fantasy_draws[1].selection_for(1, 2).selected_winner.player() == players.Rybakina
+
+
+def test_show_event(capsys, test_tournament,  fantasy_team):
+    mens_singles = draw.find_draw_by_cls(draw.MensSingles, test_tournament.draws)
+    womens_singles = draw.find_draw_by_cls(draw.WomensSingles, test_tournament.draws)
+
+    fantasy_team.draw(mens_singles).match("1.1").winner(players.Hurkacz).in_sets(3)
+    fantasy_team.draw(mens_singles).match("1.2").winner(players.Korda).in_sets(3)
+    fantasy_team.draw(womens_singles).match("1.1").winner(players.Sabalenka).in_sets(3)
+    fantasy_team.draw(womens_singles).match("1.2").winner(players.Rybakina).in_sets(3)
+
+    fantasy_team.show_draw(mens_singles)
 
     captured = capsys.readouterr()
 
     expected_output = """Event: MensSingles
-1.1  -- (  1) Player1 
-        (   ) Player2 
-     |_ Selected Winner        : Player1
+1.1  -- ( 10) H. Hurkacz 
+        ( 18) K. Khachanov 
+     |_ Selected Winner        : H. Hurkacz
      |_ Selected Number of Sets: 3
-1.2  -- ( 10) Player3 
-        (   ) Player4 
-     |_ Selected Winner        : Player3
+1.2  -- ( 29) S. Korda 
+        (  3) S. Tsitsipas 
+     |_ Selected Winner        : S. Korda
      |_ Selected Number of Sets: 3
 """
 
-    assert captured.out == expected_output
+    assert expected_output in captured.out
 
 
-def test_allocate_points(event, event2, players, fantasy_team):
-    pl1, pl2, pl3, pl4 = players
+def test_allocate_points(test_tournament,  fantasy_team):
+    mens_singles = draw.find_draw_by_cls(draw.MensSingles, test_tournament.draws)
 
-    fantasy_team.event(event).match("1.1").winner(pl1).in_sets(3)
-    fantasy_team.event(event).match("1.2").winner(pl3).in_sets(3)
-    fantasy_team.event(event2).match("1.1").winner(pl1).in_sets(3)
-    fantasy_team.event(event2).match("1.2").winner(pl3).in_sets(3)
+    fantasy_team.draw(mens_singles).match("1.1").winner(players.Hurkacz).in_sets(3)
+    fantasy_team.draw(mens_singles).match("1.2").winner(players.Tsitsipas).in_sets(5)
+
 
     # Match not finished
     assert fantasy_team.total_points() == 0
 
     # 5 for the right winner, 2 for correct sets
-    event.for_round(1).for_match(1).score(pl1, (6, 6, 6)).score(pl2, (4, 4, 4))
+    mens_singles.for_round(1).for_match(1).score(players.Hurkacz, (6, 6, 6)).score(players.Khachanov, (4, 4, 4))
     assert fantasy_team.total_points() == 7
 
-    # 2 for the right number of sets
-    event.for_round(1).for_match(2).score(pl3, (4, 4, 4)).score(pl4, (6, 6, 6))
-    assert fantasy_team.total_points() == 7
-
-    # adds 5 points for the right winner
-    event2.for_round(1).for_match(2).score(pl3, (6, 6)).score(pl4, (4, 4))
+    # 5 for the right winner
+    mens_singles.for_round(1).for_match(2).score(players.Korda, (4, 4, 4)).score(players.Tsitsipas, (6, 6, 6))
     assert fantasy_team.total_points() == 12
 
-    # adds 2 points for right sets, 1 point for lost but max sets
-    event2.for_round(1).for_match(1).score(pl2, (6, 4, 6)).score(pl1, (4, 6, 4))
-    assert fantasy_team.total_points() == 13
+    # adds 2 points for wrong winner but in max sets
+    fantasy_team.draw(mens_singles).match("2.1").winner(players.Hurkacz).in_sets(5)
+    mens_singles.for_round(2).for_match(1).score(players.Tsitsipas, (6, 5, 6, 5, 6)).score(players.Hurkacz, (4, 7, 4, 7, 5))
+
+    assert fantasy_team.total_points() == 14
 
 
-def test_explain_points(event, event2, players, fantasy_team):
-    pl1, pl2, pl3, pl4 = players
+def test_explain_points(test_tournament,  fantasy_team):
+    mens_singles = draw.find_draw_by_cls(draw.MensSingles, test_tournament.draws)
+    womens_singles = draw.find_draw_by_cls(draw.WomensSingles, test_tournament.draws)
 
-    fantasy_team.event(event).match("1.1").winner(pl1).in_sets(3)
-    fantasy_team.event(event).match("1.2").winner(pl3).in_sets(3)
-    fantasy_team.event(event2).match("1.1").winner(pl1).in_sets(3)
-    fantasy_team.event(event2).match("1.2").winner(pl3).in_sets(3)
+    fantasy_team.draw(mens_singles).match("1.1").winner(players.Hurkacz).in_sets(3)
+    fantasy_team.draw(mens_singles).match("1.2").winner(players.Korda).in_sets(3)
+    fantasy_team.draw(womens_singles).match("1.1").winner(players.Sabalenka).in_sets(3)
+    fantasy_team.draw(womens_singles).match("1.2").winner(players.Rybakina).in_sets(3)
 
-    event.for_round(1).for_match(1).score(pl1, (6, 6, 6)).score(pl2, (4, 4, 4))
-    event.for_round(1).for_match(2).score(pl3, (4, 4, 4)).score(pl4, (6, 6, 6))
-    event2.for_round(1).for_match(2).score(pl3, (6, 6)).score(pl4, (4, 4))
-    event2.for_round(1).for_match(1).score(pl2, (6, 4, 6)).score(pl1, (4, 6, 4))
+    mens_singles.for_round(1).for_match(1).score(players.Hurkacz, (6, 6, 6)).score(players.Khachanov, (4, 4, 4))
+    mens_singles.for_round(1).for_match(2).score(players.Korda, (4, 4, 4)).score(players.Tsitsipas, (6, 6, 6))
+
+    womens_singles.for_round(1).for_match(1).score(players.Sabalenka, (6, 6)).score(players.Swiatek, (4, 4))
+    womens_singles.for_round(1).for_match(2).score(players.Rybakina, (6, 6)).score(players.Azarenka, (4, 4))
 
     explain = fantasy_team.explain_points()
     assert len(explain) == 2
 
-def test_round_factor(event, event2, players, fantasy_team):
-    pl1, pl2, pl3, pl4 = players
+def test_round_factor(test_tournament,  fantasy_team):
+    mens_singles = draw.find_draw_by_cls(draw.MensSingles, test_tournament.draws)
 
-    fantasy_team.event(event).match("1.1").winner(pl1).in_sets(3)
-    fantasy_team.event(event).match("1.2").winner(pl3).in_sets(3)
+    fantasy_team.draw(mens_singles).match("1.1").winner(players.Hurkacz).in_sets(3)
+    fantasy_team.draw(mens_singles).match("1.2").winner(players.Tsitsipas).in_sets(3)
 
-    event.for_round(1).for_match(1).score(pl1, (6, 6, 6)).score(pl2, (4, 4, 4))
-    event.for_round(1).for_match(2).score(pl4, (4, 4, 4)).score(pl3, (6, 6, 6))
+    mens_singles.for_round(1).for_match(1).score(players.Hurkacz, (6, 6, 6)).score(players.Khachanov, (4, 4, 4))
+    mens_singles.for_round(1).for_match(2).score(players.Korda, (4, 4, 4)).score(players.Tsitsipas, (6, 6, 6))
 
     assert fantasy_team.total_points() == 14
 
-    fantasy_team.event(event).match("2.1").winner(pl1).in_sets(5)
+    fantasy_team.draw(mens_singles).match("2.1").winner(players.Tsitsipas).in_sets(5)
 
-    event.for_round(2).for_match(1).score(pl1, (6, 4, 6, 4, 6)).score(pl3, (4, 6, 4, 6, 4))
+    mens_singles.for_round(2).for_match(1).score(players.Tsitsipas, (6, 4, 6, 4, 6)).score(players.Hurkacz, (4, 6, 4, 6, 4))
 
     assert fantasy_team.total_points() == 28
 
 
-def test_match_doesnt_exist(event, players, fantasy_team):
+def test_match_doesnt_exist(test_tournament,  fantasy_team):
+    mens_singles = draw.find_draw_by_cls(draw.MensSingles, test_tournament.draws)
     with pytest.raises(error.ConfigException):
-        fantasy_team.event(event).match("1.3").winner("Player1").in_sets(3)
+        fantasy_team.draw(mens_singles).match("1.3").winner("Player1").in_sets(3)
 
 
-def test_round_doesnt_exist(event, players, fantasy_team):
+def test_round_doesnt_exist(test_tournament,  fantasy_team):
+    mens_singles = draw.find_draw_by_cls(draw.MensSingles, test_tournament.draws)
     with pytest.raises(error.ConfigException):
-        fantasy_team.event(event).match("4.1").winner("Player1").in_sets(3)
+        fantasy_team.draw(mens_singles).match("4.1").winner("Player1").in_sets(3)
 
 
-def test_match_has_no_players(event, players, fantasy_team):
+def test_match_has_no_players(test_tournament,  fantasy_team):
+    mens_singles = draw.find_draw_by_cls(draw.MensSingles, test_tournament.draws)
     with pytest.raises(error.ConfigException):
-        fantasy_team.event(event).match("2.1").winner("Player1").in_sets(3)
+        fantasy_team.draw(mens_singles).match("2.1").winner("Player1").in_sets(3)

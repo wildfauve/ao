@@ -46,12 +46,14 @@ class Match:
         return f"{match_part}.{score_part}"
 
     def find_player_by_player(self, for_player: player.Player):
+        if not self.has_draw():
+            raise error.ConfigException(f"Match {self.match_id} has no draw when trying to find player {for_player.name}")
         return entry.find_player_from_entry(for_player, [self.player1, self.player2])
 
     def player_from_player_name(self, player_name):
         if not self.has_draw():
             raise error.ConfigException("No draw has been set for match")
-        return player.find_player_by_name(player_name, [self.player1, self.player2])
+        return entry.find_player_by_name(player_name, [self.player1, self.player2])
 
     def add_player(self, player_to_add: entry.Entry):
         if self.player1 and self.player2:

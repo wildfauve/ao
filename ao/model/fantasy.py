@@ -1,6 +1,5 @@
 from enum import Enum
 from functools import partial
-from ao.model.tournament_event import TournamentEvent
 from ao.model.draw import Draw
 from ao.model.player import Player
 
@@ -24,7 +23,7 @@ class Team:
     def draw(self, for_draw: Draw):
         fantasy = self._find_fantasy_draw(for_draw)
         if not fantasy:
-            fantasy = FantasyEvent(for_draw, self)
+            fantasy = FantasyDraw(for_draw, self)
             self.fantasy_draws.append(fantasy)
         return fantasy
 
@@ -41,8 +40,8 @@ class Team:
     def _find_fantasy_draw(self, for_draw):
         return fn.find(partial(self._draw_predicate, for_draw), self.fantasy_draws)
 
-    def _draw_predicate(self, test_draw: Draw, fantasy_draw: Draw):
-        return test_draw == fantasy_draw.event
+    def _draw_predicate(self, for_draw: Draw, fantasy_draw: Draw):
+        return for_draw == fantasy_draw.draw
 
     def __hash__(self):
         return hash((self.symbolic_name,))
@@ -51,14 +50,14 @@ class Team:
         return self.symbolic_name == other.symbolic_name
 
 
-class FantasyEvent:
-    def __init__(self, event: TournamentEvent, team: Team):
-        self.event = event
+class FantasyDraw:
+    def __init__(self, draw: Draw, team: Team):
+        self.draw = draw
         self.team = team
         self.match_selections = {}
 
     def show(self):
-        echo.echo(f"Event: {self.event.name}")
+        echo.echo(f"Event: {self.draw.name}")
         for rd_id, matches in self.match_selections.items():
             for mt_id, selection in matches.items():
                 selection.show()
@@ -72,7 +71,7 @@ class FantasyEvent:
 
     def explain_points(self):
         return {
-            "event": self.event.name,
+            "event": self.draw.name,
             "matches": [sel.explain_points() for selections in self.match_selections.values() for sel in
                         selections.values()]
         }
@@ -81,7 +80,7 @@ class FantasyEvent:
         rd_id, mt_id = identity.split_match_id(match_id)
         selection = self._find_match_selection(rd_id, mt_id)
         if not selection:
-            selection = Selection(self.event, rd_id, mt_id)
+            selection = Selection(self.draw, rd_id, mt_id)
             self._add_selection(selection, rd_id, mt_id)
         return selection
 
@@ -99,9 +98,9 @@ class FantasyEvent:
 
 
 class Selection:
-    def __init__(self, event, round_id, match_id):
+    def __init__(self, draw, round_id, match_id):
         self.round_id = round_id
-        self.match = self._find_match(event, round_id, match_id)
+        self.match = self._find_match(draw, round_id, match_id)
         self.selected_winner = None
         self.in_number_sets = None
 
@@ -114,30 +113,30 @@ class Selection:
         if not self.match.is_finished():
             return {
                 "match": self.match.match_id,
-                "between": f"{self.match.player1.name}, {self.match.player2.name}" if self.match.has_draw() else None,
+                "between": f"{self.match.player1.player().name}, {self.match.player2.player().name}" if self.match.has_draw() else None,
                 "result-winner": "Not Finished",
-                "selected-winner": self.selected_winner.name if self.selected_winner else None,
+                "selected-winner": self.selected_winner.player().name if self.selected_winner else None,
                 "selected-in-sets": self.in_number_sets if self.in_number_sets else None,
                 "points": []
             }
 
         return {
             "match": self.match.match_id,
-            "between": f"{self.match.player1.name}, {self.match.player2.name}",
-            "result-winner": self.match.match_winner.name,
+            "between": f"{self.match.player1.player().name}, {self.match.player2.player().name}",
+            "result-winner": self.match.match_winner.player().name,
             "result-in-sets": self.match.number_of_sets_played(),
-            "selected-winner": self.selected_winner.name if self.selected_winner else None,
+            "selected-winner": self.selected_winner.player().name if self.selected_winner else None,
             "selected-in-sets": self.in_number_sets if self.in_number_sets else None,
             "points": [points_strategy(explain=True) for points_strategy in self.points_strategy_fns()]
         }
 
     def show(self):
         self.match.show()
-        echo.echo(f"     |_ Selected Winner        : {self.selected_winner.name}")
+        echo.echo(f"     |_ Selected Winner        : {self.selected_winner.player().name}")
         echo.echo(f"     |_ Selected Number of Sets: {self.in_number_sets}")
 
-    def _find_match(self, event, round_id, match_id):
-        return event.for_round(round_id).for_match(match_id)
+    def _find_match(self, draw, round_id, match_id):
+        return draw.for_round(round_id).for_match(match_id)
 
     def winner(self, player_name=None):
         if not player_name:

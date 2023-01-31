@@ -16,6 +16,7 @@ class TournamentEvent:
         self.is_event_of = event_of
         self.scheduled_in_year = year
         self.subject = URIRef(f"https://fauve.io/{self.is_event_of.subject_name}/{self.scheduled_in_year}")
+        self.name = f"{self.is_event_of.subject_name}{self.scheduled_in_year}"
         self.label = f"{self.is_event_of.name} {self.scheduled_in_year}"
         self.draws = []
 

@@ -1,9 +1,13 @@
 import click
 
-from . import tournament
+from . import command
+from .majors import tournaments
 from .leaderboard import BoardType
 from .fantasy import teams
 
+
+def tournament_names():
+    return [t.name for t in tournaments.TournamentsInFantasy]
 
 @click.group()
 def cli():
@@ -11,16 +15,19 @@ def cli():
 
 
 @click.command()
+@click.option("--tournament", "-t",
+              type=click.Choice(tournament_names()),
+              help="The name of the tournment")
 @click.option("--round_number", "-r", type=int, default=None, help="Leaderboard for specific round")
-@click.option("--board_type", "-t",
+@click.option("--board_type", "-b",
               type=click.Choice(['f1', 'fantasy']),
               default='fantasy',
               help="Either the Fantasy Leaderboard or the F1 leaderboard")
-def leaderboard(round_number, board_type):
+def leaderboard(tournament, round_number, board_type):
     """
     Starts the tournament,  applies the results, applies the fantasy selection and prints the leaderboard
     """
-    tournament.show_leaderboard(BoardType(board_type), round_number)
+    command.show_leaderboard(tournament, BoardType(board_type), round_number)
     pass
 
 
@@ -65,6 +72,7 @@ def explain_team_score(team_name):
     """
     tournament.explain_team_points(team_name)
     pass
+
 
 
 cli.add_command(leaderboard)
