@@ -1,11 +1,11 @@
 from functools import partial
 
-from .model import match, tournament_event, draw
-from . import leaderboard
-from .fantasy import teams
-from .majors import tournaments
-from . import fantasy
-from .util import echo, fn
+from ao.model import tournament_event, draw
+from . import leaderboard, graph_generator
+from ao.fantasy import teams, selections
+from ao.majors import tournaments
+from ao import fantasy
+from ao.util import echo, fn
 
 
 def show_leaderboard(tournament_name, board_type, round_number=None):
@@ -48,6 +48,10 @@ def explain_team_points(tournament_name, team_name):
     teams.explain_points_for_team(team_name, apply_fantasy(start(tournie)))
     pass
 
+def generate_graph(ttl_file):
+    graph_generator.generate(ttl_file)
+
+# Helpers
 
 def start(tournie):
     return tournie
@@ -57,21 +61,18 @@ def apply_fantasy(tournie):
     mens_singles = draw.find_draw_by_cls(draw.MensSingles, tournie.draws)
     womens_singles = draw.find_draw_by_cls(draw.WomensSingles, tournie.draws)
 
-    fantasy_module = fantasy.FantasyTournaments.get(tournie.name, None)
+    fantasy_module = fantasy.fantasy_tournaments.get(tournie.name, None)
 
     if not fantasy_module:
         echo.echo(f"No fantasy selections for {tournie.name}")
         return
 
-    return fantasy_module.apply(mens_singles, womens_singles)
+    return selections.apply(fantasy_module, mens_singles, womens_singles)
 
 
 def leaderboard_for_teams(teams, board_type, round_number):
     leaderboard.current_leaderboard(teams, board_type, round_number)
 
-
-def find_tournament_by_name(for_name):
-    pass
 
 def find_tournament_by_name(for_name: str):
     tournie = fn.find(partial(_tournament_name_predicate, for_name), tournaments.TournamentsInFantasy)

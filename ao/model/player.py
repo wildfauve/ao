@@ -7,9 +7,8 @@ from ao.graph import rdf_prefix
 
 class Player:
 
-    def __init__(self, name, seed=None):
+    def __init__(self, name):
         self.name = name
-        self.seed = seed
         self.subject = rdf_prefix.fau_ten_ind[self.uri_name()]
 
     def uri_name(self):
@@ -29,15 +28,8 @@ class Player:
         """
 
     def to_ttl_entry(self):
-        if not self.seed:
-            return f"""
-            fau-ten-ind:{self.uri_name()}AO2023Entry
-            a                        fau-ten:QualifiedPlayer ;
-            fau-ten:isEntryForPlayer fau-ten-ind:{self.uri_name()} .
-            """
         return f"""
         fau-ten-ind:{self.uri_name()}AO2023Entry
         a                        fau-ten:QualifiedPlayer ;
-        fau-ten:hasSeed          {self.seed} ;
         fau-ten:isEntryForPlayer fau-ten-ind:{self.uri_name()} .
         """

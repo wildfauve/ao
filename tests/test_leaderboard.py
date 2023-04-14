@@ -1,4 +1,4 @@
-from ao import leaderboard
+from ao.command import leaderboard
 from tests.shared import *
 
 def test_allocate_points(capsys, test_tournament,  fantasy_team, fantasy_team_2):

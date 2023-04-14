@@ -1,8 +1,8 @@
 import click
 
-from . import command
+from .command import controller
 from .majors import tournaments
-from .leaderboard import BoardType
+from ao.command.leaderboard import BoardType
 from .fantasy import teams
 
 
@@ -27,7 +27,7 @@ def leaderboard(tournament, round_number, board_type):
     """
     Starts the tournament,  applies the results, applies the fantasy selection and prints the leaderboard
     """
-    command.show_leaderboard(tournament, BoardType(board_type), round_number)
+    controller.show_leaderboard(tournament, BoardType(board_type), round_number)
     pass
 
 
@@ -44,7 +44,7 @@ def show_round(tournament, round_number, draw):
     """
     Shows the round of an event
     """
-    command.show_round(tournament, draw, round_number)
+    controller.show_round(tournament, draw, round_number)
     pass
 
 @click.command()
@@ -64,7 +64,7 @@ def result_template(tournament, round_number, draw, template_name):
     """
     Get a result DSL template
     """
-    command.result_template(tournament, draw, round_number, template_name)
+    controller.result_template(tournament, draw, round_number, template_name)
     pass
 
 
@@ -79,12 +79,23 @@ def explain_team_score(tournament, fantasy_team_name):
     """
     Shows the round of an event
     """
-    command.explain_team_points(tournament, fantasy_team_name)
+    controller.explain_team_points(tournament, fantasy_team_name)
     pass
 
+
+
+@click.command()
+@click.option("--ttl-file", "-f", type=str, default=None, help="location of TTL Graph output")
+def generate_graph(ttl_file):
+    """
+    Generates TTL Graph
+    """
+    controller.generate_graph(ttl_file)
+    pass
 
 
 cli.add_command(leaderboard)
 cli.add_command(show_round)
 cli.add_command(explain_team_score)
 cli.add_command(result_template)
+cli.add_command(generate_graph)

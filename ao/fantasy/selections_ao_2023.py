@@ -1,13 +1,5 @@
-import sys
-import re
 from ao.fantasy.teams import *
-from ao.ontology.players import *
-
-def apply(mens_singles, womens_singles):
-    return [getattr(sys.modules[__name__], team_fn)(mens_singles, womens_singles) for team_fn in apply_functions_for_teams()]
-
-def apply_functions_for_teams():
-    return [f for f in dir(sys.modules[__name__]) if re.match("^team_", f)]
+from ao.players.players import *
 
 def team_gelato_giants(mens_singles, womens_singles):
     TeamGelatoGiants.draw(mens_singles).match("1.1").winner(Nishioka).in_sets(4)

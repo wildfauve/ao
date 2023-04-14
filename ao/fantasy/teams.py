@@ -22,6 +22,9 @@ teams = [TeamGelatoGiants,
          TeamLightHouse,
          TeamFauve]
 
+def build_graph(g):
+    [team.build_graph(g) for team in teams]
+
 def symbolised_names():
     return [t.symbolic_name for t in teams]
 

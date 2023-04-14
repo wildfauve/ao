@@ -1,7 +1,10 @@
 from enum import Enum
 from functools import partial
+from rdflib import URIRef, Graph, RDF, Literal
+
 from ao.model.draw import Draw
 from ao.model.player import Player
+from ao.graph import rdf_prefix
 
 from ao.util import fn, identity, echo, error
 
@@ -19,6 +22,14 @@ class Team:
         self.symbolic_name = name.replace(" ", "")
         self.members = members
         self.fantasy_draws = []
+        self.subject = URIRef(f"https://fauve.io/fantasyTeam/{self.symbolic_name}")
+
+
+    def build_graph(self, g: Graph):
+        g.add((self.subject, RDF.type, rdf_prefix.fau_ten.FantasyTeam))
+        g.add((self.subject, rdf_prefix.skos.notation, Literal(self.name)))
+        g.add((self.subject, rdf_prefix.fau_ten.hasFantasyMembers, Literal(self.members)))
+        return g
 
     def draw(self, for_draw: Draw):
         fantasy = self._find_fantasy_draw(for_draw)
