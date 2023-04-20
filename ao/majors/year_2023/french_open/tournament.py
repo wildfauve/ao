@@ -2,14 +2,17 @@ from . import results
 from ao.majors import tournaments
 from ao.players import players
 from ao.model import tournament_event, draw
+from ao.fantasy import points_strategy
 
 FrenchOpen2023 = tournament_event.TournamentEvent(event_of=tournaments.FrenchOpen, year=2023)
 
 FO2023MensSingles = (draw.MensSingles(name="MensSingles", best_of=5, tournament=FrenchOpen2023)
-                     .draw_size(number_of_matches=8))
+                     .draw_size(number_of_matches=8)
+                     .fantasy_points_strategy(points_strategy.Points521))
 
 FO2023WomensSingles = (draw.WomensSingles("WomensSingles", best_of=3, tournament=FrenchOpen2023)
-                       .draw_size(number_of_matches=8))
+                       .draw_size(number_of_matches=8)
+                       .fantasy_points_strategy(points_strategy.Points521))
 
 FO2023MensSingles.has_entry(players.Nishioka, seed=31)
 FO2023MensSingles.has_entry(players.Khachanov, seed=18)

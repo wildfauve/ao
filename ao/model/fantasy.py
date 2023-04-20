@@ -5,15 +5,9 @@ from rdflib import URIRef, Graph, RDF, Literal
 from ao.model.draw import Draw
 from ao.model.player import Player
 from ao.graph import rdf_prefix
+from ao.fantasy import points_strategy
 
 from ao.util import fn, identity, echo, error
-
-
-class Points(Enum):
-    NO_POINTS = ('', 0)
-    WINNER = ('correct-winner', 5)
-    NUMBER_OF_SETS = ('correct-sets', 2)
-    LOST_WITH_MAX_SETS = ('bonus-for-loss-in-max-sets', 1)
 
 
 class Team:
@@ -114,6 +108,7 @@ class Selection:
         self.match = self._find_match(draw, round_id, match_id)
         self.selected_winner = None
         self.in_number_sets = None
+        self.points_strategy = draw.points_strategy
 
     def points(self):
         if not self.match.is_finished():
@@ -169,24 +164,24 @@ class Selection:
 
     def selected_correct_winner(self, explain: bool = False):
         if self.match.match_winner == self.selected_winner:
-            return self.calc(Points.WINNER, explain)
-        return self.calc(Points.NO_POINTS, explain, Points.WINNER)
+            return self.calc(self.points_strategy.WINNER, explain)
+        return self.calc(self.points_strategy.NO_POINTS, explain, self.points_strategy.WINNER)
 
     def selected_correct_sets(self, explain: bool = False):
         if self.match.match_winner != self.selected_winner:
-            return self.calc(Points.NO_POINTS, explain, Points.NUMBER_OF_SETS)
+            return self.calc(self.points_strategy.NO_POINTS, explain, self.points_strategy.NUMBER_OF_SETS)
         if self.in_number_sets == self.match.number_of_sets_played():
-            return self.calc(Points.NUMBER_OF_SETS, explain)
-        return self.calc(Points.NO_POINTS, explain, Points.NUMBER_OF_SETS)
+            return self.calc(self.points_strategy.NUMBER_OF_SETS, explain)
+        return self.calc(self.points_strategy.NO_POINTS, explain, self.points_strategy.NUMBER_OF_SETS)
 
     def lost_but_in_max_sets(self, explain: bool = False):
         if (self.match.match_winner != self.selected_winner) and self.match.max_sets_played():
-            return self.calc(Points.LOST_WITH_MAX_SETS, explain)
-        return self.calc(Points.NO_POINTS, explain, Points.LOST_WITH_MAX_SETS)
+            return self.calc(self.points_strategy.LOST_WITH_MAX_SETS, explain)
+        return self.calc(self.points_strategy.NO_POINTS, explain, self.points_strategy.LOST_WITH_MAX_SETS)
 
-    def calc(self, points_type, explain: bool = False, when_no_points: Points = None):
+    def calc(self, points_type, explain: bool = False, when_no_points: points_strategy.PointsStrategy = None):
         points_name, value = points_type.value
-        if points_type == Points.NO_POINTS:
+        if points_type == self.points_strategy.NO_POINTS:
             return value if not explain else {when_no_points.value[0]: value}
         return self.points_with_factor(value) if not explain else {points_name: self.points_with_factor(value)}
 

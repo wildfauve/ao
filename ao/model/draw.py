@@ -35,13 +35,17 @@ def _draw_cls_predicate(draw_cls, draw):
 
 class Draw:
 
-    def __init__(self, name, best_of, tournament: tournament_event.TournamentEvent):
+    def __init__(self,
+                 name,
+                 best_of,
+                 tournament: tournament_event.TournamentEvent):
         self.name = name
         self.number_of_matches = None
         self.best_of = best_of
         self.rounds = []
         self.tournament = tournament
         self.entries = []
+        self.points_strategy = None
         self.subject = URIRef(f"{self.tournament.subject.toPython()}/{self.name}")
 
     def build_graph(self, g: Graph):
@@ -62,6 +66,10 @@ class Draw:
     def draw_size(self, number_of_matches):
         self.number_of_matches = number_of_matches
         self._build_draw(1, number_of_matches)
+        return self
+
+    def fantasy_points_strategy(self, points_strat):
+        self.points_strategy = points_strat
         return self
 
     def has_entry(self, player_entry: player.Player, seed: int):
