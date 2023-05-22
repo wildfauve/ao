@@ -161,9 +161,9 @@ fau-ten-ind:Wolf
     foaf:name "J. Wolf" .
 
 
-fau-ten-ind:Zhang
+fau-ten-ind:Zhang_Shuai
     a         fau-ten:Player, owl:NamedIndividual ;
-    foaf:name "S. Zhang" .
+    foaf:name "S. Zhang_Shuai" .
 
 
 fau-ten-ind:Zhu

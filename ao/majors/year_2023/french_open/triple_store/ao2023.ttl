@@ -51,7 +51,7 @@ ao:AustralianOpen2023
                                <https://fauve/ao/2023/entries/Pegula>, <https://fauve/ao/2023/entries/Pliskova>,
                                <https://fauve/ao/2023/entries/Rybakina>, <https://fauve/ao/2023/entries/Sabalenka>,
                                <https://fauve/ao/2023/entries/Swiatek>, <https://fauve/ao/2023/entries/Vekic>,
-                               <https://fauve/ao/2023/entries/Zhang>, <https://fauve/ao/2023/entries/Zhu> .
+                               <https://fauve/ao/2023/entries/Zhang_Shuai>, <https://fauve/ao/2023/entries/Zhu> .
 
 
 <https://fauve.io/ao/2023/womensSingles/match/1-1>
@@ -266,11 +266,11 @@ ao:AustralianOpen2023
     fau-ten:isEntryForPlayer fau-ten-ind:Wolf .
 
 
-<https://fauve/ao/2023/entries/Zhang>
+<https://fauve/ao/2023/entries/Zhang_Shuai>
     a                        fau-ten:QualifiedPlayer ;
     fau-ten:hasSeed          23 ;
     fau-ten:isInDraw         <https://fauve.io/ao/2023/womensSingles> ;
-    fau-ten:isEntryForPlayer fau-ten-ind:Zhang .
+    fau-ten:isEntryForPlayer fau-ten-ind:Zhang_Shuai .
 
 
 <https://fauve/ao/2023/entries/Zhu>

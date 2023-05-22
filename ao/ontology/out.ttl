@@ -142,7 +142,7 @@
         <https://fauve.io/AustralianOpen/2023/WomensSingles/Sabalenka>,
         <https://fauve.io/AustralianOpen/2023/WomensSingles/Swiatek>,
         <https://fauve.io/AustralianOpen/2023/WomensSingles/Vekic>,
-        <https://fauve.io/AustralianOpen/2023/WomensSingles/Zhang>,
+        <https://fauve.io/AustralianOpen/2023/WomensSingles/Zhang_Shuai>,
         <https://fauve.io/AustralianOpen/2023/WomensSingles/Zhu> .
 
 <https://fauve.io/AustralianOpen/2023/WomensSingles/Azarenka> a fau-ten:QualifiedPlayer ;
@@ -201,9 +201,9 @@
     fau-ten:hasSeed "None" ;
     fau-ten:isEntryForPlayer fau-ten-ind:Vekic .
 
-<https://fauve.io/AustralianOpen/2023/WomensSingles/Zhang> a fau-ten:QualifiedPlayer ;
+<https://fauve.io/AustralianOpen/2023/WomensSingles/Zhang_Shuai> a fau-ten:QualifiedPlayer ;
     fau-ten:hasSeed 23 ;
-    fau-ten:isEntryForPlayer fau-ten-ind:Zhang .
+    fau-ten:isEntryForPlayer fau-ten-ind:Zhang_Shuai .
 
 <https://fauve.io/AustralianOpen/2023/WomensSingles/Zhu> a fau-ten:QualifiedPlayer ;
     fau-ten:hasSeed "None" ;
