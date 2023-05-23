@@ -72,12 +72,18 @@ class Draw:
         self.points_strategy = points_strat
         return self
 
+
+    def add_entries(self, players):
+        [self.has_entry(player_entry, seed) for player_entry, seed in players]
+        return self
+
     def has_entry(self, player_entry: player.Player, seed: int):
         self.entries.append(entry.Entry(player_entry, draw=self, seed=seed))
         return self
 
-    def init_draw(self, *match_ups):
+    def init_draw(self, match_ups):
         if len(match_ups) != self.number_of_matches:
+            breakpoint()
             raise error.ConfigException
         [self._place_in_first_round(match_up) for match_up in match_ups]
         return self
