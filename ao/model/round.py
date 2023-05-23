@@ -1,8 +1,13 @@
 from typing import Callable
 from functools import partial
+from rich.console import Console
+from rich.table import Table
+from rich import box
 
 from ao.model import match, entry
-from ao.util import fn, error, echo
+from ao.util import fn, error
+
+console = Console()
 
 
 class Round:
@@ -16,10 +21,17 @@ class Round:
         self._build_match_slots()
 
     def show(self):
-        echo.echo(f"Round: {self.round_id}")
-        echo.echo(f"Matches:")
+        table = Table(title=f"Draw and Results for round {self.round_id}",
+                      box=box.ROUNDED)
+
+        table.add_column("Match", justify="center", style="cyan", no_wrap=True)
+        table.add_column("Player1", justify="left", style="magenta")
+        table.add_column("Player2", justify="left", style="green")
+
         for match in self.matches:
-            match.show()
+            match.show(table)
+
+        console.print(table)
 
     def result_template(self, event_name):
         return [match.result_template(event_name, self.round_id) for match in self.matches]

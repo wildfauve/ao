@@ -75,11 +75,11 @@ def leaderboard_for_teams(teams, board_type, round_number):
 
 
 def find_tournament_by_name(for_name: str):
-    tournie = fn.find(partial(_tournament_name_predicate, for_name), tournaments.TournamentsInFantasy)
+    """
+    imports tournament modules only when being used on the CLI.
+    """
+    tournie = tournaments.tournament_in_fantasy(for_name)
     if not tournie:
         echo.echo(f"{for_name} does not exist as a tournament")
     return tournie
-
-def _tournament_name_predicate(name, tournament: tournament_event.TournamentEvent):
-    return name in tournament.name
 

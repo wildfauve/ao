@@ -21,10 +21,10 @@ class Match:
         self.sets = []
         self.match_winner = None
 
-    def show(self):
-        sp = len(self.match_id)
-        echo.echo(f"{self.match_id}  -- {self.show_player(self.player1)}")
-        echo.echo(f"{' ' * (sp + 4)} {self.show_player(self.player2)}")
+    def show(self, table):
+        table.add_row(self.match_id,
+                      f"{self.show_player(self.player1)}",
+                      f"{self.show_player(self.player2)}")
 
     def show_player(self, for_player: entry.Entry):
         if not for_player:
@@ -47,7 +47,8 @@ class Match:
 
     def find_player_by_player(self, for_player: player.Player):
         if not self.has_draw():
-            raise error.ConfigException(f"Match {self.match_id} has no draw when trying to find player {for_player.name}")
+            raise error.ConfigException(
+                f"Match {self.match_id} has no draw when trying to find player {for_player.name}")
         return entry.find_player_from_entry(for_player, [self.player1, self.player2])
 
     def player_from_player_name(self, player_name):

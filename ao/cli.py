@@ -7,7 +7,7 @@ from .fantasy import teams
 
 
 def tournament_names():
-    return [t.name for t in tournaments.TournamentsInFantasy]
+    return tournaments.tournament_names()
 
 @click.group()
 def cli():
