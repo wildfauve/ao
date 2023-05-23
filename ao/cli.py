@@ -1,8 +1,7 @@
 import click
 
-from .command import controller
+from ao import command
 from .majors import tournaments
-from ao.command.leaderboard import BoardType
 from .fantasy import teams
 
 
@@ -27,7 +26,7 @@ def leaderboard(tournament, round_number, board_type):
     """
     Starts the tournament,  applies the results, applies the fantasy selection and prints the leaderboard
     """
-    controller.show_leaderboard(tournament, BoardType(board_type), round_number)
+    command.show_leaderboard(tournament, command.BoardType(board_type), round_number)
     pass
 
 
@@ -44,7 +43,7 @@ def show_round(tournament, round_number, draw):
     """
     Shows the round of an event
     """
-    controller.show_round(tournament, draw, round_number)
+    command.show_round(tournament, draw, round_number)
     pass
 
 @click.command()
@@ -64,7 +63,7 @@ def result_template(tournament, round_number, draw, template_name):
     """
     Get a result DSL template
     """
-    controller.result_template(tournament, draw, round_number, template_name)
+    command.result_template(tournament, draw, round_number, template_name)
     pass
 
 
@@ -79,7 +78,7 @@ def explain_team_score(tournament, fantasy_team_name):
     """
     Shows the round of an event
     """
-    controller.explain_team_points(tournament, fantasy_team_name)
+    command.explain_team_points(tournament, fantasy_team_name)
     pass
 
 
@@ -90,8 +89,33 @@ def generate_graph(ttl_file):
     """
     Generates TTL Graph
     """
-    controller.generate_graph(ttl_file)
+    command.generate_graph(ttl_file)
     pass
+
+
+@click.command()
+@click.option("--file", "-f", type=str, default=None, help="Player class file")
+def player_scrap(file):
+    """
+    Generates a player class file from the top 200 from the ATP and WTA
+    """
+    command.player_scrap(file)
+    pass
+
+
+@click.option('--file', '-f', required=True)
+@click.option("--tournament", "-t",
+              type=click.Choice(tournament_names()),
+              help="The name of the tournament")
+@click.option("--position/--accum", "-p/-a", required=True, help="Plot Position, or plot total scores")
+@click.command()
+def ranking_plot(file, tournament, position):
+    """
+    Generate a Ranking Graph
+    """
+    command.rank_plot(file=file, tournament_name=tournament, position=position)
+    pass
+
 
 
 cli.add_command(leaderboard)
@@ -99,3 +123,5 @@ cli.add_command(show_round)
 cli.add_command(explain_team_score)
 cli.add_command(result_template)
 cli.add_command(generate_graph)
+cli.add_command(player_scrap)
+cli.add_command(ranking_plot)

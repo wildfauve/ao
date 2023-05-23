@@ -7,9 +7,10 @@ from ao.graph import rdf_prefix
 
 class Player:
 
-    def __init__(self, name):
+    def __init__(self, name, tour_symbol=None):
         self.name = name
         self.subject = rdf_prefix.fau_ten_ind[self.uri_name()]
+        self.tour_symbol = tour_symbol
 
     def uri_name(self):
         return self.name.split(" ")[-1]

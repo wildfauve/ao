@@ -46,6 +46,7 @@ class Draw:
         self.tournament = tournament
         self.entries = []
         self.points_strategy = None
+        self.round_factor_strategy = None
         self.subject = URIRef(f"{self.tournament.subject.toPython()}/{self.name}")
 
     def build_graph(self, g: Graph):
@@ -72,6 +73,9 @@ class Draw:
         self.points_strategy = points_strat
         return self
 
+    def fantasy_round_points_accum_strategy(self, accum_strat):
+        self.round_factor_strategy = accum_strat
+        return self
 
     def add_entries(self, players):
         [self.has_entry(player_entry, seed) for player_entry, seed in players]

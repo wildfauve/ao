@@ -17,6 +17,8 @@ rdflib = "^6.2.0"
 requests = "^2.31.0"
 beautifulsoup4 = "^4.12.2"
 rich = "^13.3.5"
+polars = "^0.17.15"
+matplotlib = "^3.7.1"
 
 
 [tool.poetry.group.dev.dependencies]

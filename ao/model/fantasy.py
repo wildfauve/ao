@@ -18,7 +18,6 @@ class Team:
         self.fantasy_draws = []
         self.subject = URIRef(f"https://fauve.io/fantasyTeam/{self.symbolic_name}")
 
-
     def build_graph(self, g: Graph):
         g.add((self.subject, RDF.type, rdf_prefix.fau_ten.FantasyTeam))
         g.add((self.subject, rdf_prefix.skos.notation, Literal(self.name)))
@@ -35,6 +34,10 @@ class Team:
     def show_draw(self, for_draw: Draw):
         ev = self._find_fantasy_draw(for_draw)
         ev.show()
+
+    def points_per_round(self):
+        d1, d2 = [fantasy_draw.points_per_round() for fantasy_draw in self.fantasy_draws]
+        return [sum(t) for t in zip(d1, d2)]
 
     def total_points(self, for_round=None):
         return sum([fantasy_draw.total_points(for_round) for fantasy_draw in self.fantasy_draws])
@@ -66,6 +69,12 @@ class FantasyDraw:
         for rd_id, matches in self.match_selections.items():
             for mt_id, selection in matches.items():
                 selection.show()
+
+    def points_per_round(self):
+        return [self._sum_round_points(round_selections) for round_selections in self.match_selections.values()]
+
+    def _sum_round_points(self, round_selections):
+        return sum([sel.points() for sel in round_selections.values()])
 
     def total_points(self, for_round=None):
         if for_round:
@@ -109,6 +118,7 @@ class Selection:
         self.selected_winner = None
         self.in_number_sets = None
         self.points_strategy = draw.points_strategy
+        self.per_round_accum_strategy = draw.round_factor_strategy
 
     def points(self):
         if not self.match.is_finished():
@@ -186,9 +196,4 @@ class Selection:
         return self.points_with_factor(value) if not explain else {points_name: self.points_with_factor(value)}
 
     def points_with_factor(self, points):
-        return points * self.round_factor()
-
-    def round_factor(self):
-        if self.round_id == 1:
-            return 1
-        return 2 ** (self.round_id - 1)
+        return points * self.per_round_accum_strategy(self.round_id)
