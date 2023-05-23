@@ -8,6 +8,7 @@ from .fantasy import teams
 def tournament_names():
     return tournaments.tournament_names()
 
+
 @click.group()
 def cli():
     pass
@@ -34,6 +35,20 @@ def leaderboard(tournament, round_number, board_type):
 @click.option("--tournament", "-t",
               type=click.Choice(tournament_names()),
               help="The name of the tournament")
+@click.option("--fantasy-team-name", "-f",
+              type=click.Choice(teams.symbolised_names()),
+              help="team name to explain points")
+@click.option("--round_number", "-r", type=int, default=None, help="Leaderboard for specific round")
+def show_draw(tournament, fantasy_team_name, round_number):
+
+    command.show_draw(tournament_name=tournament, round=round_number, team_name=fantasy_team_name)
+    pass
+
+
+@click.command()
+@click.option("--tournament", "-t",
+              type=click.Choice(tournament_names()),
+              help="The name of the tournament")
 @click.option("--draw", "-d",
               type=click.Choice(['MensSingles', 'WomensSingles']),
               default='MensSingles',
@@ -45,6 +60,7 @@ def show_round(tournament, round_number, draw):
     """
     command.show_round(tournament, draw, round_number)
     pass
+
 
 @click.command()
 @click.option("--tournament", "-t",
@@ -82,7 +98,6 @@ def explain_team_score(tournament, fantasy_team_name):
     pass
 
 
-
 @click.command()
 @click.option("--ttl-file", "-f", type=str, default=None, help="location of TTL Graph output")
 def generate_graph(ttl_file):
@@ -117,9 +132,9 @@ def ranking_plot(file, tournament, position):
     pass
 
 
-
 cli.add_command(leaderboard)
 cli.add_command(show_round)
+cli.add_command(show_draw)
 cli.add_command(explain_team_score)
 cli.add_command(result_template)
 cli.add_command(generate_graph)

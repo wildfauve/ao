@@ -1,8 +1,16 @@
 from functools import partial
 import json
 
+from rich.console import Console
+from rich.table import Table
+from rich import box
+
+
 from ao.model import fantasy
 from ao.util import fn, echo
+
+console = Console()
+
 
 TeamGelatoGiants = fantasy.Team("Team Gelato Giants", "Bronzie, Juki & Lemmie")
 TeamPolarPrecision = fantasy.Team("Team Polar Precision", "IceT, Pepsi, Rollie & Gertie")
@@ -35,6 +43,26 @@ def explain_points_for_team(team_name, teams):
         return None
     echo.echo(json.dumps(team.explain_points(), indent=4))
     pass
+
+def show_draw_for_team(team_name, teams, round):
+    team = find_team_by_name(team_name, teams)
+    if not team:
+        echo.echo("Team Not Found")
+        return None
+
+    table = Table(title=f"Leaderboard For Round {round}", box=box.ROUNDED)
+
+    table.add_column("Draw", justify="center", style="cyan", no_wrap=True)
+    table.add_column("Match Number", justify="center", style="cyan", no_wrap=True)
+    table.add_column("Match", justify="center", style="cyan", no_wrap=True)
+    table.add_column("Selected Winner", justify="left", style="magenta")
+    table.add_column("Selected Sets", justify="left", style="magenta")
+
+    team.show_draws(table=table, for_round=round)
+
+    console.print(table)
+
+
 
 
 def find_team_by_name(team_name, teams):

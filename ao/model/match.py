@@ -26,6 +26,9 @@ class Match:
                       f"{self.show_player(self.player1)}",
                       f"{self.show_player(self.player2)}")
 
+    def match_block(self):
+        return f"{self.show_player(self.player1)}\n{self.show_player(self.player2)}"
+
     def show_player(self, for_player: entry.Entry):
         if not for_player:
             return "?"

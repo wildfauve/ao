@@ -66,6 +66,13 @@ def player_scrap(file):
     atp_rankings.build_players_file(file)
 
 
+def show_draw(tournament_name, team_name, round):
+    tournie = _find_tournament_by_name(tournament_name)
+    if not tournie:
+        return
+    teams.show_draw_for_team(team_name, _apply_fantasy(_start(tournie)), round)
+    pass
+
 # Helpers
 
 def _start(tournie):

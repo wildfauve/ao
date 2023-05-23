@@ -1,13 +1,14 @@
 from enum import Enum
 from functools import partial
 from rdflib import URIRef, Graph, RDF, Literal
+from rich.table import Table
 
 from ao.model.draw import Draw
 from ao.model.player import Player
 from ao.graph import rdf_prefix
 from ao.fantasy import points_strategy
 
-from ao.util import fn, identity, echo, error
+from ao.util import fn, identity
 
 
 class Team:
@@ -31,9 +32,12 @@ class Team:
             self.fantasy_draws.append(fantasy)
         return fantasy
 
-    def show_draw(self, for_draw: Draw):
-        ev = self._find_fantasy_draw(for_draw)
-        ev.show()
+    def show_draws(self, for_round: int, table: Table):
+        for draw in self.fantasy_draws:
+            self.show_draw(draw, table, for_round)
+
+    def show_draw(self, for_draw: Draw, table: Table, for_round: int = None):
+        for_draw.show(table, for_round)
 
     def points_per_round(self):
         d1, d2 = [fantasy_draw.points_per_round() for fantasy_draw in self.fantasy_draws]
@@ -64,11 +68,14 @@ class FantasyDraw:
         self.team = team
         self.match_selections = {}
 
-    def show(self):
-        echo.echo(f"Event: {self.draw.name}")
-        for rd_id, matches in self.match_selections.items():
-            for mt_id, selection in matches.items():
-                selection.show()
+    def show(self, table: Table, for_round: int = None):
+        if for_round:
+            for mt_id, selection in self.match_selections[1].items():
+                selection.show(self.draw.name, table)
+        else:
+            for rd_id, matches in self.match_selections.items():
+                for mt_id, selection in matches.items():
+                    selection.show(self.draw.name, table)
 
     def points_per_round(self):
         return [self._sum_round_points(round_selections) for round_selections in self.match_selections.values()]
@@ -146,10 +153,12 @@ class Selection:
             "points": [points_strategy(explain=True) for points_strategy in self.points_strategy_fns()]
         }
 
-    def show(self):
-        self.match.show()
-        echo.echo(f"     |_ Selected Winner        : {self.selected_winner.player().name}")
-        echo.echo(f"     |_ Selected Number of Sets: {self.in_number_sets}")
+    def show(self, draw_name: str, table: Table):
+        table.add_row(draw_name,
+                      self.match.match_id,
+                      self.match.match_block(),
+                      self.selected_winner.player().name,
+                      str(self.in_number_sets))
 
     def _find_match(self, draw, round_id, match_id):
         return draw.for_round(round_id).for_match(match_id)

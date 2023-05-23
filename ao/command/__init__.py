@@ -5,7 +5,8 @@ from .controller import (
     explain_team_points,
     generate_graph,
     player_scrap,
-    rank_plot
+    rank_plot,
+    show_draw
 )
 
 from .leaderboard import (
