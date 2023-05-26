@@ -1,7 +1,7 @@
 import pytest
 
 from ao.model import player, tournament_event, tournament, draw
-from ao.players import players
+from ao.players import atp_players
 
 
 @pytest.fixture

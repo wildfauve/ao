@@ -1,6 +1,6 @@
 from . import results, entries, first_round_draw
 from ao.majors import tournaments
-from ao.players import players
+from ao.players import atp_players
 from ao.model import tournament_event, draw
 from ao.fantasy import points_strategy
 

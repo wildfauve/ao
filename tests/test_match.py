@@ -12,12 +12,12 @@ def test_create_match(test_tournament):
 
     assert r1_m1.number == 1
     assert r1_m1.match_id == "1.1"
-    assert r1_m1.player1.player() == players.Hurkacz
-    assert r1_m1.player2.player() == players.Khachanov
+    assert r1_m1.player1.player() == atp_players.Hurkacz
+    assert r1_m1.player2.player() == atp_players.Khachanov
     assert r1_m2.number == 2
     assert r1_m2.match_id == "1.2"
-    assert r1_m2.player1.player() == players.Korda
-    assert r1_m2.player2.player() == players.Tsitsipas
+    assert r1_m2.player1.player() == atp_players.Korda
+    assert r1_m2.player2.player() == atp_players.Tsitsipas
 
     r2_m1, = mens_singles.rounds[1].matches
 
@@ -32,20 +32,20 @@ def test_results(test_tournament):
     (mens_singles
      .for_round(1)
      .for_match(1)
-     .score(players.Hurkacz, (6, 4, 6, 4, 6))
-     .score(players.Khachanov, (4, 6, 4, 6, 4)))
+     .score(atp_players.Hurkacz, (6, 4, 6, 4, 6))
+     .score(atp_players.Khachanov, (4, 6, 4, 6, 4)))
 
     mt1 = mens_singles.for_round(1).for_match(1)
 
     assert mt1.is_finished()
-    assert mt1.winner().player() == players.Hurkacz
+    assert mt1.winner().player() == atp_players.Hurkacz
 
     next_rd_mt = mens_singles.for_round(2).for_match(1)
-    assert next_rd_mt.player1.player() == players.Hurkacz
+    assert next_rd_mt.player1.player() == atp_players.Hurkacz
     assert not next_rd_mt.player2
 
     # When game not finished
-    mens_singles.for_round(1).for_match(2).score(players.Korda, (6, 3, 6)).score(players.Tsitsipas, (4, 6, 4))
+    mens_singles.for_round(1).for_match(2).score(atp_players.Korda, (6, 3, 6)).score(atp_players.Tsitsipas, (4, 6, 4))
 
     mt2 = mens_singles.for_round(1).for_match(2)
 
@@ -61,13 +61,13 @@ def test_results_when_not_max_sets(test_tournament):
     (mens_singles
      .for_round(1)
      .for_match(1)
-     .score(players.Hurkacz, (6, 6, 6))
-     .score(players.Khachanov, (4, 4, 4)))
+     .score(atp_players.Hurkacz, (6, 6, 6))
+     .score(atp_players.Khachanov, (4, 4, 4)))
 
     mt1 = mens_singles.for_round(1).for_match(1)
 
     assert mt1.is_finished()
-    assert mt1.winner().player() == players.Hurkacz
+    assert mt1.winner().player() == atp_players.Hurkacz
 
 
 def test_show_round_matches(capsys, test_tournament):
@@ -94,7 +94,7 @@ def test_show_round_matches_with_scores(capsys, test_tournament):
 
     rd = mens_singles.for_round(1)
 
-    rd.for_match(1).score(players.Hurkacz, (6, 6, 6)).score(players.Khachanov, (4, 4, 4))
+    rd.for_match(1).score(atp_players.Hurkacz, (6, 6, 6)).score(atp_players.Khachanov, (4, 4, 4))
 
     rd.show()
 

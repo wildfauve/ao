@@ -1,6 +1,6 @@
 import click
 
-from ao import command
+from ao import command, presenter
 from .majors import tournaments
 from .fantasy import teams
 
@@ -27,7 +27,7 @@ def leaderboard(tournament, round_number, board_type):
     """
     Starts the tournament,  applies the results, applies the fantasy selection and prints the leaderboard
     """
-    command.show_leaderboard(tournament, command.BoardType(board_type), round_number)
+    presenter.event_team_scores_table(command.leaderboard_df(tournament, command.BoardType(board_type), round_number))
     pass
 
 
@@ -118,6 +118,16 @@ def player_scrap(file):
     pass
 
 
+@click.command()
+@click.option("--entries_file", "-e", type=str, default=None, help="Entries class file")
+@click.option("--draws_file", "-d", type=str, default=None, help="draws class file")
+def draw_scrap(entries_file, draws_file):
+    """
+    """
+    command.draw_scrap(entries_file, draws_file)
+    pass
+
+
 @click.option('--file', '-f', required=True)
 @click.option("--tournament", "-t",
               type=click.Choice(tournament_names()),
@@ -139,4 +149,5 @@ cli.add_command(explain_team_score)
 cli.add_command(result_template)
 cli.add_command(generate_graph)
 cli.add_command(player_scrap)
+cli.add_command(draw_scrap)
 cli.add_command(ranking_plot)

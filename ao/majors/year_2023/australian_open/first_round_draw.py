@@ -1,4 +1,4 @@
-from ao.players import players
+from ao.players import atp_players
 
 
 def mens_draw_round_1():

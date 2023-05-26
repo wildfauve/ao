@@ -1,5 +1,3 @@
-from typing import Dict
-from functools import reduce
 import polars as pl
 
 from .expr import rankings

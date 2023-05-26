@@ -1,20 +1,20 @@
-from functools import partial
+import polars as pl
 
-from ao.model import tournament_event, draw
+from ao.model import draw
 from . import leaderboard, graph_generator
 from ao.fantasy import teams, selections
 from ao.majors import tournaments
 from ao import fantasy
 from ao.util import echo
-from ao.util.data_scrapping import atp_rankings
+from ao.util.data_scrapping import atp_rankings, fo_2023_draw
 
 
-def show_leaderboard(tournament_name, board_type, round_number=None):
+def leaderboard_df(tournament_name, board_type, round_number=None) -> pl.DataFrame:
     tournie = _find_tournament_by_name(tournament_name)
     if not tournie:
         return
-    _leaderboard_for_teams(_apply_fantasy(_start(tournie)), board_type, round_number)
-    pass
+
+    return leaderboard.current_leaderboard(_apply_fantasy(_start(tournie)), board_type, round_number)
 
 
 def show_round(tournament_name, draw_name, round_number):
@@ -66,12 +66,17 @@ def player_scrap(file):
     atp_rankings.build_players_file(file)
 
 
+def draw_scrap(entries_file, draws_file):
+    fo_2023_draw.build_draw(entries_file, draws_file)
+
+
 def show_draw(tournament_name, team_name, round):
     tournie = _find_tournament_by_name(tournament_name)
     if not tournie:
         return
     teams.show_draw_for_team(team_name, _apply_fantasy(_start(tournie)), round)
     pass
+
 
 # Helpers
 
@@ -90,10 +95,6 @@ def _apply_fantasy(tournie):
         return
 
     return selections.apply(fantasy_module, mens_singles, womens_singles)
-
-
-def _leaderboard_for_teams(teams, board_type, round_number):
-    leaderboard.current_leaderboard(teams, board_type, round_number)
 
 
 def _find_tournament_by_name(for_name: str):

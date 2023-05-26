@@ -4,6 +4,7 @@ from enum import Enum
 from rich.console import Console
 from rich.table import Table
 from rich import box
+import polars as pl
 
 from ao import dataframe, presenter, plot
 from ao.util import fn
@@ -23,11 +24,11 @@ class BoardType(Enum):
 def current_leaderboard(fantasy_teams,
                         board_type: BoardType = BoardType.FANTASY,
                         round_number=None,
-                        accum: bool = True):
+                        accum: bool = True) -> pl.DataFrame:
     if board_type == BoardType.F1:
         return show_f1_leaderboard(fantasy_teams)
 
-    _show_df(_team_scores_df(fantasy_teams, accum))
+    return _team_scores_df(fantasy_teams, accum)
 
 
 def scores_plot(file: str, tournie, fantasy_teams, position: bool = False):
