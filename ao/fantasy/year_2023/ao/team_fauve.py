@@ -1,5 +1,6 @@
 from ao.fantasy.teams import *
 from ao.players.atp_players import *
+from ao.players.wta_players import *
 
 def team_fauve(mens_singles, womens_singles):
     TeamFauve.draw(mens_singles).match("1.1").winner("Khachanov").in_sets(3)

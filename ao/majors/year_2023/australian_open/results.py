@@ -1,6 +1,7 @@
 from typing import List
 from ao.model import draw
 from ao.players.atp_players import *
+from ao.players.wta_players import *
 
 
 def add_results(draws: List[draw.Draw]):

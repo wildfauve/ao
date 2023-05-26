@@ -1,6 +1,5 @@
 from ao.fantasy.teams import *
-from ao.players.atp_players import *
-
+from ao.players import atp_players as men, wta_players as women
 
 def team_gelato_giants(mens_singles, womens_singles):
 
