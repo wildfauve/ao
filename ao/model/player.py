@@ -19,6 +19,8 @@ class Player:
         return hash((self.name,))
 
     def __eq__(self, other):
+        if not self or not other:
+            breakpoint()
         return self.name == other.name
 
     def to_ttl_player(self):

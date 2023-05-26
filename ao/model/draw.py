@@ -87,7 +87,6 @@ class Draw:
 
     def init_draw(self, match_ups):
         if len(match_ups) != self.number_of_matches:
-            breakpoint()
             raise error.ConfigException
         [self._place_in_first_round(match_up) for match_up in match_ups]
         return self
@@ -131,6 +130,7 @@ class Draw:
     def _player_to_entry(self, for_player: player.Player) -> entry.Entry:
         player_entry = find_entry_for_player(for_player, self.entries)
         if not player_entry:
+            breakpoint()
             raise error.ConfigException(f"Player {for_player.name} is not in the draw")
         return player_entry
 

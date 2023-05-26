@@ -1,9 +1,8 @@
-from typing import Tuple, List, Optional
 from ao.players import atp_players, wta_players
 from ao import model
 
 
-def mens_draw_round_1() -> List[Tuple[model.player, Optional[int]]]:
+def mens_draw_round_1():
     return [
         (1, atp_players.Alcaraz, atp_players.NO_ENTRY),
         (2, atp_players.OConnell, atp_players.Daniel),
@@ -72,7 +71,7 @@ def mens_draw_round_1() -> List[Tuple[model.player, Optional[int]]]:
     ]
 
 
-def womens_draw_round_1() -> List[Tuple[int, model.Player, model.Player]]:
+def womens_draw_round_1():
     return [
         (1, wta_players.Swiatek, wta_players.Bucsa),
         (2, wta_players.NO_ENTRY, wta_players.Liu),

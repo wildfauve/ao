@@ -12,9 +12,11 @@ def add_results(draws: List[draw.Draw]):
 
 def mens_singles_results(draw):
     # Round 1 (round of 128)
-    draw.for_round(1).for_match(1).score(Khachanov, (6, 6, 7)).score(Nishioka, (0, 0, 6))
+    pass
+    # draw.for_round(1).for_match(1).score(Khachanov, (6, 6, 7)).score(Nishioka, (0, 0, 6))
 
 
 def womens_singles_results(draw):
     # Round 1 (round of 128)
-    draw.for_round(1).for_match(1).score(Rybakina, (6, 6)).score(Swiatek, (4, 4))
+    # draw.for_round(1).for_match(1).score(Rybakina, (6, 6)).score(Swiatek, (4, 4))
+    pass

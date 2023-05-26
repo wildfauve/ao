@@ -412,5 +412,3 @@ Ponchet = Player("Ponchet", tour_symbol='WTA')
 
 Svitolina = Player("Svitolina", tour_symbol='WTA')
 
-= Player("", tour_symbol='WTA')
-
