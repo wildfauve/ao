@@ -41,8 +41,6 @@ class Entry:
 def find_player_from_entry(for_player: Union[Entry, player.Player], players: List[Entry]):
     predicate = _player_entry_predicate if isinstance(for_player, Entry) else _player_predicate
     pl = fn.find(partial(predicate, for_player), players)
-    if not pl:
-        raise error.ConfigException(f"{for_player.player().name} is either not found or is not in the game")
     return pl
 
 

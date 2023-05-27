@@ -47,7 +47,7 @@ def mens_singles_round_1(mens_singles):
     TEAM.draw(mens_singles).match('1.19').winner(men.Van_Assche).in_sets(
         4)  # (   ) Luca Van Assche  OR  (   ) Marco Cecchinato
     TEAM.draw(mens_singles).match('1.20').winner(
-        men.Fognini).in_sets(4)  # (  W) Arthur Fils  OR  ( 29) Alejandro Davidovich Fokina
+        men.Davidovich_Fokina).in_sets(4)  # (  W) Arthur Fils  OR  ( 29) Alejandro Davidovich Fokina
     TEAM.draw(mens_singles).match('1.21').winner(men.Bautista_Agut).in_sets(
         3)  # ( 19) Roberto Bautista Agut  OR  (   ) Yibing Wu
     TEAM.draw(mens_singles).match('1.22').winner(men.Shang).in_sets(

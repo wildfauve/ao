@@ -168,8 +168,10 @@ class Selection:
             return self
         if isinstance(player_name, Player):
             self.selected_winner = self.match.find_player_by_player(player_name)
-        else:
+        elif isinstance(player_name, str):
             self.selected_winner = self.match.player_from_player_name(player_name)
+        else:
+            return self
         return self
 
     def in_sets(self, number_of_sets=None):

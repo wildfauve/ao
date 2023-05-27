@@ -72,7 +72,10 @@ class Match:
         if not self.has_draw():
             raise error.ConfigException(
                 f"Match {self.match_id} has no draw when trying to find player {for_player.name}")
-        return entry.find_player_from_entry(for_player, [self.player1, self.player2])
+        pl = entry.find_player_from_entry(for_player, [self.player1, self.player2])
+        if not pl:
+            raise error.ConfigException(f"{for_player.name} is either not found or is not in Match: {self.match_id}")
+        return pl
 
     def player_from_player_name(self, player_name):
         if not self.has_draw():

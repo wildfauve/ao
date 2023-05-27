@@ -11,4 +11,4 @@ def _apply_functions_for_teams(fantasy_module):
 
 
 def _apply_selections(fantasy_module, team_fn, mens_singles, womens_singles):
-    getattr(fantasy_module, team_fn)(mens_singles, womens_singles)
+    return getattr(fantasy_module, team_fn)(mens_singles, womens_singles)

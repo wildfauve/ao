@@ -15,7 +15,6 @@ def team_bear_necessities(mens_singles, womens_singles):
 
 def mens_singles_round_1(mens_singles):
     # round 1
-
     TEAM.draw(mens_singles).match('1.1').winner(men).in_sets()  # (  1) Carlos Alcaraz  OR  (  Q) Cobolli
     TEAM.draw(mens_singles).match('1.2').winner(men).in_sets()  # (   ) Christopher O'Connell  OR  (   ) Taro Daniel
     TEAM.draw(mens_singles).match('1.3').winner(men).in_sets()  # (   ) Matteo Arnaldi  OR  (   ) Daniel Elahi Galan
