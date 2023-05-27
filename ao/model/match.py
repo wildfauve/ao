@@ -37,6 +37,9 @@ class Match:
     def player_and_seed(self, for_entry):
         return f"({for_entry.seeding()}) {for_entry.player().name}"
 
+    def player_klass_and_seed(self, for_entry):
+        return f"({for_entry.seeding()}) {for_entry.player().klass_name}"
+
     def show_set_and_winner(self, for_player: entry.Entry):
         if not self.is_finished():
             return ""
@@ -66,7 +69,7 @@ class Match:
                 None,
                 entries
             ]
-        entries = f"{self.player_and_seed(self.player1)}  OR  {self.player_and_seed(self.player2)}"
+        entries = f"{self.player_klass_and_seed(self.player1)}  OR  {self.player_klass_and_seed(self.player2)}"
         return f"TEAM.draw({event_name}).match('{self.match_id}').winner({mod}).in_sets()  # {entries}"
 
     def find_player_by_player(self, for_player: player.Player):
