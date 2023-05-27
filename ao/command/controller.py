@@ -90,8 +90,8 @@ def player_scrap(file):
     atp_rankings.build_players_file(file)
 
 
-def draw_scrap(entries_file, draws_file):
-    fo_2023_draw.build_draw(entries_file, draws_file)
+def draw_scrap(entries_file, draws_file, results_file, round_number):
+    fo_2023_draw.build_draw(entries_file, draws_file, results_file, round_number)
 
 
 def show_draw(tournament_name, team_name, round):

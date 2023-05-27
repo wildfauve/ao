@@ -45,8 +45,9 @@ class Match:
 
     def result_template(self, event_name, round_number):
         match_part = f"{event_name}.for_round({round_number}).for_match({self.number})"
+        mod_nm = event_name.split("_")[0][0:-1]
         if self.has_draw():
-            score_part = f"score({self.player1.player().name}, ()).score({self.player2.player().name}, ())"
+            score_part = f"score({mod_nm}.{self.player1.player().klass_name}, ()).score({mod_nm}.{self.player2.player().klass_name}, ())"
         else:
             score_part = f"score(?, ()).score(?, ())"
         return f"{match_part}.{score_part}"

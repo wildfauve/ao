@@ -146,10 +146,12 @@ def player_scrap(file):
 @click.command()
 @click.option("--entries_file", "-e", type=str, default=None, help="Entries class file")
 @click.option("--draws_file", "-d", type=str, default=None, help="draws class file")
-def draw_scrap(entries_file, draws_file):
+@click.option("--results_file", "-s", type=str, default=None, help="results file")
+@click.option("--round_number", "-r", type=int, default=None, help="The round number to show.")
+def draw_scrap(entries_file, draws_file, results_file, round_number):
     """
     """
-    command.draw_scrap(entries_file, draws_file)
+    command.draw_scrap(entries_file, draws_file, results_file, round_number)
     pass
 
 

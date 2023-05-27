@@ -1,4 +1,4 @@
-from typing import Callable
+from typing import Callable, List
 from dataclasses import dataclass
 import bs4
 
@@ -11,6 +11,7 @@ from ao.util import fn
 class Player:
     name: str
     player_module: Callable
+    scores: List = None
     seed: str = None
     player_klass: model.Player = None
 
@@ -24,6 +25,12 @@ class Player:
 
     def entry_definition(self):
         return f"{'':>12}({self.player_definition()}, {self._seed()}),\n"
+
+    def score(self):
+        """
+        men.Medvedev, (6, 6, 6)
+        """
+        return f"{self.player_definition()}, ({', '.join(self.scores)})"
 
     def _seed(self):
         return f"'{self.seed}'" if self.seed else None
@@ -39,9 +46,15 @@ class Player:
 class MatchBlock:
     href: str
     html: bs4.element.Tag
-    round: str
+    round: int
+    draw_attr_name: str
     player1: Player
     player2: Player
+    match_number: int = None
+
+    def set_match_number(self, num):
+        self.match_number = num
+        return self
 
     def __hash__(self):
         return hash((self.href,))
@@ -52,8 +65,13 @@ class MatchBlock:
     def entry_format(self):
         return self.player1.entry_definition() + self.player2.entry_definition()
 
-    def _match_id(self, match_number):
-        return int(match_number) + 1
+    def match_format(self):
+        return f"{'':>12}({self.match_number}, {self.player1.player_definition()}, {self.player2.player_definition()}),  \n"
 
-    def match_format(self, match_number):
-        return f"{'':>12}({self._match_id(match_number)}, {self.player1.player_definition()}, {self.player2.player_definition()}),  \n"
+    def results_format(self, spacing):
+        """
+        mens_singles.for_round(1).for_match(64).score(men.Seyboth_Wild, ()).score(men.Medvedev, ())
+        :return:
+        """
+        return f"{spacing}draw.for_round({self.round}).for_match({self.match_number}).score({self.player1.score()}).score({self.player2.score()}),\n"
+        pass

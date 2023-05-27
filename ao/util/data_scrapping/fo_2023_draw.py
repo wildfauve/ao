@@ -6,27 +6,49 @@ from ao.players import atp_players as players
 from ao.util import fn
 from . import fo_draw_parser
 
-# rankings = [('ao/util/data_scrapping/data/fo_2023_mens_singles_draw.html', 'FO2023MensSingles')]
-rankings = [('ao/util/data_scrapping/data/fo_2023_womens_singles_draw.html', 'FO2023WomensSingles')]
 
-
-def build_draw(entries_file, draws_file):
-    _format_brackets(_format_entries(fo_draw_parser.build_draw(), entries_file), draws_file)
+def build_draw(entries_file=None, draws_file=None, results_file=None, for_rd=None):
+    (_format_results(
+        _format_brackets(
+            _format_entries(
+                _match_number(fo_draw_parser.build_draw(for_rd)),
+                entries_file),
+            draws_file),
+        results_file))
 
 
 def _get_pages(urls):
     return [(BeautifulSoup(open(f, encoding='UTF-8'), "html.parser"), draw) for f, draw in urls]
 
 
-def _format_entries(matches: Dict, entries_file):
-    py = reduce(_entry_def, matches.items(), _entry_imports_hdr())
-    _write_file(entries_file, py)
+def _match_number(matches):
+    for _, draw_matches in matches.items():
+        for num in range(0, len(draw_matches)):
+            draw_matches[num].set_match_number(num + 1)
     return matches
 
 
+def _format_entries(draws: Dict, entries_file):
+    if not entries_file:
+        return draws
+    py = reduce(_entry_def, draws.items(), _entry_imports_hdr())
+    _write_file(entries_file, py)
+    return draws
+
+
 def _format_brackets(draws, draws_file):
+    if not draws_file:
+        return draws
     py = reduce(_bracket_def, draws.items(), _first_round_draw_def())
     _write_file(draws_file, py)
+    return draws
+
+def _format_results(draws, results_file):
+    if not results_file:
+        return draws
+
+    py = reduce(_results_def, draws.items(), _results_mod_def())
+    _write_file(results_file, py)
     return draws
 
 
@@ -43,6 +65,21 @@ from ao.players import wta_players, atp_players
 from ao import model"""
 
 
+def _results_mod_def():
+    return """from typing import List
+from ao.players import wta_players, atp_players
+from ao.model import draw
+
+    
+def add_results(draws: List[draw.Draw]):
+    mens_singles = draw.find_draw_by_cls(draw.MensSingles, draws)
+    womens_singles = draw.find_draw_by_cls(draw.WomensSingles, draws)
+    mens_singles_results(mens_singles)
+    womens_singles_results(womens_singles)
+    return mens_singles, womens_singles
+    
+"""
+
 def _entry_def(py, draw_tuple):
     draw_name, matches = draw_tuple
     return reduce(_player_entry, matches, _entry_function(py, draw_name)) + f"\n{']':>4}"
@@ -50,13 +87,19 @@ def _entry_def(py, draw_tuple):
 
 def _bracket_def(py, draw_tuple):
     draw_name, matches = draw_tuple
-    return reduce(partial(_players_bracket, matches), range(0, len(matches)),
-                  _match_function(py, draw_name)) + f"\n{']':>4}"
+    return reduce(_players_bracket, matches, _match_function(py, draw_name)) + f"\n{']':>4}"
 
 
-def _players_bracket(matches, acc, match_number):
-    return acc + matches[match_number].match_format(match_number)
+def _results_def(py, draw_tuple):
+    draw_name, matches = draw_tuple
+    return reduce(_match_result, matches, _result_function(py, draw_name))
 
+
+def _players_bracket(acc, match):
+    return acc + match.match_format()
+
+def _match_result(acc, match):
+    return acc + match.results_format(f"{'':>8}")
 
 def _entry_predicate(bracket_number, entry):
     return int(entry[0]) == bracket_number
@@ -91,6 +134,13 @@ def _match_function(py, name):
 def {'mens_draw_round_1()' if name == "FO2023MensSingles" else "womens_draw_round_1()"}:
     return [
 """
+
+
+def _result_function(py, name):
+    return py + f"""
+def {'mens_singles_results(draw)' if name == "FO2023MensSingles" else "womens_singles_results(draw)"}:
+        return [
+    """
 
 
 def _write_file(file_name, klasses):
