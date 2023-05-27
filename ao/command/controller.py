@@ -1,4 +1,5 @@
 import polars as pl
+import csv
 
 from ao.model import draw
 from . import leaderboard, graph_generator
@@ -50,7 +51,7 @@ def result_template(tournament_name, draw_name, round_number, template_name):
         echo.echo(result)
 
 
-def fantasy_score_template(tournament_name, draw_name, round_number, template_name):
+def fantasy_score_template(tournament_name, draw_name, round_number, template_name, format):
     tournie = _find_tournament_by_name(tournament_name)
     if not tournie:
         return
@@ -59,9 +60,17 @@ def fantasy_score_template(tournament_name, draw_name, round_number, template_na
     if not for_draw:
         echo.echo(f"Draw with name {draw_name} not found in {tournie.label}")
         return
-    results = for_draw.for_round(round_number).fantasy_score_template(template_name)
-    for result in results:
-        echo.echo(result)
+    results = for_draw.for_round(round_number).fantasy_score_template(template_name, format)
+    if format == 'csv':
+        with open(f"{draw_name}-{round_number}.csv", 'w', newline='') as csvfile:
+            writer = csv.writer(csvfile, delimiter=',',
+                                    quotechar=',', quoting=csv.QUOTE_MINIMAL)
+            writer.writerow(['draw', 'match', 'winner', 'sets', 'match up'])
+            for row in results:
+                writer.writerow(row)
+    else:
+        for result in results:
+            echo.echo(result)
 
 
 

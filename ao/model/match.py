@@ -51,11 +51,20 @@ class Match:
             score_part = f"score(?, ()).score(?, ())"
         return f"{match_part}.{score_part}"
 
-    def fantasy_score_template(self, event_name, round_number):
+    def fantasy_score_template(self, event_name, round_number, format):
         """
         TeamBearNecessities.draw(mens_singles).match("1.1").winner(Khachanov).in_sets(5)
         """
         mod = 'men' if event_name == "mens_singles" else "women"
+        entries = f"{self.player_and_seed(self.player1)}  OR  {self.player_and_seed(self.player2)}"
+        if format == "csv":
+            return [
+                event_name,
+                self.match_id,
+                f"{self.player1.player().klass_name}  {self.player2.player().klass_name}",
+                None,
+                entries
+            ]
         entries = f"{self.player_and_seed(self.player1)}  OR  {self.player_and_seed(self.player2)}"
         return f"TEAM.draw({event_name}).match('{self.match_id}').winner({mod}).in_sets()  # {entries}"
 
