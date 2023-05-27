@@ -79,7 +79,7 @@ def mens_singles_round_1(mens_singles):
     TEAM.draw(mens_singles).match('1.64').winner(men.Medvedev).in_sets(3)  # (  Q) T.Seyboth Wild  OR  (  2) Daniil Medvedev
 
 def womens_singles_round_1(womens_singles):
-    TEAM.draw(womens_singles).match('1.1').winner(women).in_sets()  # (  1) Iga Swiatek  OR  (   ) Cristina Bucsa
+    TEAM.draw(womens_singles).match('1.1').winner(women.Swiatek).in_sets(2)  # (  1) Iga Swiatek  OR  (   ) Cristina Bucsa
     TEAM.draw(womens_singles).match('1.2').winner(women).in_sets()  # (  Q) Y.In-Albon  OR  (   ) Claire Liu
     TEAM.draw(womens_singles).match('1.3').winner(women).in_sets()  # (   ) Rebecca Peterson  OR  (  Q) F.Ferro
     TEAM.draw(womens_singles).match('1.4').winner(women).in_sets()  # (   ) Xinyu Wang  OR  ( 31) Marie Bouzkova
