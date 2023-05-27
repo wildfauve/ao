@@ -2,6 +2,7 @@ from .controller import (
     leaderboard_df,
     show_round,
     result_template,
+    fantasy_score_template,
     explain_team_points,
     generate_graph,
     player_scrap,

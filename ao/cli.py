@@ -87,6 +87,27 @@ def result_template(tournament, round_number, draw, template_name):
 @click.option("--tournament", "-t",
               type=click.Choice(tournament_names()),
               help="The name of the tournament")
+@click.option("--round_number", "-r", type=int, default=1, help="The round number to show.")
+@click.option("--draw", "-d",
+              type=click.Choice(['MensSingles', 'WomensSingles']),
+              default='MensSingles',
+              help="Show the state of a round for an event.")
+@click.option("--template_name", "-n",
+              type=click.Choice(['mens_singles', 'womens_singles']),
+              default='mens_singles',
+              help="A result template to cut and paste")
+def fantasy_score_template(tournament, round_number, draw, template_name):
+    """
+    Get a result DSL template
+    """
+    command.fantasy_score_template(tournament, draw, round_number, template_name)
+    pass
+
+
+@click.command()
+@click.option("--tournament", "-t",
+              type=click.Choice(tournament_names()),
+              help="The name of the tournament")
 @click.option("--fantasy-team-name", "-f",
               type=click.Choice(teams.symbolised_names()),
               help="team name to explain points")
@@ -151,3 +172,4 @@ cli.add_command(generate_graph)
 cli.add_command(player_scrap)
 cli.add_command(draw_scrap)
 cli.add_command(ranking_plot)
+cli.add_command(fantasy_score_template)

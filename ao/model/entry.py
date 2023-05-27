@@ -30,6 +30,7 @@ class Entry:
             return "   "
         return str(self.has_seed).rjust(3)
 
+
     def build_graph(self, g: Graph):
         g.add((self.subject, RDF.type, rdf_prefix.fau_ten.QualifiedPlayer))
         g.add((self.subject, rdf_prefix.fau_ten.hasSeed, Literal(self.has_seed)))

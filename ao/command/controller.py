@@ -50,6 +50,21 @@ def result_template(tournament_name, draw_name, round_number, template_name):
         echo.echo(result)
 
 
+def fantasy_score_template(tournament_name, draw_name, round_number, template_name):
+    tournie = _find_tournament_by_name(tournament_name)
+    if not tournie:
+        return
+    _start(tournie)
+    for_draw = draw.find_draw(draw_name, tournie.draws)
+    if not for_draw:
+        echo.echo(f"Draw with name {draw_name} not found in {tournie.label}")
+        return
+    results = for_draw.for_round(round_number).fantasy_score_template(template_name)
+    for result in results:
+        echo.echo(result)
+
+
+
 def explain_team_points(tournament_name, team_name):
     tournie = _find_tournament_by_name(tournament_name)
     if not tournie:

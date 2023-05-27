@@ -1,6 +1,7 @@
 from typing import Tuple
 from functools import reduce, partial
 
+import requests
 import bs4.element
 from bs4 import BeautifulSoup
 from dataclasses import dataclass
@@ -19,8 +20,13 @@ draw_map = {
                           'url_pattern': '/en-us/matches/2023/SM'},
 }
 
-draws = [('ao/util/data_scrapping/data/fo_2023_mens_singles_draw.html', 'FO2023MensSingles'),
-         ('ao/util/data_scrapping/data/fo_2023_womens_singles_draw.html', 'FO2023WomensSingles')]
+
+# draws = [('ao/util/data_scrapping/data/fo_2023_mens_singles_draw.html', 'FO2023MensSingles'),
+#          ('ao/util/data_scrapping/data/fo_2023_womens_singles_draw.html', 'FO2023WomensSingles')]
+
+draws = [('https://www.rolandgarros.com/en-us/results/SM?round=1', 'FO2023MensSingles'),
+         ('https://www.rolandgarros.com/en-us/results/SD?round=1', 'FO2023WomensSingles')]
+
 
 match_ids = []
 
@@ -29,7 +35,13 @@ def build_draw():
 
 
 def _get_pages(urls):
-    return [(BeautifulSoup(open(f, encoding='UTF-8'), "html.parser"), draw) for f, draw in urls]
+    return [(_get_page(url), draw) for url, draw in
+            urls]
+
+def _get_page(url_or_file):
+    if 'http' in url_or_file:
+        return BeautifulSoup(requests.get(url_or_file).text, "html.parser")
+    return BeautifulSoup(open(url_or_file, encoding='UTF-8'), "html.parser")
 
 
 def _brackets(pages):

@@ -1,2 +1,2 @@
-from .tournament import *
-from .teams import *
+# from .tournament import *
+# from .teams import *

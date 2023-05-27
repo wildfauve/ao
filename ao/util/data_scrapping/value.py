@@ -2,7 +2,9 @@ from typing import Callable
 from dataclasses import dataclass
 import bs4
 
-name_split_char = "."
+from ao.players import players
+from ao import model
+from ao.util import fn
 
 
 @dataclass
@@ -10,18 +12,21 @@ class Player:
     name: str
     player_module: Callable
     seed: str = None
+    player_klass: model.Player = None
+
+    def __post_init__(self):
+        self.player_klass = players.match_player_by_name(self.name, self.player_module)
 
     def player_entry_klass_name(self):
-        formatted_name = self._format_klass_name()
-        if formatted_name not in dir(self.player_module):
-            return f"{formatted_name}--FIXME"
-        return formatted_name
-
-    def _format_klass_name(self):
-        return self.name.rstrip().split(name_split_char)[-1].replace("-", "_").replace("'", "")
+        if self.player_klass:
+            return self.player_klass.klass_name
+        breakpoint()
 
     def entry_definition(self):
-        return f"{'':>12}({self.player_definition()}, {self.seed if self.seed else 'None'}),\n"
+        return f"{'':>12}({self.player_definition()}, {self._seed()}),\n"
+
+    def _seed(self):
+        return f"'{self.seed}'" if self.seed else None
 
     def player_definition(self):
         return f"{self._player_mod_name()}.{self.player_entry_klass_name()}"

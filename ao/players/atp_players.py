@@ -1,414 +1,437 @@
 from ao.model.player import Player
 
-Medvedev = Player("Daniil Medvedev", tour_symbol='ATP')
+TOUR = "ATP"
 
-Alcaraz = Player("Carlos Alcaraz", tour_symbol='ATP')
+NO_ENTRY = Player("Entry Not Decided", tour_symbol=TOUR, klass_name="NO_ENTRY")
 
-Tsitsipas = Player("Stefanos Tsitsipas", tour_symbol='ATP')
+Medvedev = Player("Daniil Medvedev", tour_symbol=TOUR, klass_name="Medvedev")
 
-Djokovic = Player("Novak Djokovic", tour_symbol='ATP')
+Alcaraz = Player("Carlos Alcaraz", tour_symbol=TOUR, klass_name="Alcaraz")
 
-Rublev = Player("Andrey Rublev", tour_symbol='ATP')
+Tsitsipas = Player("Stefanos Tsitsipas", tour_symbol=TOUR, klass_name="Tsitsipas")
 
-Sinner = Player("Jannik Sinner", tour_symbol='ATP')
+Djokovic = Player("Novak Djokovic", tour_symbol=TOUR, klass_name="Djokovic")
 
-Fritz = Player("Taylor Fritz", tour_symbol='ATP')
+Rublev = Player("Andrey Rublev", tour_symbol=TOUR, klass_name="Rublev")
 
-Rune = Player("Holger Rune", tour_symbol='ATP')
+Sinner = Player("Jannik Sinner", tour_symbol=TOUR, klass_name="Sinner")
 
-Khachanov = Player("Karen Khachanov", tour_symbol='ATP')
+Fritz = Player("Taylor Fritz", tour_symbol=TOUR, klass_name="Fritz")
 
-Tiafoe = Player("Frances Tiafoe", tour_symbol='ATP')
+Rune = Player("Holger Rune", tour_symbol=TOUR, klass_name="Rune")
 
-Norrie = Player("Cameron Norrie", tour_symbol='ATP')
+Khachanov = Player("Karen Khachanov", tour_symbol=TOUR, klass_name="Khachanov")
 
-Paul = Player("Tommy Paul", tour_symbol='ATP')
+Tiafoe = Player("Frances Tiafoe", tour_symbol=TOUR, klass_name="Tiafoe")
 
-Minaur = Player("Alex De Minaur", tour_symbol='ATP')
+Norrie = Player("Cameron Norrie", tour_symbol=TOUR, klass_name="Norrie")
 
-Ruud = Player("Casper Ruud", tour_symbol='ATP')
+Paul = Player("Tommy Paul", tour_symbol=TOUR, klass_name="Paul")
 
-Hurkacz = Player("Hubert Hurkacz", tour_symbol='ATP')
+De_Minaur = Player("Alex De Minaur", tour_symbol=TOUR, klass_name="De_Minaur")
 
-Zverev = Player("Alexander Zverev", tour_symbol='ATP')
+Ruud = Player("Casper Ruud", tour_symbol=TOUR, klass_name="Ruud")
 
-Struff = Player("Jan-Lennard Struff", tour_symbol='ATP')
+Hurkacz = Player("Hubert Hurkacz", tour_symbol=TOUR, klass_name="Hurkacz")
 
-Coric = Player("Borna Coric", tour_symbol='ATP')
+Zverev = Player("Alexander Zverev", tour_symbol=TOUR, klass_name="Zverev")
 
-Musetti = Player("Lorenzo Musetti", tour_symbol='ATP')
+Struff = Player("Jan-Lennard Struff", tour_symbol=TOUR, klass_name="Struff")
 
-Cerundolo_Francisco = Player("Francisco Cerundolo", tour_symbol='ATP')
+Coric = Player("Borna Coric", tour_symbol=TOUR, klass_name="Coric")
 
-Lehecka = Player("Jiri Lehecka", tour_symbol='ATP')
+Musetti = Player("Lorenzo Musetti", tour_symbol=TOUR, klass_name="Musetti")
 
-Auger_Aliassime = Player("Felix Auger-Aliassime", tour_symbol='ATP')
+Cerundolo_Francisco = Player("Francisco Cerundolo",
+                             tour_symbol=TOUR,
+                             klass_name="Cerundolo_Francisco",
+                             alt_names=["F.Cerundolo"])
 
-Fokina = Player("Alejandro Davidovich Fokina", tour_symbol='ATP')
+Lehecka = Player("Jiri Lehecka", tour_symbol=TOUR, klass_name="Lehecka")
 
-Zandschulp = Player("Botic Van De Zandschulp", tour_symbol='ATP')
+Auger_Aliassime = Player("Felix Auger-Aliassime", tour_symbol=TOUR, klass_name="Auger_Aliassime")
 
-Dimitrov = Player("Grigor Dimitrov", tour_symbol='ATP')
+Davidovich_Fokina = Player("Alejandro Davidovich Fokina", tour_symbol=TOUR, klass_name="Davidovich_Fokina")
 
-Kubler = Player("Jason Kubler", tour_symbol='ATP')
+Van_De_Zandschulp = Player('B.Van De Zandschulp', tour_symbol=TOUR, klass_name="Van_De_Zandschulp")
 
-Shelton = Player("Ben Shelton", tour_symbol='ATP')
+Dimitrov = Player("Grigor Dimitrov", tour_symbol=TOUR, klass_name="Dimitrov")
 
-Evans = Player("Daniel Evans", tour_symbol='ATP')
+Kubler = Player("Jason Kubler", tour_symbol=TOUR, klass_name="Kubler")
 
-Ruusuvuori = Player("Emil Ruusuvuori", tour_symbol='ATP')
+Shelton = Player("Ben Shelton", tour_symbol=TOUR, klass_name="Shelton")
 
-Agut = Player("Roberto Bautista Agut", tour_symbol='ATP')
+Evans = Player("Daniel Evans", tour_symbol=TOUR, klass_name="Evans")
 
-Griekspoor = Player("Tallon Griekspoor", tour_symbol='ATP')
+Ruusuvuori = Player("Emil Ruusuvuori", tour_symbol=TOUR, klass_name="Ruusuvuori")
 
-Baez = Player("Sebastian Baez", tour_symbol='ATP')
+Bautista_Agut = Player("Roberto Bautista Agut", tour_symbol=TOUR, klass_name="Bautista_Agut")
 
-Berrettini = Player("Matteo Berrettini", tour_symbol='ATP')
+Griekspoor = Player("Tallon Griekspoor", tour_symbol=TOUR, klass_name="Griekspoor")
 
-McDonald = Player("Mackenzie McDonald", tour_symbol='ATP')
+Baez = Player("Sebastian Baez", tour_symbol=TOUR, klass_name="Baez")
 
-Miralles = Player("Bernabe Zapata Miralles", tour_symbol='ATP')
+Berrettini = Player("Matteo Berrettini", tour_symbol=TOUR, klass_name="Berrettini")
 
-Karatsev = Player("Aslan Karatsev", tour_symbol='ATP')
+Mcdonald = Player("Mackenzie McDonald", tour_symbol=TOUR, klass_name="Mcdonald")
 
-Cressy = Player("Maxime Cressy", tour_symbol='ATP')
+Zapata_Miralles = Player("Bernabe Zapata Miralles", tour_symbol=TOUR, klass_name="Zapata_Miralles")
 
-Sonego = Player("Lorenzo Sonego", tour_symbol='ATP')
+Karatsev = Player("Aslan Karatsev", tour_symbol=TOUR, klass_name="Karatsev")
 
-Korda = Player("Sebastian Korda", tour_symbol='ATP')
+Cressy = Player("Maxime Cressy", tour_symbol=TOUR, klass_name="Cressy")
 
-Nishioka = Player("Yoshihito Nishioka", tour_symbol='ATP')
+Sonego = Player("Lorenzo Sonego", tour_symbol=TOUR, klass_name="Sonego")
 
-Wawrinka = Player("Stan Wawrinka", tour_symbol='ATP')
+Korda = Player("Sebastian Korda", tour_symbol=TOUR, klass_name="Korda")
 
-Bopanna = Player("Rohan Bopanna", tour_symbol='ATP')
+Nishioka = Player("Yoshihito Nishioka", tour_symbol=TOUR, klass_name="Nishioka")
 
-Ebden = Player("Matthew Ebden", tour_symbol='ATP')
+Wawrinka = Player("Stan Wawrinka", tour_symbol=TOUR, klass_name="Wawrinka")
 
-Wolf = Player("J.J. Wolf", tour_symbol='ATP')
+Bopanna = Player("Rohan Bopanna", tour_symbol=TOUR, klass_name="Bopanna")
 
-Kecmanovic = Player("Miomir Kecmanovic", tour_symbol='ATP')
+Ebden = Player("Matthew Ebden", tour_symbol=TOUR, klass_name="Ebden")
 
-Jarry = Player("Nicolas Jarry", tour_symbol='ATP')
+Wolf = Player("J.J. Wolf", tour_symbol=TOUR, klass_name="Wolf")
 
-Popyrin = Player("Alexei Popyrin", tour_symbol='ATP')
+Kecmanovic = Player("Miomir Kecmanovic", tour_symbol=TOUR, klass_name="Kecmanovic")
 
-Etcheverry = Player("Tomas Martin Etcheverry", tour_symbol='ATP')
+Jarry = Player("Nicolas Jarry", tour_symbol=TOUR, klass_name="Jarry")
 
-Hijikata = Player("Rinky Hijikata", tour_symbol='ATP')
+Popyrin = Player("Alexei Popyrin", tour_symbol=TOUR, klass_name="Popyrin")
 
-Murray_Andy = Player("Andy Murray", tour_symbol='ATP')
+Etcheverry = Player("Tomas Martin Etcheverry", tour_symbol=TOUR, klass_name="Etcheverry")
 
-Mannarino = Player("Adrian Mannarino", tour_symbol='ATP')
+Hijikata = Player("Rinky Hijikata", tour_symbol=TOUR, klass_name="Hijikata")
 
-Shapovalov = Player("Denis Shapovalov", tour_symbol='ATP')
+Murray_Andy = Player("Andy Murray", tour_symbol=TOUR, klass_name="Murray_Andy")
 
-Fucsovics = Player("Marton Fucsovics", tour_symbol='ATP')
+Mannarino = Player("Adrian Mannarino", tour_symbol=TOUR, klass_name="Mannarino")
 
-Bublik = Player("Alexander Bublik", tour_symbol='ATP')
+Shapovalov = Player("Denis Shapovalov", tour_symbol=TOUR, klass_name="Shapovalov")
 
-Lajovic = Player("Dusan Lajovic", tour_symbol='ATP')
+Fucsovics = Player("Marton Fucsovics", tour_symbol=TOUR, klass_name="Fucsovics")
 
-Djere = Player("Laslo Djere", tour_symbol='ATP')
+Bublik = Player("Alexander Bublik", tour_symbol=TOUR, klass_name="Bublik")
 
-Gonzalez_Santiago = Player("Santiago Gonzalez", tour_symbol='ATP')
+Lajovic = Player("Dusan Lajovic", tour_symbol=TOUR, klass_name="Lajovic")
 
-Roger_Vasselin = Player("Edouard Roger-Vasselin", tour_symbol='ATP')
+Djere = Player("Laslo Djere", tour_symbol=TOUR, klass_name="Djere")
 
-Nys = Player("Hugo Nys", tour_symbol='ATP')
+Gonzalez_Santiago = Player("Santiago Gonzalez", tour_symbol=TOUR, klass_name="Gonzalez_Santiago")
 
-Garin = Player("Cristian Garin", tour_symbol='ATP')
+Roger_Vasselin = Player("Edouard Roger-Vasselin", tour_symbol=TOUR, klass_name="Roger_Vasselin")
 
-Zielinski = Player("Jan Zielinski", tour_symbol='ATP')
+Nys = Player("Hugo Nys", tour_symbol=TOUR, klass_name="Nys")
 
-Bonzi = Player("Benjamin Bonzi", tour_symbol='ATP')
+Garin = Player("Cristian Garin", tour_symbol=TOUR, klass_name="Garin")
 
-Humbert = Player("Ugo Humbert", tour_symbol='ATP')
+Zielinski = Player("Jan Zielinski", tour_symbol=TOUR, klass_name="Zielinski")
 
-Krajicek = Player("Austin Krajicek", tour_symbol='ATP')
+Bonzi = Player("Benjamin Bonzi", tour_symbol=TOUR, klass_name="Bonzi")
 
-Schwartzman = Player("Diego Schwartzman", tour_symbol='ATP')
+Humbert = Player("Ugo Humbert", tour_symbol=TOUR, klass_name="Humbert")
 
-Molcan = Player("Alex Molcan", tour_symbol='ATP')
+Krajicek = Player("Austin Krajicek", tour_symbol=TOUR, klass_name="Krajicek")
 
-Hanfmann = Player("Yannick Hanfmann", tour_symbol='ATP')
+Schwartzman = Player("Diego Schwartzman", tour_symbol=TOUR, klass_name="Schwartzman")
 
-Baena = Player("Roberto Carballes Baena", tour_symbol='ATP')
+Molcan = Player("Alex Molcan", tour_symbol=TOUR, klass_name="Molcan")
 
-Gasquet = Player("Richard Gasquet", tour_symbol='ATP')
+Hanfmann = Player("Yannick Hanfmann", tour_symbol=TOUR, klass_name="Hanfmann")
 
-Munar = Player("Jaume Munar", tour_symbol='ATP')
+Carballes_Baena = Player("Roberto Carballes Baena", tour_symbol=TOUR, klass_name="Carballes_Baena")
 
-Altmaier = Player("Daniel Altmaier", tour_symbol='ATP')
+Gasquet = Player("Richard Gasquet", tour_symbol=TOUR, klass_name="Gasquet")
 
-Koolhof = Player("Wesley Koolhof", tour_symbol='ATP')
+Munar = Player("Jaume Munar", tour_symbol=TOUR, klass_name="Munar")
 
-Skupski = Player("Neal Skupski", tour_symbol='ATP')
+Altmaier = Player("Daniel Altmaier", tour_symbol=TOUR, klass_name="Altmaier")
 
-Huesler = Player("Marc-Andrea Huesler ", tour_symbol='ATP')
+Koolhof = Player("Wesley Koolhof", tour_symbol=TOUR, klass_name="Koolhof")
 
-Halys = Player("Quentin Halys", tour_symbol='ATP')
+Skupski = Player("Neal Skupski", tour_symbol=TOUR, klass_name="Skupski")
 
-Eubanks = Player("Christopher Eubanks", tour_symbol='ATP')
+Huesler = Player("Marc-Andrea Huesler ", tour_symbol=TOUR, klass_name="Huesler")
 
-Ramos_Vinolas = Player("Albert Ramos-Vinolas", tour_symbol='ATP')
+Halys = Player("Quentin Halys", tour_symbol=TOUR, klass_name="Halys")
 
-Cachin = Player("Pedro Cachin", tour_symbol='ATP')
+Eubanks = Player("Christopher Eubanks", tour_symbol=TOUR, klass_name="Eubanks")
 
-Barrere = Player("Gregoire Barrere", tour_symbol='ATP')
+Ramos_Vinolas = Player("Albert Ramos-Vinolas", tour_symbol=TOUR, klass_name="Ramos_Vinolas")
 
-Martin = Player("Fabrice Martin", tour_symbol='ATP')
+Cachin = Player("Pedro Cachin", tour_symbol=TOUR, klass_name="Cachin")
 
-Kokkinakis = Player("Thanasi Kokkinakis", tour_symbol='ATP')
+Barrere = Player("Gregoire Barrere", tour_symbol=TOUR, klass_name="Barrere")
 
-Daniel = Player("Taro Daniel", tour_symbol='ATP')
+Martin = Player("Fabrice Martin", tour_symbol=TOUR, klass_name="Martin")
 
-Giron = Player("Marcos Giron", tour_symbol='ATP')
+Kokkinakis = Player("Thanasi Kokkinakis", tour_symbol=TOUR, klass_name="Kokkinakis")
 
-Zhang_Zhizhen = Player("Zhizhen Zhang", tour_symbol='ATP')
+Daniel = Player("Taro Daniel", tour_symbol=TOUR, klass_name="Daniel")
 
-Wu = Player("Yibing Wu", tour_symbol='ATP')
+Giron = Player("Marcos Giron", tour_symbol=TOUR, klass_name="Giron")
 
-Fognini = Player("Fabio Fognini", tour_symbol='ATP')
+Zhang_Zhizhen = Player("Zhizhen Zhang", tour_symbol=TOUR, klass_name="Zhang_Zhizhen", alt_names=["Z.Zhang"])
 
-Nadal = Player("Rafael Nadal", tour_symbol='ATP')
+Wu = Player("Yibing Wu", tour_symbol=TOUR, klass_name="Wu")
 
-Ivashka = Player("Ilya Ivashka", tour_symbol='ATP')
+Fognini = Player("Fabio Fognini", tour_symbol=TOUR, klass_name="Fognini")
 
-Rinderknech = Player("Arthur Rinderknech", tour_symbol='ATP')
+Nadal = Player("Rafael Nadal", tour_symbol=TOUR, klass_name="Nadal")
 
-Monteiro = Player("Thiago Monteiro", tour_symbol='ATP')
+Ivashka = Player("Ilya Ivashka", tour_symbol=TOUR, klass_name="Ivashka")
 
-Lestienne = Player("Constant Lestienne", tour_symbol='ATP')
+Rinderknech = Player("Arthur Rinderknech", tour_symbol=TOUR, klass_name="Rinderknech")
 
-OConnell = Player("Christopher O'Connell", tour_symbol='ATP')
+Monteiro = Player("Thiago Monteiro", tour_symbol=TOUR, klass_name="Monteiro")
 
-Safiullin = Player("Roman Safiullin", tour_symbol='ATP')
+Lestienne = Player("Constant Lestienne", tour_symbol=TOUR, klass_name="Lestienne")
 
-Thiem = Player("Dominic Thiem", tour_symbol='ATP')
+OConnell = Player("Christopher O'Connell", tour_symbol=TOUR, klass_name="OConnell")
 
-Martinez = Player("Pedro Martinez", tour_symbol='ATP')
+Safiullin = Player("Roman Safiullin", tour_symbol=TOUR, klass_name="Safiullin")
 
-Isner = Player("John Isner", tour_symbol='ATP')
+Thiem = Player("Dominic Thiem", tour_symbol=TOUR, klass_name="Thiem")
 
-Borges = Player("Nuno Borges", tour_symbol='ATP')
+Martinez = Player("Pedro Martinez", tour_symbol=TOUR, klass_name="Martinez")
 
-Dodig = Player("Ivan Dodig", tour_symbol='ATP')
+Isner = Player("John Isner", tour_symbol=TOUR, klass_name="Isner")
 
-Otte = Player("Oscar Otte", tour_symbol='ATP')
+Borges = Player("Nuno Borges", tour_symbol=TOUR, klass_name="Borges")
 
-Gonzalez_Maximo = Player("Maximo Gonzalez", tour_symbol='ATP')
+Dodig = Player("Ivan Dodig", tour_symbol=TOUR, klass_name="Dodig")
 
-Molteni = Player("Andres Molteni", tour_symbol='ATP')
+Otte = Player("Oscar Otte", tour_symbol=TOUR, klass_name="Otte")
 
-Draper = Player("Jack Draper", tour_symbol='ATP')
+Gonzalez_Maximo = Player("Maximo Gonzalez", tour_symbol=TOUR, klass_name="Gonzalez_Maximo")
 
-Thompson = Player("Jordan Thompson", tour_symbol='ATP')
+Molteni = Player("Andres Molteni", tour_symbol=TOUR, klass_name="Molteni")
 
-Varillas = Player("Juan Pablo Varillas", tour_symbol='ATP')
+Draper = Player("Jack Draper", tour_symbol=TOUR, klass_name="Draper")
 
-Ymer_Mikael = Player("Mikael Ymer", tour_symbol='ATP')
+Thompson = Player("Jordan Thompson", tour_symbol=TOUR, klass_name="Thompson")
 
-Glasspool = Player("Lloyd Glasspool", tour_symbol='ATP')
+Varillas = Player("Juan Pablo Varillas", tour_symbol=TOUR, klass_name="Varillas")
 
-Heliovaara = Player("Harri Heliovaara", tour_symbol='ATP')
+Ymer_Mikael = Player("Mikael Ymer",
+                     tour_symbol=TOUR,
+                     klass_name="Ymer_Mikael",
+                     alt_names=["M.Ymer"])
 
-Galan = Player("Daniel Elahi Galan", tour_symbol='ATP')
+Glasspool = Player("Lloyd Glasspool", tour_symbol=TOUR, klass_name="Glasspool")
 
-Coria = Player("Federico Coria", tour_symbol='ATP')
+Heliovaara = Player("Harri Heliovaara", tour_symbol=TOUR, klass_name="Heliovaara")
 
-Chardy = Player("Jeremy Chardy", tour_symbol='ATP')
+Galan = Player("Daniel Elahi Galan", tour_symbol=TOUR, klass_name="Galan")
 
-Mmoh = Player("Michael Mmoh", tour_symbol='ATP')
+Coria = Player("Federico Coria", tour_symbol=TOUR, klass_name="Coria")
 
-Gojo = Player("Borna Gojo", tour_symbol='ATP')
+Chardy = Player("Jeremy Chardy", tour_symbol=TOUR, klass_name="Chardy")
 
-Dellien = Player("Hugo Dellien", tour_symbol='ATP')
+Mmoh = Player("Michael Mmoh", tour_symbol=TOUR, klass_name="Mmoh")
 
-Purcell = Player("Max Purcell", tour_symbol='ATP')
+Gojo = Player("Borna Gojo", tour_symbol=TOUR, klass_name="Gojo")
 
-Haase = Player("Robin Haase", tour_symbol='ATP')
+Dellien = Player("Hugo Dellien", tour_symbol=TOUR, klass_name="Dellien")
 
-Kotov = Player("Pavel Kotov", tour_symbol='ATP')
+Purcell = Player("Max Purcell", tour_symbol=TOUR, klass_name="Purcell")
 
-Kwon = Player("SoonWoo Kwon", tour_symbol='ATP')
+Haase = Player("Robin Haase", tour_symbol=TOUR, klass_name="Haase")
 
-Krajinovic = Player("Filip Krajinovic", tour_symbol='ATP')
+Kotov = Player("Pavel Kotov", tour_symbol=TOUR, klass_name="Kotov")
 
-Goffin = Player("David Goffin", tour_symbol='ATP')
+Kwon = Player("SoonWoo Kwon", tour_symbol=TOUR, klass_name="Kwon")
 
-Assche = Player("Luca Van Assche", tour_symbol='ATP')
+Krajinovic = Player("Filip Krajinovic", tour_symbol=TOUR, klass_name="Krajinovic")
 
-Muller = Player("Alexandre Muller", tour_symbol='ATP')
+Goffin = Player("David Goffin", tour_symbol=TOUR, klass_name="Goffin")
 
-Shevchenko = Player("Alexander Shevchenko", tour_symbol='ATP')
+Van_Assche = Player("Luca Van Assche", tour_symbol=TOUR, klass_name="Van_Assche")
 
-Watanuki = Player("Yosuke Watanuki", tour_symbol='ATP')
+Muller = Player("Alexandre Muller", tour_symbol=TOUR, klass_name="Muller")
 
-Arnaldi = Player("Matteo Arnaldi", tour_symbol='ATP')
+Shevchenko = Player("Alexander Shevchenko", tour_symbol=TOUR, klass_name="Shevchenko")
 
-Vukic = Player("Aleksandar Vukic", tour_symbol='ATP')
+Watanuki = Player("Yosuke Watanuki", tour_symbol=TOUR, klass_name="Watanuki")
 
-Arevalo = Player("Marcelo Arevalo", tour_symbol='ATP')
+Arnaldi = Player("Matteo Arnaldi", tour_symbol=TOUR, klass_name="Arnaldi")
 
-Rojer = Player("Jean-Julien Rojer", tour_symbol='ATP')
+Vukic = Player("Aleksandar Vukic", tour_symbol=TOUR, klass_name="Vukic")
 
-Pella = Player("Guido Pella", tour_symbol='ATP')
+Arevalo = Player("Marcelo Arevalo", tour_symbol=TOUR, klass_name="Arevalo")
 
-Brooksby = Player("Jenson Brooksby", tour_symbol='ATP')
+Rojer = Player("Jean-Julien Rojer", tour_symbol=TOUR, klass_name="Rojer")
 
-Nakashima = Player("Brandon Nakashima", tour_symbol='ATP')
+Pella = Player("Guido Pella", tour_symbol=TOUR, klass_name="Pella")
 
-Zeballos = Player("Horacio Zeballos", tour_symbol='ATP')
+Brooksby = Player("Jenson Brooksby", tour_symbol=TOUR, klass_name="Brooksby")
 
-Lammons = Player("Nathaniel Lammons", tour_symbol='ATP')
+Nakashima = Player("Brandon Nakashima", tour_symbol=TOUR, klass_name="Nakashima")
 
-Krawietz = Player("Kevin Krawietz", tour_symbol='ATP')
+Zeballos = Player("Horacio Zeballos", tour_symbol=TOUR, klass_name="Zeballos")
 
-Mahut = Player("Nicolas Mahut", tour_symbol='ATP')
+Lammons = Player("Nathaniel Lammons", tour_symbol=TOUR, klass_name="Lammons")
 
-Murray_Jamie = Player("Jamie Murray", tour_symbol='ATP')
+Krawietz = Player("Kevin Krawietz", tour_symbol=TOUR, klass_name="Krawietz")
 
-Venus = Player("Michael Venus", tour_symbol='ATP')
+Mahut = Player("Nicolas Mahut", tour_symbol=TOUR, klass_name="Mahut")
 
-Tabilo = Player("Alejandro Tabilo", tour_symbol='ATP')
+Murray_Jamie = Player("Jamie Murray", tour_symbol=TOUR, klass_name="Murray_Jamie")
 
-Kudla = Player("Denis Kudla", tour_symbol='ATP')
+Venus = Player("Michael Venus", tour_symbol=TOUR, klass_name="Venus")
 
-Granollers = Player("Marcel Granollers", tour_symbol='ATP')
+Tabilo = Player("Alejandro Tabilo", tour_symbol=TOUR, klass_name="Tabilo")
 
-Sousa = Player("Joao Sousa", tour_symbol='ATP')
+Kudla = Player("Denis Kudla", tour_symbol=TOUR, klass_name="Kudla")
 
-Cecchinato = Player("Marco Cecchinato", tour_symbol='ATP')
+Granollers = Player("Marcel Granollers", tour_symbol=TOUR, klass_name="Granollers")
 
-Withrow = Player("Jackson Withrow", tour_symbol='ATP')
+Sousa = Player("Joao Sousa", tour_symbol=TOUR, klass_name="Sousa")
 
-Machac = Player("Tomas Machac", tour_symbol='ATP')
+Cecchinato = Player("Marco Cecchinato", tour_symbol=TOUR, klass_name="Cecchinato")
 
-Vavassori = Player("Andrea Vavassori", tour_symbol='ATP')
+Withrow = Player("Jackson Withrow", tour_symbol=TOUR, klass_name="Withrow")
 
-Holt = Player("Brandon Holt", tour_symbol='ATP')
+Machac = Player("Tomas Machac", tour_symbol=TOUR, klass_name="Machac")
 
-Bagnis = Player("Facundo Bagnis", tour_symbol='ATP')
+Vavassori = Player("Andrea Vavassori", tour_symbol=TOUR, klass_name="Vavassori")
 
-Brouwer = Player("Gijs Brouwer", tour_symbol='ATP')
+Holt = Player("Brandon Holt", tour_symbol=TOUR, klass_name="Holt")
 
-Miedler = Player("Lucas Miedler", tour_symbol='ATP')
+Bagnis = Player("Facundo Bagnis", tour_symbol=TOUR, klass_name="Bagnis")
 
-Harris = Player("Lloyd Harris", tour_symbol='ATP')
+Brouwer = Player("Gijs Brouwer", tour_symbol=TOUR, klass_name="Brouwer")
 
-Bergs = Player("Zizou Bergs", tour_symbol='ATP')
+Miedler = Player("Lucas Miedler", tour_symbol=TOUR, klass_name="Miedler")
 
-Shang = Player("Juncheng Shang", tour_symbol='ATP')
+Harris = Player("Lloyd Harris", tour_symbol=TOUR, klass_name="Harris")
 
-Moutet = Player("Corentin Moutet", tour_symbol='ATP')
+Bergs = Player("Zizou Bergs", tour_symbol=TOUR, klass_name="Bergs")
 
-Erler = Player("Alexander Erler", tour_symbol='ATP')
+Shang = Player("Juncheng Shang", tour_symbol=TOUR, klass_name="Shang")
 
-Edmund = Player("Kyle Edmund", tour_symbol='ATP')
+Moutet = Player("Corentin Moutet", tour_symbol=TOUR, klass_name="Moutet")
 
-Marozsan = Player("Fabian Marozsan", tour_symbol='ATP')
+Erler = Player("Alexander Erler", tour_symbol=TOUR, klass_name="Erler")
 
-Fils = Player("Arthur Fils", tour_symbol='ATP')
+Edmund = Player("Kyle Edmund", tour_symbol=TOUR, klass_name="Edmund")
 
-Basilashvili = Player("Nikoloz Basilashvili", tour_symbol='ATP')
+Marozsan = Player("Fabian Marozsan", tour_symbol=TOUR, klass_name="Marozsan")
 
-Svrcina = Player("Dalibor Svrcina", tour_symbol='ATP')
+Fils = Player("Arthur Fils", tour_symbol=TOUR, klass_name="Fils")
 
-Busta = Player("Pablo Carreno Busta", tour_symbol='ATP')
+Basilashvili = Player("Nikoloz Basilashvili", tour_symbol=TOUR, klass_name="Basilashvili")
 
-Couacaud = Player("Enzo Couacaud", tour_symbol='ATP')
+Svrcina = Player("Dalibor Svrcina", tour_symbol=TOUR, klass_name="Svrcina")
 
-Passaro = Player("Francesco Passaro", tour_symbol='ATP')
+Busta = Player("Pablo Carreno Busta", tour_symbol=TOUR, klass_name="Busta")
 
-Mies = Player("Andreas Mies", tour_symbol='ATP')
+Couacaud = Player("Enzo Couacaud", tour_symbol=TOUR, klass_name="Couacaud")
 
-Millman = Player("John Millman", tour_symbol='ATP')
+Passaro = Player("Francesco Passaro", tour_symbol=TOUR, klass_name="Passaro")
 
-Mektic = Player("Nikola Mektic", tour_symbol='ATP')
+Mies = Player("Andreas Mies", tour_symbol=TOUR, klass_name="Mies")
 
-Pavic = Player("Mate Pavic", tour_symbol='ATP')
+Millman = Player("John Millman", tour_symbol=TOUR, klass_name="Millman")
 
-Albot = Player("Radu Albot", tour_symbol='ATP')
+Mektic = Player("Nikola Mektic", tour_symbol=TOUR, klass_name="Mektic")
 
-Bolelli = Player("Simone Bolelli", tour_symbol='ATP')
+Pavic = Player("Mate Pavic", tour_symbol=TOUR, klass_name="Pavic")
 
-Alves = Player("Felipe Meligeni Rodrigues Alves", tour_symbol='ATP')
+Albot = Player("Radu Albot", tour_symbol=TOUR, klass_name="Albot")
 
-Gomez_Emilio = Player("Emilio Gomez", tour_symbol='ATP')
+Bolelli = Player("Simone Bolelli", tour_symbol=TOUR, klass_name="Bolelli")
 
-Middelkoop = Player("Matwe Middelkoop", tour_symbol='ATP')
+Alves = Player("Felipe Meligeni Rodrigues Alves", tour_symbol=TOUR, klass_name="Alves")
 
-Nardi = Player("Luca Nardi", tour_symbol='ATP')
+Gomez_Emilio = Player("Emilio Gomez", tour_symbol=TOUR, klass_name="Gomez_Emilio")
 
-Paire = Player("Benoit Paire", tour_symbol='ATP')
+Middelkoop = Player("Matwe Middelkoop", tour_symbol=TOUR, klass_name="Middelkoop")
 
-Salisbury = Player("Joe Salisbury", tour_symbol='ATP')
+Nardi = Player("Luca Nardi", tour_symbol=TOUR, klass_name="Nardi")
 
-Puetz = Player("Tim Puetz", tour_symbol='ATP')
+Paire = Player("Benoit Paire", tour_symbol=TOUR, klass_name="Paire")
 
-Cabal = Player("Juan Sebastian Cabal", tour_symbol='ATP')
+Salisbury = Player("Joe Salisbury", tour_symbol=TOUR, klass_name="Salisbury")
 
-Gaston = Player("Hugo Gaston", tour_symbol='ATP')
+Puetz = Player("Tim Puetz", tour_symbol=TOUR, klass_name="Puetz")
 
-Sock = Player("Jack Sock", tour_symbol='ATP')
+Cabal = Player("Juan Sebastian Cabal", tour_symbol=TOUR, klass_name="Cabal")
 
-Ram = Player("Rajeev Ram", tour_symbol='ATP')
+Gaston = Player("Hugo Gaston", tour_symbol=TOUR, klass_name="Gaston")
 
-Nava = Player("Emilio Nava", tour_symbol='ATP')
+Sock = Player("Jack Sock", tour_symbol=TOUR, klass_name="Sock")
 
-Ymer_Elias = Player("Elias Ymer", tour_symbol='ATP')
+Ram = Player("Rajeev Ram", tour_symbol=TOUR, klass_name="Ram")
 
-Krutykh = Player("Oleksii Krutykh", tour_symbol='ATP')
+Nava = Player("Emilio Nava", tour_symbol=TOUR, klass_name="Nava")
 
-Kuzmanov = Player("Dimitar Kuzmanov", tour_symbol='ATP')
+Ymer_Elias = Player("Elias Ymer", tour_symbol=TOUR, klass_name="Ymer_Elias", alt_names=["E.Ymer"])
 
-Vera = Player("Tomas Barrios Vera", tour_symbol='ATP')
+Krutykh = Player("Oleksii Krutykh", tour_symbol=TOUR, klass_name="Krutykh")
 
-Tseng = Player("Chun-Hsin Tseng", tour_symbol='ATP')
+Kuzmanov = Player("Dimitar Kuzmanov", tour_symbol=TOUR, klass_name="Kuzmanov")
 
-Grenier = Player("Hugo Grenier", tour_symbol='ATP')
+Vera = Player("Tomas Barrios Vera", tour_symbol=TOUR, klass_name="Vera")
 
-Kovacevic = Player("Aleksandar Kovacevic", tour_symbol='ATP')
+Tseng = Player("Chun-Hsin Tseng", tour_symbol=TOUR, klass_name="Tseng")
 
-Skatov = Player("Timofey Skatov", tour_symbol='ATP')
+Grenier = Player("Hugo Grenier", tour_symbol=TOUR, klass_name="Grenier")
 
-Lokoli = Player("Laurent Lokoli", tour_symbol='ATP')
+Kovacevic = Player("Aleksandar Kovacevic", tour_symbol=TOUR, klass_name="Kovacevic")
 
-Ofner = Player("Sebastian Ofner", tour_symbol='ATP')
+Skatov = Player("Timofey Skatov", tour_symbol=TOUR, klass_name="Skatov")
 
-Cerundolo_Juan = Player("Juan Manuel Cerundolo", tour_symbol='ATP')
+Lokoli = Player("Laurent Lokoli", tour_symbol=TOUR, klass_name="Lokoli")
 
-Rodionov = Player("Jurij Rodionov", tour_symbol='ATP')
+Ofner = Player("Sebastian Ofner", tour_symbol=TOUR, klass_name="Ofner")
 
-Zeppieri = Player("Giulio Zeppieri", tour_symbol='ATP')
+Cerundolo_Juan = Player("Juan Manuel Cerundolo", tour_symbol=TOUR, klass_name="Cerundolo_Juan")
 
-Peers = Player("John Peers", tour_symbol='ATP')
+Rodionov = Player("Jurij Rodionov", tour_symbol=TOUR, klass_name="Rodionov")
 
-Melo = Player("Marcelo Melo", tour_symbol='ATP')
+Zeppieri = Player("Giulio Zeppieri", tour_symbol=TOUR, klass_name="Zeppieri")
 
-Bellucci = Player("Mattia Bellucci", tour_symbol='ATP')
+Peers = Player("John Peers", tour_symbol=TOUR, klass_name="Peers")
 
-Weissborn = Player("Tristan-Samuel Weissborn", tour_symbol='ATP')
+Melo = Player("Marcelo Melo", tour_symbol=TOUR, klass_name="Melo")
 
-Arneodo = Player("Romain Arneodo", tour_symbol='ATP')
+Bellucci = Player("Mattia Bellucci", tour_symbol=TOUR, klass_name="Bellucci")
 
-Piros = Player("Zsombor Piros", tour_symbol='ATP')
+Weissborn = Player("Tristan-Samuel Weissborn", tour_symbol=TOUR, klass_name="Weissborn")
 
-Hsu = Player("Yu Hsiou Hsu", tour_symbol='ATP')
+Arneodo = Player("Romain Arneodo", tour_symbol=TOUR, klass_name="Arneodo")
 
-Hernandez = Player("David Vega Hernandez", tour_symbol='ATP')
+Piros = Player("Zsombor Piros", tour_symbol=TOUR, klass_name="Piros")
 
-Vesely = Player("Jiri Vesely", tour_symbol="ATP")
+Hsu = Player("Yu Hsiou Hsu", tour_symbol=TOUR, klass_name="Hsu")
 
-Kypson = Player("Patrick Kypson", tour_symbol="ATP")
+Hernandez = Player("David Vega Hernandez", tour_symbol=TOUR, klass_name="Hernandez")
 
-Cazaux = Player("Arthur Cazaux", tour_symbol="ATP")
+Vesely = Player("Jiri Vesely", tour_symbol=TOUR, klass_name="Vesely")
 
-Monfils = Player("Gael Monfils", tour_symbol="ATP")
+Kypson = Player("Patrick Kypson", tour_symbol=TOUR, klass_name="Kypson")
 
-Perricard = Player("Perricard", tour_symbol="ATP")
+Cazaux = Player("Arthur Cazaux", tour_symbol=TOUR, klass_name="Cazaux")
 
-NO_ENTRY = Player("Entry Not Decided", tour_symbol="Any")
+Monfils = Player("Gael Monfils", tour_symbol=TOUR, klass_name="Monfils")
 
+Mpetshi_Perricard = Player('G.Mpetshi Perricard', tour_symbol=TOUR, klass_name="Mpetshi_Perricard")
+
+Cobolli = Player('Cobolli', tour_symbol=TOUR, klass_name="Cobolli")
+
+Pouille = Player('Pouille', tour_symbol=TOUR, klass_name="Pouille")
+
+Diaz_Acosta = Player('Diaz Acosta', tour_symbol=TOUR, klass_name="Diaz_Acosta")
+
+Olivieri = Player('GA.Olivieri', tour_symbol=TOUR, klass_name="Olivieri")
+
+Stricker = Player('D.Stricker', tour_symbol=TOUR, klass_name="Stricker")
+
+Medjedovic = Player('H.Medjedovic', tour_symbol=TOUR, klass_name="Medjedovic")
+
+Tirante = Player('TA.Tirante', tour_symbol=TOUR, klass_name="Tirante")
+
+Seyboth_Wild = Player('T.Seyboth Wild', tour_symbol=TOUR, klass_name="Seyboth_Wild")

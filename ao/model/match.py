@@ -29,10 +29,13 @@ class Match:
     def match_block(self):
         return f"{self.show_player(self.player1)}\n{self.show_player(self.player2)}"
 
-    def show_player(self, for_player: entry.Entry):
-        if not for_player:
+    def show_player(self, for_entry: entry.Entry):
+        if not for_entry:
             return "?"
-        return f"({for_player.seeding()}) {for_player.player().name} {self.show_set_and_winner(for_player)}"
+        return f"{self.player_and_seed(for_entry)} {self.show_set_and_winner(for_entry)}"
+
+    def player_and_seed(self, for_entry):
+        return f"({for_entry.seeding()}) {for_entry.player().name}"
 
     def show_set_and_winner(self, for_player: entry.Entry):
         if not self.is_finished():
@@ -47,6 +50,14 @@ class Match:
         else:
             score_part = f"score(?, ()).score(?, ())"
         return f"{match_part}.{score_part}"
+
+    def fantasy_score_template(self, event_name, round_number):
+        """
+        TeamBearNecessities.draw(mens_singles).match("1.1").winner(Khachanov).in_sets(5)
+        """
+        mod = 'men' if event_name == "mens_singles" else "women"
+        entries = f"{self.player_and_seed(self.player1)}  OR  {self.player_and_seed(self.player2)}"
+        return f"TEAM.draw({event_name}).match('{self.match_id}').winner({mod}).in_sets()  # {entries}"
 
     def find_player_by_player(self, for_player: player.Player):
         if not self.has_draw():
