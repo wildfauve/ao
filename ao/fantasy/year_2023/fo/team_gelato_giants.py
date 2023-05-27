@@ -1,8 +1,17 @@
+import sys
 from ao.fantasy.teams import *
+from ao.fantasy import helpers
 from ao.players import atp_players as men, wta_players as women
+
+this = sys.modules[__name__]
 
 TEAM = TeamGelatoGiants
 def team_gelato_giants(mens_singles, womens_singles):
+    helpers.selection_fn_caller(this, [mens_singles, womens_singles])
+    return TEAM
+
+
+def mens_singles_round_1(mens_singles):
     TEAM.draw(mens_singles).match('1.1').winner(men).in_sets()  # (  1) Carlos Alcaraz  OR  (  Q) Cobolli
     TEAM.draw(mens_singles).match('1.2').winner(men).in_sets()  # (   ) Christopher O'Connell  OR  (   ) Taro Daniel
     TEAM.draw(mens_singles).match('1.3').winner(men).in_sets()  # (   ) Matteo Arnaldi  OR  (   ) Daniel Elahi Galan
@@ -69,6 +78,7 @@ def team_gelato_giants(mens_singles, womens_singles):
     TEAM.draw(mens_singles).match('1.63').winner(men).in_sets()  # (   ) Quentin Halys  OR  (   ) Guido Pella
     TEAM.draw(mens_singles).match('1.64').winner(men).in_sets()  # (  Q) T.Seyboth Wild  OR  (  2) Daniil Medvedev
 
+def womens_singles_round_1(womens_singles):
     TEAM.draw(womens_singles).match('1.1').winner(women).in_sets()  # (  1) Iga Swiatek  OR  (   ) Cristina Bucsa
     TEAM.draw(womens_singles).match('1.2').winner(women).in_sets()  # (  Q) Y.In-Albon  OR  (   ) Claire Liu
     TEAM.draw(womens_singles).match('1.3').winner(women).in_sets()  # (   ) Rebecca Peterson  OR  (  Q) F.Ferro

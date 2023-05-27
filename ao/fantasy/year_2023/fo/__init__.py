@@ -3,7 +3,7 @@ from .team_gelato_giants import (
 )
 
 from .team_bear_necessities import (
-    team_bear_necessities
+    team_bear_necessities,
 )
 
 from .team_fauve import (

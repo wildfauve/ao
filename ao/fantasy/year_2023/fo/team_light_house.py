@@ -1,9 +1,19 @@
+import sys
+
 from ao.fantasy.teams import *
+from ao.fantasy import helpers
 from ao.players import atp_players as men, wta_players as women
+
+this = sys.modules[__name__]
 
 TEAM = TeamLightHouse
 
 def team_light_house(mens_singles, womens_singles):
+    helpers.selection_fn_caller(this, [mens_singles, womens_singles])
+    return TEAM
+
+
+def mens_singles_round_1(mens_singles):
     TEAM.draw(mens_singles).match('1.1').winner(men.Alcaraz).in_sets(3)  # (  1) Carlos Alcaraz  OR  (  Q) Cobolli
     TEAM.draw(mens_singles).match('1.2').winner(men.Daniel).in_sets(4)  # (   ) Christopher O'Connell  OR  (   ) Taro Daniel
     TEAM.draw(mens_singles).match('1.3').winner(men.Arnaldi).in_sets(4)  # (   ) Matteo Arnaldi  OR  (   ) Daniel Elahi Galan
@@ -71,73 +81,103 @@ def team_light_house(mens_singles, womens_singles):
     TEAM.draw(mens_singles).match('1.63').winner(men.Pella).in_sets(4)  # (   ) Quentin Halys  OR  (   ) Guido Pella
     TEAM.draw(mens_singles).match('1.64').winner(men.Medvedev).in_sets(3)  # (  Q) T.Seyboth Wild  OR  (  2) Daniil Medvedev
 
-
-    TEAM.draw(womens_singles).match('1.1').winner(women).in_sets()  # (  1) Iga Swiatek  OR  (   ) Cristina Bucsa
-    TEAM.draw(womens_singles).match('1.2').winner(women).in_sets()  # (  Q) Y.In-Albon  OR  (   ) Claire Liu
-    TEAM.draw(womens_singles).match('1.3').winner(women).in_sets()  # (   ) Rebecca Peterson  OR  (  Q) F.Ferro
-    TEAM.draw(womens_singles).match('1.4').winner(women).in_sets()  # (   ) Xinyu Wang  OR  ( 31) Marie Bouzkova
-    TEAM.draw(womens_singles).match('1.5').winner(women).in_sets()  # ( 18) Victoria Azarenka  OR  (   ) Bianca Andreescu
-    TEAM.draw(womens_singles).match('1.6').winner(women).in_sets()  # (   ) Anna Kalinskaya  OR  (  W) Emma Navarro
-    TEAM.draw(womens_singles).match('1.7').winner(women).in_sets()  # (   ) Lin Zhu  OR  (   ) Lauren Davis
-    TEAM.draw(womens_singles).match('1.8').winner(women).in_sets()  # (   ) Lesia Tsurenko  OR  ( 13) Barbora Krejcikova
-    TEAM.draw(womens_singles).match(
-        '1.9').winner(women).in_sets()  # ( 11) Veronika Kudermetova  OR  (   ) Anna Karolina Schmiedlova
-    TEAM.draw(womens_singles).match('1.10').winner(women).in_sets()  # (  L) Aliona Bolsova  OR  (   ) Kristina Kucova
-    TEAM.draw(womens_singles).match('1.11').winner(women).in_sets()  # (  Q) K.Day  OR  (  W) Kristina Mladenovic
-    TEAM.draw(womens_singles).match('1.12').winner(women).in_sets()  # (   ) Kaia Kanepi  OR  ( 20) Madison Keys
-    TEAM.draw(womens_singles).match('1.13').winner(women).in_sets()  # ( 25) Anhelina Kalinina  OR  (  W) Diane Parry
-    TEAM.draw(womens_singles).match('1.14').winner(women).in_sets()  # (  Q) Mirra Andreeva  OR  (   ) Alison Riske-Amritraj
-    TEAM.draw(womens_singles).match('1.15').winner(women).in_sets()  # (  Q) Arantxa Rus  OR  (   ) Julia Grabher
-    TEAM.draw(womens_singles).match('1.16').winner(women).in_sets()  # (   ) Rebeka Masarova  OR  (  6) Coco Gauff
-    TEAM.draw(womens_singles).match('1.17').winner(women).in_sets()  # (  4) Elena Rybakina  OR  (  Q) Brenda Fruhvirtova
-    TEAM.draw(womens_singles).match('1.18').winner(women).in_sets()  # (   ) Linda Noskova  OR  (   ) Danka Kovinic
-    TEAM.draw(womens_singles).match('1.19').winner(women).in_sets()  # (  W) Clara Burel  OR  (   ) Sorribes Tormo
-    TEAM.draw(womens_singles).match('1.20').winner(women).in_sets()  # (   ) Petra Martic  OR  ( 32) Shelby Rogers
-    TEAM.draw(womens_singles).match(
-        '1.21').winner(women).in_sets()  # ( 23) Ekaterina Alexandrova  OR  (   ) Viktoriya Tomova
-    TEAM.draw(womens_singles).match('1.22').winner(women).in_sets()  # (  L) Nao Hibino  OR  (   ) Anna-Lena Friedsam
-    TEAM.draw(womens_singles).match('1.23').winner(women).in_sets()  # (   ) Rebecca Marino  OR  (   ) Diana Shnaider
-    TEAM.draw(womens_singles).match('1.24').winner(women).in_sets()  # (   ) Tatjana Maria  OR  ( 14) Beatriz Haddad Maia
-    TEAM.draw(womens_singles).match('1.25').winner(women).in_sets()  # ( 10) Petra Kvitova  OR  (   ) Elisabetta Cocciaretto
-    TEAM.draw(womens_singles).match('1.26').winner(women).in_sets()  # (  Q) Simona Waltert  OR  (  Q) Elizabeth Mandlik
-    TEAM.draw(womens_singles).match('1.27').winner(women).in_sets()  # (   ) Anett Kontaveit  OR  (   ) Bernarda Pera
-    TEAM.draw(womens_singles).match('1.28').winner(women).in_sets()  # (  Q) Dayana Yastremska  OR  ( 22) Donna Vekic
-    TEAM.draw(womens_singles).match('1.29').winner(women).in_sets()  # ( 30) Sorana Cirstea  OR  (   ) Jasmine Paolini
-    TEAM.draw(womens_singles).match('1.30').winner(women).in_sets()  # (  Q) Olga Danilovic  OR  (   ) Kateryna Baindl
-    TEAM.draw(womens_singles).match('1.31').winner(women).in_sets()  # (  W) Selena Janicijevic  OR  (   ) Dodin
-    TEAM.draw(womens_singles).match('1.32').winner(women).in_sets()  # (   ) Lucia Bronzetti  OR  (  7) Ons Jabeur
-    TEAM.draw(womens_singles).match('1.33').winner(women).in_sets()  # (  8) Maria Sakkari  OR  (   ) Karolina Muchova
-    TEAM.draw(womens_singles).match('1.34').winner(women).in_sets()  # (   ) Nadia Podoroska  OR  (  W) Ponchet
-    TEAM.draw(womens_singles).match('1.35').winner(women).in_sets()  # (   ) Sara Errani  OR  (   ) Jil Teichmann
-    TEAM.draw(womens_singles).match('1.36').winner(women).in_sets()  # (   ) Anna Bondar  OR  ( 27) Irina-Camelia Begu
-    TEAM.draw(womens_singles).match('1.37').winner(women).in_sets()  # ( 21) Magda Linette  OR  (   ) Leylah Fernandez
-    TEAM.draw(womens_singles).match('1.38').winner(women).in_sets()  # (  Q) C.Tauson  OR  (   ) Aliaksandra Sasnovich
-    TEAM.draw(womens_singles).match('1.39').winner(women).in_sets()  # (  W) Leolia Jeanjean  OR  (  W) Kimberly Birrell
-    TEAM.draw(womens_singles).match('1.40').winner(women).in_sets()  # (  L) Elina Avanesyan  OR  ( 12) Belinda Bencic
-    TEAM.draw(womens_singles).match('1.41').winner(women).in_sets()  # ( 15) Liudmila Samsonova  OR  (   ) Katie Volynets
-    TEAM.draw(womens_singles).match(
-        '1.42').winner(women).in_sets()  # (   ) Anastasia Pavlyuchenkova  OR  (   ) Linda Fruhvirtova
-    TEAM.draw(womens_singles).match('1.43').winner(women).in_sets()  # (   ) Mayar Sherif  OR  (   ) Madison Brengle
-    TEAM.draw(womens_singles).match('1.44').winner(women).in_sets()  # (  Q) Taylor Townsend  OR  ( 24) Anastasia Potapova
-    TEAM.draw(womens_singles).match('1.45').winner(women).in_sets()  # ( 28) Elise Mertens  OR  (  L) V.Hruncakova
-    TEAM.draw(womens_singles).match('1.46').winner(women).in_sets()  # (   ) Catherine McNally  OR  (   ) Ana Bogdan
-    TEAM.draw(womens_singles).match('1.47').winner(women).in_sets()  # (   ) Alize Cornet  OR  (   ) Camila Giorgi
-    TEAM.draw(womens_singles).match('1.48').winner(women).in_sets()  # (   ) Danielle Collins  OR  (  3) Jessica Pegula
-    TEAM.draw(womens_singles).match('1.49').winner(women).in_sets()  # (  5) Caroline Garcia  OR  (   ) Xinyu Wang
-    TEAM.draw(womens_singles).match('1.50').winner(women).in_sets()  # (   ) Anna Blinkova  OR  (   ) Ysaline Bonaventure
-    TEAM.draw(womens_singles).match('1.51').winner(women).in_sets()  # (   ) Nuria Parrizas Diaz  OR  (  Q) Storm Hunter
-    TEAM.draw(womens_singles).match('1.52').winner(women).in_sets()  # (   ) Svitolina  OR  ( 26) Martina Trevisan
-    TEAM.draw(womens_singles).match('1.53').winner(women).in_sets()  # ( 17) Jelena Ostapenko  OR  (   ) Tereza Martincova
-    TEAM.draw(womens_singles).match('1.54').winner(women).in_sets()  # (   ) Peyton Stearns  OR  (   ) Katerina Siniakova
-    TEAM.draw(womens_singles).match('1.55').winner(women).in_sets()  # (   ) Marketa Vondrousova  OR  (   ) Alycia Parks
-    TEAM.draw(womens_singles).match('1.56').winner(women).in_sets()  # (   ) Jule Niemeier  OR  (  9) Daria Kasatkina
-    TEAM.draw(womens_singles).match('1.57').winner(women).in_sets()  # ( 16) Karolina Pliskova  OR  (   ) Sloane Stephens
-    TEAM.draw(womens_singles).match('1.58').winner(women).in_sets()  # (   ) Varvara Gracheva  OR  (   ) Dalma Galfi
-    TEAM.draw(womens_singles).match('1.59').winner(women).in_sets()  # (   ) Yulia Putintseva  OR  (   ) Maryna Zanevska
-    TEAM.draw(womens_singles).match('1.60').winner(women).in_sets()  # (  Q) Tamara Zidansek  OR  ( 19) Qinwen Zheng
-    TEAM.draw(womens_singles).match('1.61').winner(women).in_sets()  # ( 29) Shuai Zhang  OR  (   ) Magdalena Frech
-    TEAM.draw(womens_singles).match('1.62').winner(women).in_sets()  # (  Q) Sara Bejlek  OR  (   ) Kamilla Rakhimova
-    TEAM.draw(womens_singles).match('1.63').winner(women).in_sets()  # (   ) Panna Udvardy  OR  (  Q) I.Shymanovich
-    TEAM.draw(womens_singles).match('1.64').winner(women).in_sets()  # (   ) Marta Kostyuk  OR  (  2) Aryna Sabalenka
+def womens_singles_round_1(womens_singles):
+    TEAM.draw(womens_singles).match('1.1').winner(women.Swiatek).in_sets(
+        2)  # (  1) Iga Swiatek  OR  (   ) Cristina Bucsa
+    TEAM.draw(womens_singles).match('1.2').winner(women.Liu).in_sets(3)  # (  Q) Y.In-Albon  OR  (   ) Claire Liu
+    TEAM.draw(womens_singles).match('1.3').winner(women.Peterson).in_sets(
+        2)  # (   ) Rebecca Peterson  OR  (  Q) F.Ferro
+    TEAM.draw(womens_singles).match('1.4').winner(women.Bouzkova).in_sets(
+        3)  # (   ) Xinyu Wang  OR  ( 31) Marie Bouzkova
+    TEAM.draw(womens_singles).match('1.5').winner(
+        women.Azarenka).in_sets(2)  # ( 18) Victoria Azarenka  OR  (   ) Bianca Andreescu
+    TEAM.draw(womens_singles).match('1.6').winner(women.Kalinskaya).in_sets(
+        3)  # (   ) Anna Kalinskaya  OR  (  W) Emma Navarro
+    TEAM.draw(womens_singles).match('1.7').winner(women.Zhu).in_sets(3)  # (   ) Lin Zhu  OR  (   ) Lauren Davis
+    TEAM.draw(womens_singles).match('1.8').winner(women.Krejcikova).in_sets(
+        2)  # (   ) Lesia Tsurenko  OR  ( 13) Barbora Krejcikova
+    TEAM.draw(womens_singles).match('1.9').winner(
+        women.Kudermetova_Veronika).in_sets(2)  # ( 11) Veronika Kudermetova  OR  (   ) Anna Karolina Schmiedlova
+    TEAM.draw(womens_singles).match('1.10').winner(women.Kucova).in_sets(
+        3)  # (  L) Aliona Bolsova  OR  (   ) Kristina Kucova
+    TEAM.draw(womens_singles).match('1.11').winner(women.Mladenovic).in_sets(3)  # (  Q) K.Day  OR  (  W) Kristina Mladenovic
+    TEAM.draw(womens_singles).match('1.12').winner(women.Keys).in_sets(2)  # (   ) Kaia Kanepi  OR  ( 20) Madison Keys
+    TEAM.draw(womens_singles).match('1.13').winner(women.Kalinina).in_sets(
+        2)  # ( 25) Anhelina Kalinina  OR  (  W) Diane Parry
+    TEAM.draw(womens_singles).match('1.14').winner(
+        women.Riske_Amritraj).in_sets(2)  # (  Q) Mirra Andreeva  OR  (   ) Alison Riske-Amritraj
+    TEAM.draw(womens_singles).match('1.15').winner(women.Grabher).in_sets(
+        3)  # (  Q) Arantxa Rus  OR  (   ) Julia Grabher
+    TEAM.draw(womens_singles).match('1.16').winner(women.Gauff).in_sets(
+        2)  # (   ) Rebeka Masarova  OR  (  6) Coco Gauff
+    TEAM.draw(womens_singles).match('1.17').winner(
+        women.Rybakina).in_sets(2)  # (  4) Elena Rybakina  OR  (  Q) Brenda Fruhvirtova
+    TEAM.draw(womens_singles).match('1.18').winner(women.Noskova).in_sets(
+        2)  # (   ) Linda Noskova  OR  (   ) Danka Kovinic
+    TEAM.draw(womens_singles).match('1.19').winner(women.Sorribes_Tormo).in_sets(
+        3)  # (  W) Clara Burel  OR  (   ) Sorribes Tormo
+    TEAM.draw(womens_singles).match('1.20').winner(women.Rogers).in_sets(
+        2)  # (   ) Petra Martic  OR  ( 32) Shelby Rogers
+    TEAM.draw(womens_singles).match('1.21').winner(
+        women.Alexandrova).in_sets(3)  # ( 23) Ekaterina Alexandrova  OR  (   ) Viktoriya Tomova
+    TEAM.draw(womens_singles).match('1.22').winner(women.Friedsam).in_sets(
+        2)  # (  L) Nao Hibino  OR  (   ) Anna-Lena Friedsam
+    TEAM.draw(womens_singles).match('1.23').winner(women.Shnaider).in_sets(
+        3)  # (   ) Rebecca Marino  OR  (   ) Diana Shnaider
+    TEAM.draw(womens_singles).match('1.24').winner(
+        women.Haddad_Maia).in_sets(2)  # (   ) Tatjana Maria  OR  ( 14) Beatriz Haddad Maia
+    TEAM.draw(womens_singles).match('1.25').winner(
+        women.Kvitova).in_sets(2)  # ( 10) Petra Kvitova  OR  (   ) Elisabetta Cocciaretto
+    TEAM.draw(womens_singles).match('1.26').winner(women.Waltert).in_sets(
+        3)  # (  Q) Simona Waltert  OR  (  Q) Elizabeth Mandlik
+    TEAM.draw(womens_singles).match('1.27').winner(women.Pera).in_sets(
+        3)  # (   ) Anett Kontaveit  OR  (   ) Bernarda Pera
+    TEAM.draw(womens_singles).match('1.28').winner(women.Vekic).in_sets(
+        2)  # (  Q) Dayana Yastremska  OR  ( 22) Donna Vekic
+    TEAM.draw(womens_singles).match('1.29').winner(women.Cirstea).in_sets(
+        2)  # ( 30) Sorana Cirstea  OR  (   ) Jasmine Paolini
+    TEAM.draw(womens_singles).match('1.30').winner(women.Baindl).in_sets(
+        2)  # (  Q) Olga Danilovic  OR  (   ) Kateryna Baindl
+    TEAM.draw(womens_singles).match('1.31').winner(women.Dodin).in_sets(2)  # (  W) Selena Janicijevic  OR  (   ) Dodin
+    TEAM.draw(womens_singles).match('1.32').winner(women.Jabeur).in_sets(
+        2)  # (   ) Lucia Bronzetti  OR  (  7) Ons Jabeur
+    TEAM.draw(womens_singles).match('1.34').winner(women.Podoroska).in_sets(3)  # (   ) Nadia Podoroska  OR  (  W) Ponchet
+    TEAM.draw(womens_singles).match('1.35').winner(women.Teichmann).in_sets(3)  # (   ) Sara Errani  OR  (   ) Jil Teichmann
+    TEAM.draw(womens_singles).match('1.36').winner(women.Begu).in_sets(2)  # (   ) Anna Bondar  OR  ( 27) Irina-Camelia Begu
+    TEAM.draw(womens_singles).match('1.37').winner(women.Linette).in_sets(2)  # ( 21) Magda Linette  OR  (   ) Leylah Fernandez
+    TEAM.draw(womens_singles).match('1.38').winner(women.Sasnovich).in_sets(2)  # (  Q) C.Tauson  OR  (   ) Aliaksandra Sasnovich
+    TEAM.draw(womens_singles).match('1.39').winner(women.Jeanjean).in_sets(3)  # (  W) Leolia Jeanjean  OR  (  W) Kimberly Birrell
+    TEAM.draw(womens_singles).match('1.40').winner(women.Bencic).in_sets(2)  # (  L) Elina Avanesyan  OR  ( 12) Belinda Bencic
+    TEAM.draw(womens_singles).match('1.41').winner(
+        women.Samsonova).in_sets(2)  # ( 15) Liudmila Samsonova  OR  (   ) Katie Volynets
+    TEAM.draw(womens_singles).match('1.42').winner(
+        women.Fruhvirtova_Linda).in_sets(3)  # (   ) Anastasia Pavlyuchenkova  OR  (   ) Linda Fruhvirtova
+    TEAM.draw(womens_singles).match('1.43').winner(women.Sherif).in_sets(3)  # (   ) Mayar Sherif  OR  (   ) Madison Brengle
+    TEAM.draw(womens_singles).match('1.44').winner(
+        women.Potapova).in_sets(2)  # (  Q) Taylor Townsend  OR  ( 24) Anastasia Potapova
+    TEAM.draw(womens_singles).match('1.45').winner(women.Mertens).in_sets(2)  # ( 28) Elise Mertens  OR  (  L) V.Hruncakova
+    TEAM.draw(womens_singles).match('1.46').winner(women.Bogdan).in_sets(3)  # (   ) Catherine McNally  OR  (   ) Ana Bogdan
+    TEAM.draw(womens_singles).match('1.47').winner(women.Giorgi).in_sets(3)  # (   ) Alize Cornet  OR  (   ) Camila Giorgi
+    TEAM.draw(womens_singles).match('1.48').winner(women.Pegula).in_sets(2)  # (   ) Danielle Collins  OR  (  3) Jessica Pegula
+    TEAM.draw(womens_singles).match('1.49').winner(women.Garcia).in_sets(2)  # (  5) Caroline Garcia  OR  (   ) Xinyu Wang
+    TEAM.draw(womens_singles).match('1.50').winner(
+        women.Bonaventure).in_sets(3)  # (   ) Anna Blinkova  OR  (   ) Ysaline Bonaventure
+    TEAM.draw(womens_singles).match('1.51').winner(women.Parrizas_Diaz).in_sets(2)  # (   ) Nuria Parrizas Diaz  OR  (  Q) Storm Hunter
+    TEAM.draw(womens_singles).match('1.52').winner(women.Trevisan).in_sets(2)  # (   ) Svitolina  OR  ( 26) Martina Trevisan
+    TEAM.draw(womens_singles).match('1.53').winner(
+        women.Ostapenko).in_sets(2)  # ( 17) Jelena Ostapenko  OR  (   ) Tereza Martincova
+    TEAM.draw(womens_singles).match('1.54').winner(
+        women.Siniakova).in_sets(3)  # (   ) Peyton Stearns  OR  (   ) Katerina Siniakova
+    TEAM.draw(womens_singles).match('1.55').winner(women.Vondrousova).in_sets(3)  # (   ) Marketa Vondrousova  OR  (   ) Alycia Parks
+    TEAM.draw(womens_singles).match('1.56').winner(women.Kasatkina).in_sets(2)  # (   ) Jule Niemeier  OR  (  9) Daria Kasatkina
+    TEAM.draw(womens_singles).match('1.57').winner(
+        women.Pliskova).in_sets(2)  # ( 16) Karolina Pliskova  OR  (   ) Sloane Stephens
+    TEAM.draw(womens_singles).match('1.58').winner(women.Gracheva).in_sets(3)  # (   ) Varvara Gracheva  OR  (   ) Dalma Galfi
+    TEAM.draw(womens_singles).match('1.59').winner(women.Putintseva).in_sets(3)  # (   ) Yulia Putintseva  OR  (   ) Maryna Zanevska
+    TEAM.draw(womens_singles).match('1.60').winner(women.Zheng).in_sets(2)  # (  Q) Tamara Zidansek  OR  ( 19) Qinwen Zheng
+    TEAM.draw(womens_singles).match('1.61').winner(women.Zhang_Shuai).in_sets(2)  # ( 29) Shuai Zhang  OR  (   ) Magdalena Frech
+    TEAM.draw(womens_singles).match('1.62').winner(women.Rakhimova).in_sets(2)  # (  Q) Sara Bejlek  OR  (   ) Kamilla Rakhimova
+    TEAM.draw(womens_singles).match('1.63').winner(women.Udvardy).in_sets(3)  # (   ) Panna Udvardy  OR  (  Q) I.Shymanovich
+    TEAM.draw(womens_singles).match('1.64').winner(women.Sabalenka).in_sets(2)  # (   ) Marta Kostyuk  OR  (  2) Aryna Sabalenka
 
     return TeamLightHouse

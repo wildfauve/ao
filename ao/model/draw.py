@@ -37,9 +37,11 @@ class Draw:
 
     def __init__(self,
                  name,
+                 fn_symbol,
                  best_of,
                  tournament: tournament_event.TournamentEvent):
         self.name = name
+        self.fn_symbol = fn_symbol
         self.number_of_matches = None
         self.best_of = best_of
         self.rounds = []

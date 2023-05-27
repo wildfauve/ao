@@ -1,8 +1,17 @@
+import sys
 from ao.fantasy.teams import *
+from ao.fantasy import helpers
 from ao.players import atp_players as men, wta_players as women
+
+this = sys.modules[__name__]
 
 TEAM = TeamFauve
 def team_fauve(mens_singles, womens_singles):
+    helpers.selection_fn_caller(this, [mens_singles, womens_singles])
+    return TEAM
+
+
+def mens_singles_round_1(mens_singles):
     # Round 1
     TEAM.draw(mens_singles).match('1.1').winner(men.Alcaraz).in_sets(3)  # (  1) Carlos Alcaraz  OR  (  Q) Cobolli
     TEAM.draw(mens_singles).match('1.2').winner(men.OConnell).in_sets(4)  # (   ) Christopher O'Connell  OR  (   ) Taro Daniel
@@ -71,6 +80,9 @@ def team_fauve(mens_singles, womens_singles):
     TEAM.draw(mens_singles).match('1.63').winner(men.Pella).in_sets(4)  # (   ) Quentin Halys  OR  (   ) Guido Pella
     TEAM.draw(mens_singles).match('1.64').winner(men.Medvedev).in_sets(3)  # (  Q) T.Seyboth Wild  OR  (  2) Daniil Medvedev
 
+    return TEAM
+
+def womens_singles_round_1(womens_singles):
     TEAM.draw(womens_singles).match('1.1').winner(women.Swiatek).in_sets(2)  # (  1) Iga Swiatek  OR  (   ) Cristina Bucsa
     TEAM.draw(womens_singles).match('1.2').winner(women.Liu).in_sets(2)  # (  Q) Y.In-Albon  OR  (   ) Claire Liu
     TEAM.draw(womens_singles).match('1.3').winner(women.Peterson).in_sets(3)  # (   ) Rebecca Peterson  OR  (  Q) F.Ferro
@@ -150,6 +162,5 @@ def team_fauve(mens_singles, womens_singles):
     TEAM.draw(womens_singles).match('1.63').winner(women.Udvardy).in_sets(3)  # (   ) Panna Udvardy  OR  (  Q) I.Shymanovich
     TEAM.draw(womens_singles).match('1.64').winner(women.Sabalenka).in_sets(2)  # (   ) Marta Kostyuk  OR  (  2) Aryna Sabalenka
 
-
-    return TeamFauve
+    return TEAM
 

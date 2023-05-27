@@ -118,6 +118,8 @@ def _apply_fantasy(tournie):
         echo.echo(f"No fantasy selections for {tournie.name}")
         return
 
+    breakpoint()
+
     return selections.apply(fantasy_module, mens_singles, womens_singles)
 
 
