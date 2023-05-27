@@ -7,9 +7,9 @@ def mens_draw_round_1():
             (3, atp_players.Tsitsipas, atp_players.Sinner),
             (4, atp_players.Lehecka, atp_players.Auger_Aliassime),
             (5, atp_players.Rublev, atp_players.Rune),
-            (6, atp_players.Minaur, atp_players.Djokovic),
+            (6, atp_players.De_Minaur, atp_players.Djokovic),
             (7, atp_players.Shelton, atp_players.Wolf),
-            (8, atp_players.Agut, atp_players.Paul)]
+            (8, atp_players.Bautista_Agut, atp_players.Paul)]
 
 
 def womens_draw_round_1():

@@ -9,9 +9,9 @@ def team_polar_precision(mens_singles, womens_singles):
     TeamPolarPrecision.draw(mens_singles).match("1.3").winner(Tsitsipas).in_sets(4)
     TeamPolarPrecision.draw(mens_singles).match("1.4").winner(Auger_Aliassime).in_sets(4)
     TeamPolarPrecision.draw(mens_singles).match("1.5").winner("Rublev").in_sets(4)
-    TeamPolarPrecision.draw(mens_singles).match("1.6").winner(Minaur).in_sets(5)
+    TeamPolarPrecision.draw(mens_singles).match("1.6").winner(De_Minaur).in_sets(5)
     TeamPolarPrecision.draw(mens_singles).match("1.7").winner("Shelton").in_sets(5)
-    TeamPolarPrecision.draw(mens_singles).match("1.8").winner(Agut).in_sets(5)
+    TeamPolarPrecision.draw(mens_singles).match("1.8").winner(Bautista_Agut).in_sets(5)
 
     TeamPolarPrecision.draw(womens_singles).match("1.1").winner(Rybakina).in_sets(3)
     TeamPolarPrecision.draw(womens_singles).match("1.2").winner(Gauff).in_sets(3)

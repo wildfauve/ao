@@ -11,7 +11,7 @@ def team_hero_hangouts(mens_singles, womens_singles):
     TeamHeroHangouts.draw(mens_singles).match("1.5").winner("Rune").in_sets(5)
     TeamHeroHangouts.draw(mens_singles).match("1.6").winner("Djokovic").in_sets(5)
     TeamHeroHangouts.draw(mens_singles).match("1.7").winner("Wolf").in_sets(4)
-    TeamHeroHangouts.draw(mens_singles).match("1.8").winner(Agut).in_sets(5)
+    TeamHeroHangouts.draw(mens_singles).match("1.8").winner(Bautista_Agut).in_sets(5)
 
     TeamHeroHangouts.draw(womens_singles).match("1.1").winner(Swiatek).in_sets(3)
     TeamHeroHangouts.draw(womens_singles).match("1.2").winner(Gauff).in_sets(3)

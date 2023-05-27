@@ -9,7 +9,7 @@ def team_bear_necessities(mens_singles, womens_singles):
     TeamBearNecessities.draw(mens_singles).match("1.3").winner(Tsitsipas).in_sets(4)
     TeamBearNecessities.draw(mens_singles).match("1.4").winner(Auger_Aliassime).in_sets(4)
     TeamBearNecessities.draw(mens_singles).match("1.5").winner("Rublev").in_sets(4)
-    TeamBearNecessities.draw(mens_singles).match("1.6").winner(Minaur).in_sets(5)
+    TeamBearNecessities.draw(mens_singles).match("1.6").winner(De_Minaur).in_sets(5)
     TeamBearNecessities.draw(mens_singles).match("1.7").winner("Wolf").in_sets(5)
     TeamBearNecessities.draw(mens_singles).match("1.8").winner("Paul").in_sets(5)
 

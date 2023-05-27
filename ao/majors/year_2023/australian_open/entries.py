@@ -12,11 +12,11 @@ def mens_singles_entries():
             (atp_players.Auger_Aliassime, 6),
             (atp_players.Rublev, 5),
             (atp_players.Rune, 9),
-            (atp_players.Minaur, 22),
+            (atp_players.De_Minaur, 22),
             (atp_players.Djokovic, 4),
             (atp_players.Shelton, None),
             (atp_players.Wolf, None),
-            (atp_players.Agut, 24),
+            (atp_players.Bautista_Agut, 24),
             (atp_players.Paul, None)]
 
 

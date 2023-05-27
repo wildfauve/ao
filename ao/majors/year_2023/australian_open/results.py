@@ -47,9 +47,9 @@ def mens_singles_results(draw):
     draw.for_round(1).for_match(3).score(Tsitsipas, (6, 6, 3, 4, 6)).score(Sinner, (4, 4, 6, 6, 3))
     draw.for_round(1).for_match(4).score(Lehecka, (4, 6, 7, 7)).score(Auger_Aliassime, (6, 3, 6, 6))
     draw.for_round(1).for_match(5).score(Rublev, (6, 3, 6, 4, 7)).score(Rune, (3, 6, 3, 6, 6))
-    draw.for_round(1).for_match(6).score(Minaur, (2, 1, 1)).score(Djokovic, (6, 6, 6))
+    draw.for_round(1).for_match(6).score(De_Minaur, (2, 1, 1)).score(Djokovic, (6, 6, 6))
     draw.for_round(1).for_match(7).score(Shelton, (6, 6, 6, 7, 6)).score(Wolf, (7, 2, 7, 6, 2))
-    draw.for_round(1).for_match(8).score(Agut, (2, 6, 2, 5)).score(Paul, (6, 4, 6, 7))
+    draw.for_round(1).for_match(8).score(Bautista_Agut, (2, 6, 2, 5)).score(Paul, (6, 4, 6, 7))
 
     # Quarter Final Results
 

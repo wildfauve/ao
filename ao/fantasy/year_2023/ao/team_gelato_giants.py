@@ -12,7 +12,7 @@ def team_gelato_giants(mens_singles, womens_singles):
     TeamGelatoGiants.draw(mens_singles).match("1.6").winner(Djokovic).in_sets(4)
     TeamGelatoGiants.draw(mens_singles).match("1.7").winner(Wolf).in_sets(3)
 
-    TeamGelatoGiants.draw(mens_singles).match("1.8").winner(Agut).in_sets(4)
+    TeamGelatoGiants.draw(mens_singles).match("1.8").winner(Bautista_Agut).in_sets(4)
 
     TeamGelatoGiants.draw(womens_singles).match("1.1").winner(Swiatek).in_sets(2)
     TeamGelatoGiants.draw(womens_singles).match("1.2").winner(Gauff).in_sets(2)
