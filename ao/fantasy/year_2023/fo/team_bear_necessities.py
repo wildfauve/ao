@@ -12,6 +12,14 @@ def team_bear_necessities(mens_singles, womens_singles):
     helpers.selection_fn_caller(this, [mens_singles, womens_singles])
     return TEAM
 
+def mens_singles_round_2(mens_singles):
+    return TEAM
+
+
+def womens_singles_round_2(mens_singles):
+    return TEAM
+
+
 def mens_singles_round_1(mens_singles):
     TEAM.draw(mens_singles).match('1.1').winner(men.Alcaraz).in_sets(4)  # (  1) Carlos Alcaraz  OR  (  Q) Cobolli
     TEAM.draw(mens_singles).match('1.2').winner(men.OConnell).in_sets(5)  # (   ) Christopher O'Connell  OR  (   ) Taro Daniel

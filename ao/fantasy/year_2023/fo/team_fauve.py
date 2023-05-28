@@ -10,6 +10,12 @@ def team_fauve(mens_singles, womens_singles):
     helpers.selection_fn_caller(this, [mens_singles, womens_singles])
     return TEAM
 
+def mens_singles_round_2(mens_singles):
+    return TEAM
+
+
+def womens_singles_round_2(mens_singles):
+    return TEAM
 
 def mens_singles_round_1(mens_singles):
     # Round 1

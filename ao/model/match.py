@@ -35,9 +35,13 @@ class Match:
         return f"{self.player_and_seed(for_entry)} {self.show_set_and_winner(for_entry)}"
 
     def player_and_seed(self, for_entry):
+        if not for_entry:
+            return "TBD"
         return f"({for_entry.seeding()}) {for_entry.player().name}"
 
     def player_klass_and_seed(self, for_entry):
+        if not for_entry:
+            return "TBD"
         return f"({for_entry.seeding()}) {for_entry.player().klass_name}"
 
     def show_set_and_winner(self, for_player: entry.Entry):

@@ -13,6 +13,14 @@ def team_clojo(mens_singles, womens_singles):
     return TEAM
 
 
+def mens_singles_round_2(mens_singles):
+    return TEAM
+
+
+def womens_singles_round_2(mens_singles):
+    return TEAM
+
+
 def mens_singles_round_1(mens_singles):
     TEAM.draw(mens_singles).match('1.1').winner(men.Alcaraz).in_sets(3)  # (  1) Carlos Alcaraz  OR  (  Q) Cobolli
     TEAM.draw(mens_singles).match('1.2').winner(men.Daniel).in_sets(
@@ -124,6 +132,7 @@ def mens_singles_round_1(mens_singles):
     TEAM.draw(mens_singles).match('1.64').winner(men.Medvedev).in_sets(
         3)  # (  Q) T.Seyboth Wild  OR  (  2) Daniil Medvedev
 
+
 def womens_singles_round_1(womens_singles):
     TEAM.draw(womens_singles).match('1.1').winner(women.Swiatek).in_sets(
         2)  # (  1) Iga Swiatek  OR  (   ) Cristina Bucsa
@@ -143,7 +152,8 @@ def womens_singles_round_1(womens_singles):
         women.Kudermetova_Veronika).in_sets(2)  # ( 11) Veronika Kudermetova  OR  (   ) Anna Karolina Schmiedlova
     TEAM.draw(womens_singles).match('1.10').winner(women.Kucova).in_sets(
         3)  # (  L) Aliona Bolsova  OR  (   ) Kristina Kucova
-    TEAM.draw(womens_singles).match('1.11').winner(women.Mladenovic).in_sets(3)  # (  Q) K.Day  OR  (  W) Kristina Mladenovic
+    TEAM.draw(womens_singles).match('1.11').winner(women.Mladenovic).in_sets(
+        3)  # (  Q) K.Day  OR  (  W) Kristina Mladenovic
     TEAM.draw(womens_singles).match('1.12').winner(women.Keys).in_sets(2)  # (   ) Kaia Kanepi  OR  ( 20) Madison Keys
     TEAM.draw(womens_singles).match('1.13').winner(women.Kalinina).in_sets(
         2)  # ( 25) Anhelina Kalinina  OR  (  W) Diane Parry
