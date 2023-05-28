@@ -1,11 +1,11 @@
 from typing import List
 from ao.players import wta_players, atp_players
-from ao.model import draw
+from ao import model
 
 
-def add_results(draws: List[draw.Draw]):
-    mens_singles = draw.find_draw_by_cls(draw.MensSingles, draws)
-    womens_singles = draw.find_draw_by_cls(draw.WomensSingles, draws)
+def add_results(draws: List[model.Draw]):
+    mens_singles = model.find_draw_by_cls(model.MensSingles, draws)
+    womens_singles = model.find_draw_by_cls(model.WomensSingles, draws)
     mens_singles_results(mens_singles)
     womens_singles_results(womens_singles)
     return mens_singles, womens_singles
