@@ -1,31 +1,34 @@
 from typing import Tuple, Dict
-from functools import reduce, partial
-from bs4 import BeautifulSoup
+from functools import reduce
 
 from ao.players import atp_players as players
-from ao.util import fn
-from . import fo_draw_parser
+from .event_web_parser import fo_draw_parser
 
 
-def build_draw(entries_file=None, draws_file=None, results_file=None, for_rd=None):
+def build_draw(tournament: str,
+               entries_file=None,
+               draws_file=None,
+               results_file=None,
+               for_round=None,
+               scores_only=False):
     (_format_results(
         _format_brackets(
             _format_entries(
-                _match_number(fo_draw_parser.build_draw(for_rd)),
+                    _parser_for_event(tournament).build_draw(for_round, scores_only),
                 entries_file),
             draws_file),
         results_file))
 
 
-def _get_pages(urls):
-    return [(BeautifulSoup(open(f, encoding='UTF-8'), "html.parser"), draw) for f, draw in urls]
+def _parser_for_event(_tournament):
+    return fo_draw_parser
 
 
-def _match_number(matches):
-    for _, draw_matches in matches.items():
-        for num in range(0, len(draw_matches)):
-            draw_matches[num].set_match_number(num + 1)
-    return matches
+# def _match_number(matches):
+#     for _, draw_matches in matches.items():
+#         for num in range(0, len(draw_matches)):
+#             draw_matches[num].set_match_number(num + 1)
+#     return matches
 
 
 def _format_entries(draws: Dict, entries_file):
@@ -43,10 +46,10 @@ def _format_brackets(draws, draws_file):
     _write_file(draws_file, py)
     return draws
 
+
 def _format_results(draws, results_file):
     if not results_file:
         return draws
-
     py = reduce(_results_def, draws.items(), _results_mod_def())
     _write_file(results_file, py)
     return draws
@@ -80,6 +83,7 @@ def add_results(draws: List[draw.Draw]):
     
 """
 
+
 def _entry_def(py, draw_tuple):
     draw_name, matches = draw_tuple
     return reduce(_player_entry, matches, _entry_function(py, draw_name)) + f"\n{']':>4}"
@@ -92,14 +96,16 @@ def _bracket_def(py, draw_tuple):
 
 def _results_def(py, draw_tuple):
     draw_name, matches = draw_tuple
-    return reduce(_match_result, matches, _result_function(py, draw_name))
+    return reduce(_match_result, matches, _result_function(py, draw_name)) + f"\n{']':>4}"
 
 
 def _players_bracket(acc, match):
     return acc + match.match_format()
 
+
 def _match_result(acc, match):
     return acc + match.results_format(f"{'':>8}")
+
 
 def _entry_predicate(bracket_number, entry):
     return int(entry[0]) == bracket_number

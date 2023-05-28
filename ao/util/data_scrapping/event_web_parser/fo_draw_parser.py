@@ -1,5 +1,6 @@
 from typing import Tuple
 from functools import reduce, partial
+import re
 
 import requests
 import bs4.element
@@ -9,7 +10,9 @@ from dataclasses import dataclass
 from ao.players import atp_players, wta_players
 from ao.util import fn
 
-from . import value
+from ao.util.data_scrapping import value
+
+match_id_pattern = re.compile('matches\\/\\d+\\/\\w{2}(\\d+)')
 
 draw_map = {
     'FO2023WomensSingles': {'name': "womens_singles",
@@ -32,11 +35,11 @@ draws = [('https://www.rolandgarros.com/en-us/results/SM?round=1', 'FO2023MensSi
 
 # draws = [('ao/util/data_scrapping/data/fo_q_mens_with_results.html', 'FO2023QualMensSingles')]
 
-match_ids = []
+match_ids = {'mens_singles': [], 'womens_singles': []}
 
 
-def build_draw(for_rd):
-    return _brackets(_get_pages(draws), for_rd)
+def build_draw(for_rd, scores_only):
+    return _assign_match_numbers(_brackets(_get_pages(draws), for_rd, scores_only))
 
 
 def _get_pages(urls):
@@ -50,36 +53,48 @@ def _get_page(url_or_file):
     return BeautifulSoup(open(url_or_file, encoding='UTF-8'), "html.parser")
 
 
-def _brackets(pages, for_rd):
-    return reduce(partial(_singles_brackets, for_rd), pages, {})
+def _brackets(pages, for_rd, scores_only):
+    return reduce(partial(_singles_brackets, for_rd, scores_only), pages, {})
 
 
-def _singles_brackets(for_rd, acc, draw_tuple):
+def _assign_match_numbers(draws):
+    for draw, matches in draws.items():
+        min_number = min([_match_id_fn(m_id) for m_id in match_ids[draw_map[draw]['name']]])
+        for m in matches:
+            m.set_match_number_from_1(min_number)
+    return draws
+
+def _singles_brackets(for_rd, scores_only, acc, draw_tuple):
     draw, draw_name = draw_tuple
     links = draw.find_all('a')
     matches = [x for x in links if x.get('href') and draw_map[draw_name]['url_pattern'] in x.get('href')]
 
-    matches = sorted(fn.remove_none(map(partial(_match, draw_map[draw_name], for_rd), matches)), key=lambda m: m.href)
+    matches = sorted(fn.remove_none(map(partial(_match, draw_map[draw_name], for_rd, scores_only), matches)),
+                     key=lambda m: m.href)
 
     return {**acc, **{draw_name: matches}}
 
 
-def _match(draw_mapping, for_rd, match_html):
+def _match(draw_mapping, for_rd, scores_only, match_html):
     match_id = match_html.get('href')
     rd = _round(match_html)
     if for_rd and rd != for_rd:
         return None
-    if match_id in match_ids:
+    if match_id in match_ids[draw_mapping['name']]:
         return None
-    match_ids.append(match_id)
+    match_ids[draw_mapping['name']].append(match_id)
 
     bloc = match_html.find('div', class_='player-bloc')
-    return value.MatchBlock(href=match_id,
-                            html=bloc,
-                            round=rd,
-                            draw_attr_name=draw_mapping['name'],
-                            player1=_player_and_scoring_bloc(draw_mapping, bloc, 'team-a-content'),
-                            player2=_player_and_scoring_bloc(draw_mapping, bloc, 'team-b-content'))
+    match_bloc = value.MatchBlock(href=match_id,
+                                  html=bloc,
+                                  round=rd,
+                                  draw_attr_name=draw_mapping['name'],
+                                  player1=_player_and_scoring_bloc(draw_mapping, bloc, 'team-a-content'),
+                                  player2=_player_and_scoring_bloc(draw_mapping, bloc, 'team-b-content'),
+                                  match_id_fn=_match_id_fn)
+    if scores_only and not match_bloc.has_result():
+        return None
+    return match_bloc
 
 
 def _player_and_scoring_bloc(draw_mapping, player_bloc, klass):
@@ -104,3 +119,10 @@ def _player(draw_mapping, content):
     name = content.find('div', class_='name').text.lstrip().rstrip()
     scores = [s.contents[0] for s in content.find_all('div', class_='set')]
     return value.Player(name=name, seed=seed, player_module=draw_mapping['player_module'], scores=scores)
+
+
+def _match_id_fn(match_id):
+    mtch_id = re.search(match_id_pattern, match_id)
+    if not mtch_id:
+        breakpoint()
+    return int(mtch_id[1])

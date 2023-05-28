@@ -1,5 +1,7 @@
 from typing import Callable, List
 from dataclasses import dataclass
+import re
+
 import bs4
 
 from ao.players import players
@@ -17,11 +19,11 @@ class Player:
 
     def __post_init__(self):
         self.player_klass = players.match_player_by_name(self.name, self.player_module)
+        if not self.player_klass:
+            breakpoint()
 
     def player_entry_klass_name(self):
-        if self.player_klass:
-            return self.player_klass.klass_name
-        breakpoint()
+        return self.player_klass.klass_name
 
     def entry_definition(self):
         return f"{'':>12}({self.player_definition()}, {self._seed()}),\n"
@@ -45,15 +47,21 @@ class Player:
 @dataclass
 class MatchBlock:
     href: str
+    match_id_fn: Callable
     html: bs4.element.Tag
     round: int
     draw_attr_name: str
     player1: Player
     player2: Player
     match_number: int = None
+    match_id: int = None
 
-    def set_match_number(self, num):
-        self.match_number = num
+    def __post_init__(self):
+        self.match_id = self.match_id_fn(self.href)
+        return self
+
+    def set_match_number_from_1(self, min_match):
+        self.match_number = (self.match_id - min_match) + 1
         return self
 
     def __hash__(self):
@@ -75,3 +83,6 @@ class MatchBlock:
         """
         return f"{spacing}draw.for_round({self.round}).for_match({self.match_number}).score({self.player1.score()}).score({self.player2.score()}),\n"
         pass
+
+    def has_result(self):
+        return self.player1.scores and self.player2.scores

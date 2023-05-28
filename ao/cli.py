@@ -144,14 +144,23 @@ def player_scrap(file):
 
 
 @click.command()
+@click.option("--tournament", "-t",
+              type=click.Choice(tournament_names()),
+              help="The name of the tournament")
 @click.option("--entries_file", "-e", type=str, default=None, help="Entries class file")
 @click.option("--draws_file", "-d", type=str, default=None, help="draws class file")
 @click.option("--results_file", "-s", type=str, default=None, help="results file")
 @click.option("--round_number", "-r", type=int, default=None, help="The round number to show.")
-def draw_scrap(entries_file, draws_file, results_file, round_number):
+@click.option('--scores-only/--full-draw', "-o/-f", default=False)
+def draw_scrap(tournament, entries_file, draws_file, results_file, round_number, scores_only):
     """
     """
-    command.draw_scrap(entries_file, draws_file, results_file, round_number)
+    command.draw_scrap(tournament=tournament,
+                       entries_file=entries_file,
+                       draws_file=draws_file,
+                       results_file=results_file,
+                       round_number=round_number,
+                       scores_only=scores_only)
     pass
 
 

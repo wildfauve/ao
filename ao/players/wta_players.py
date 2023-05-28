@@ -283,7 +283,7 @@ Andreeva_Mirra = Player("Mirra Andreeva", tour_symbol=TOUR, klass_name="Andreeva
 Parry = Player("Diane Parry", tour_symbol=TOUR, klass_name="Parry")
 
 Andreeva_Erika = Player("Erika Andreeva", tour_symbol=TOUR, klass_name="Andreeva_Erika",
-                        alt_names=["A.Andreeva"])
+                        alt_names=["E.Andreeva"])
 
 Yang = Player("Zhaoxuan Yang", tour_symbol=TOUR, klass_name="Yang")
 

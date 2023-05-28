@@ -7,7 +7,7 @@ from ao.fantasy import teams, selections
 from ao.majors import tournaments
 from ao import fantasy
 from ao.util import echo
-from ao.util.data_scrapping import atp_rankings, fo_2023_draw
+from ao.util.data_scrapping import atp_rankings, draw_parser
 
 
 def leaderboard_df(tournament_name, board_type, round_number=None) -> pl.DataFrame:
@@ -64,14 +64,13 @@ def fantasy_score_template(tournament_name, draw_name, round_number, template_na
     if format == 'csv':
         with open(f"{draw_name}-{round_number}.csv", 'w', newline='') as csvfile:
             writer = csv.writer(csvfile, delimiter=',',
-                                    quotechar=',', quoting=csv.QUOTE_MINIMAL)
+                                quotechar=',', quoting=csv.QUOTE_MINIMAL)
             writer.writerow(['draw', 'match', 'winner', 'sets', 'match up'])
             for row in results:
                 writer.writerow(row)
     else:
         for result in results:
             echo.echo(result)
-
 
 
 def explain_team_points(tournament_name, team_name):
@@ -90,8 +89,13 @@ def player_scrap(file):
     atp_rankings.build_players_file(file)
 
 
-def draw_scrap(entries_file, draws_file, results_file, round_number):
-    fo_2023_draw.build_draw(entries_file, draws_file, results_file, round_number)
+def draw_scrap(tournament, entries_file, draws_file, results_file, round_number, scores_only):
+    draw_parser.build_draw(tournament=tournament,
+                           entries_file=entries_file,
+                           draws_file=draws_file,
+                           results_file=results_file,
+                           for_round=round_number,
+                           scores_only=scores_only)
 
 
 def show_draw(tournament_name, team_name, round):
