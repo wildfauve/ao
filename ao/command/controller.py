@@ -15,7 +15,7 @@ def leaderboard_df(tournament_name, board_type, round_number=None) -> pl.DataFra
     if not tournie:
         return
 
-    return leaderboard.current_leaderboard(_apply_fantasy(_start(tournie)), board_type, round_number)
+    return leaderboard.current_leaderboard(tournie, _apply_fantasy(_start(tournie)), board_type, round_number)
 
 
 def show_round(tournament_name, draw_name, round_number):

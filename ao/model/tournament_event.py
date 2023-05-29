@@ -33,3 +33,6 @@ class TournamentEvent:
             draw.build_graph(g)
         return g
 
+
+    def fantasy_points_schedule(self, rd_number):
+        return self.draws[0].fantasy_points_schedule(rd_number)

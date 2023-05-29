@@ -1,5 +1,5 @@
 from typing import Tuple, List
-from functools import partial
+from functools import partial, reduce
 import math
 from rdflib import URIRef, Graph, RDF, Literal
 
@@ -71,8 +71,8 @@ class Draw:
         self._build_draw(1, number_of_matches)
         return self
 
-    def fantasy_points_strategy(self, points_strat):
-        self.points_strategy = points_strat
+    def fantasy_points_strategy(self, points_strategy):
+        self.points_strategy = points_strategy
         return self
 
     def fantasy_round_points_accum_strategy(self, accum_strat):
@@ -109,6 +109,9 @@ class Draw:
         # This is the next round
         # rd_id is indexed from 1, so next rd in rounds list is the same number
         return self.rounds[rd_id].add_winner_to_match(next_rd_match_number, for_match.winner())
+
+    def fantasy_points_schedule(self, rd_number):
+        return self.points_strategy.calc_points_schedule(self.number_of_matches)
 
     def _next_rd_match_number(self, rd_id, this_rd_match_number):
         if len(self.rounds[rd_id].matches) == 1:
