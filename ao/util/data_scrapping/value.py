@@ -1,12 +1,10 @@
 from typing import Callable, List
 from dataclasses import dataclass
-import re
 
 import bs4
 
 from ao.players import players
 from ao import model
-from ao.util import fn
 
 
 @dataclass
@@ -14,6 +12,7 @@ class Player:
     name: str
     player_module: Callable
     scores: List = None
+    match_state: model.MatchState = None
     seed: str = None
     player_klass: model.Player = None
 
@@ -76,13 +75,26 @@ class MatchBlock:
     def match_format(self):
         return f"{'':>12}({self.match_number}, {self.player1.player_definition()}, {self.player2.player_definition()}),  \n"
 
-    def results_format(self, spacing):
+    def results_format(self, sp):
         """
         mens_singles.for_round(1).for_match(64).score(men.Seyboth_Wild, ()).score(men.Medvedev, ())
         :return:
         """
-        return f"{spacing}draw.for_round({self.round}).for_match({self.match_number}).score({self.player1.score()}).score({self.player2.score()}),\n"
+        return f"""{sp}({self._rd_and_match()}
+{sp}.score({self.player1.score()})
+{sp}.score({self.player2.score()}){self._has_retirement(sp)}),
+
+"""
         pass
+
+    def _rd_and_match(self):
+        return f"draw.for_round({self.round}).for_match({self.match_number})"
+
+    def _has_retirement(self, sp):
+        if not self.player1.match_state and not self.player2.match_state:
+            return ""
+        retired_player = self.player1 if self.player1.match_state == model.MatchState.RET else self.player2
+        return f"\n{sp}.retirement({retired_player.player_definition()})"
 
     def has_result(self):
         return self.player1.scores and self.player2.scores

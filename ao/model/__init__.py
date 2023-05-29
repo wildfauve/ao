@@ -11,3 +11,7 @@ from .draw import (
 from .fantasy import (
     Selection
 )
+
+from .match import (
+    MatchState
+)

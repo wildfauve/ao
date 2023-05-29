@@ -5,21 +5,24 @@ from enum import Enum
 from ao import model
 
 
-class PointsStrategy(Enum):
-    pass
-
-
-class Points521(PointsStrategy):
+class Points521(Enum):
     NO_POINTS = ('', 0)
     WINNER = ('correct-winner', 5)
     NUMBER_OF_SETS = ('correct-sets', 2)
     LOST_WITH_MAX_SETS = ('bonus-for-loss-in-max-sets', 1)
 
 
-class Points1HalfHalf(PointsStrategy):
+class Points1HalfHalf(Enum):
     NO_POINTS = ('', 0)
     WINNER = ('correct-winner', 1)
     NUMBER_OF_SETS = ('correct-sets', 0.5)
+    LOST_WITH_MAX_SETS = ('bonus-for-loss-in-max-sets', 0.5)
+
+
+class Points21Half(Enum):
+    NO_POINTS = ('', 0)
+    WINNER = ('correct-winner', 2)
+    NUMBER_OF_SETS = ('correct-sets', 1)
     LOST_WITH_MAX_SETS = ('bonus-for-loss-in-max-sets', 0.5)
 
 
@@ -32,6 +35,12 @@ class PointsStrategyCalculator:
 
 
 class WinNumSetsLossMaxSets(PointsStrategyCalculator):
+    """
+    Strategy for calculating Fantasy Points.
+    + n points for selecting the correct winner
+    + n points for selecting the correct number of sets
+    + n points for not selecting the correct winner, but getting the sets correct.
+    """
 
     def calc(self, selection: model.Selection, explain: bool = False) -> Union[int, Dict]:
         result = [strategy(selection, explain) for strategy in self.points_strategy_fns()]
@@ -78,10 +87,10 @@ class WinNumSetsLossMaxSets(PointsStrategyCalculator):
                           self.pts_strategy.LOST_WITH_MAX_SETS)
 
     def _calc(self,
-              points_type: PointsStrategy,
+              points_type: Union[Points521, Points1HalfHalf],
               rd: int,
               explain: bool = False,
-              when_no_points: PointsStrategy = None) -> Union[int, Dict]:
+              when_no_points: Union[Points521, Points1HalfHalf] = None) -> Union[int, Dict]:
         points_name, value = points_type.value
         if points_type == self.pts_strategy.NO_POINTS:
             return value if not explain else {when_no_points.value[0]: value}
@@ -129,3 +138,7 @@ def strategy_1_point5_point5_double():
 
 def strategy_5_2_1_double():
     return WinNumSetsLossMaxSets(Points521, doubling_per_round_strategy)
+
+
+def strategy_2_1_point5_double():
+    return WinNumSetsLossMaxSets(Points21Half, doubling_per_round_strategy)

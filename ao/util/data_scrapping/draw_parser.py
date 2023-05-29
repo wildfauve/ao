@@ -118,14 +118,7 @@ def _player_entry(py, match):
 def _player_definition(entry: Tuple[str, str, str]):
     if not entry:
         return f"players.NOT-FOUND"
-    return f"players.{_player_entry_klass_name(entry[1])}"
-
-
-def _player_entry_klass_name(name):
-    formatted_name = _format_klass_name(name)
-    if formatted_name not in dir(players):
-        return f"{formatted_name}--FIXME"
-    return formatted_name
+    return f"players.{entry[1].klass_name}"
 
 
 def _entry_function(py, name):

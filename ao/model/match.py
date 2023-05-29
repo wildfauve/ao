@@ -1,8 +1,12 @@
 from typing import Callable, Tuple
 import math
+from enum import Enum
 
 from . import player, set, entry, draw
 from ao.util import fn, error, echo
+
+class MatchState(Enum):
+    RET = 'retired'
 
 
 def split_match_id(match_id):
@@ -20,6 +24,7 @@ class Match:
         self.scores = None
         self.sets = []
         self.match_winner = None
+        self.entry_retirement = None
 
     def show(self, table):
         table.add_row(self.match_id,
@@ -119,15 +124,23 @@ class Match:
         self.winner()
         return self
 
+    def retirement(self, retired_player):
+        pl = draw.find_entry_for_player(retired_player, [self.player1, self.player2])
+        self.entry_retirement = pl
+        self.winner()
+        return self
+
     def number_of_sets_played(self):
         return len(fn.remove_none([s.winner for s in self.sets]))
 
     def max_sets_played(self):
-        return self.best_of == self.number_of_sets_played()
+        return self.best_of == self.number_of_sets_played() or self.entry_retirement
 
     def is_finished(self) -> bool:
         if not self.scores:
             return False
+        if self.entry_retirement:
+            return True
         set_winners = fn.remove_none([s.determine_winner() for s in self.sets])
         if not set_winners:
             return False
@@ -167,6 +180,11 @@ class Match:
         return self.player1
 
     def _determine_winner(self):
+        if self.entry_retirement:
+            if self.entry_retirement == self.player1:
+                return self.player2
+            else:
+                return self.player1
         winners_by_sets = fn.remove_none([s.winner for s in self.sets])
         if winners_by_sets.count(self.player1) > winners_by_sets.count(self.player2):
             return self.player1

@@ -13,7 +13,7 @@ FO2023MensSingles = (draw.MensSingles(name="MensSingles",
                      .draw_size(number_of_matches=64)
                      .add_entries(entries.mens_singles_entries())
                      .init_draw(first_round_draw.mens_draw_round_1())
-                     .fantasy_points_strategy(points_strategy.strategy_1_point5_point5_double()))
+                     .fantasy_points_strategy(points_strategy.strategy_2_1_point5_double()))
 
 FO2023WomensSingles = (draw.WomensSingles("WomensSingles",
                                           fn_symbol="womens_singles",
@@ -22,7 +22,7 @@ FO2023WomensSingles = (draw.WomensSingles("WomensSingles",
                        .draw_size(number_of_matches=64)
                        .add_entries(entries.womens_singles_entries())
                        .init_draw(first_round_draw.womens_draw_round_1())
-                       .fantasy_points_strategy(points_strategy.strategy_1_point5_point5_double()))
+                       .fantasy_points_strategy(points_strategy.strategy_2_1_point5_double()))
 
 FrenchOpen2023.has_draw(FO2023WomensSingles).has_draw(FO2023MensSingles)
 

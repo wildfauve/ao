@@ -229,7 +229,7 @@ def womens_singles_entries():
         (wta_players.Potapova, '24'),
         (wta_players.Mertens, '28'),
         (wta_players.Hruncakova, 'L'),
-        (wta_players.Mcnally, None),
+        (wta_players.Osorio, "L"),
         (wta_players.Bogdan, None),
         (wta_players.Cornet, None),
         (wta_players.Giorgi, None),

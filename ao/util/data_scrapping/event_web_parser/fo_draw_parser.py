@@ -3,10 +3,9 @@ from functools import reduce, partial
 import re
 
 import requests
-import bs4.element
 from bs4 import BeautifulSoup
-from dataclasses import dataclass
 
+from ao import model
 from ao.players import atp_players, wta_players
 from ao.util import fn
 
@@ -30,8 +29,8 @@ round_map = {'first round': 1,
              'second round': 2,
              'third round': 3}
 
-draws = [('https://www.rolandgarros.com/en-us/results/SM?round=1', 'FO2023MensSingles'),
-         ('https://www.rolandgarros.com/en-us/results/SD?round=1', 'FO2023WomensSingles')]
+draws = [("https://www.rolandgarros.com/en-us/results/SM?round={}", 'FO2023MensSingles'),
+         ("https://www.rolandgarros.com/en-us/results/SD?round={}", 'FO2023WomensSingles')]
 
 # draws = [('ao/util/data_scrapping/data/fo_q_mens_with_results.html', 'FO2023QualMensSingles')]
 
@@ -39,17 +38,16 @@ match_ids = {'mens_singles': [], 'womens_singles': []}
 
 
 def build_draw(for_rd, scores_only):
-    return _assign_match_numbers(_brackets(_get_pages(draws), for_rd, scores_only))
+    return _assign_match_numbers(_brackets(_get_pages(draws, for_rd), for_rd, scores_only))
 
 
-def _get_pages(urls):
-    return [(_get_page(url), draw) for url, draw in
-            urls]
+def _get_pages(urls, for_rd):
+    return [(_get_page(url, for_rd), draw) for url, draw in urls]
 
 
-def _get_page(url_or_file):
+def _get_page(url_or_file, for_rd):
     if 'http' in url_or_file:
-        return BeautifulSoup(requests.get(url_or_file).text, "html.parser")
+        return BeautifulSoup(requests.get(url_or_file.format(for_rd)).text, "html.parser")
     return BeautifulSoup(open(url_or_file, encoding='UTF-8'), "html.parser")
 
 
@@ -118,7 +116,12 @@ def _player(draw_mapping, content):
 
     name = content.find('div', class_='name').text.lstrip().rstrip()
     scores = [s.contents[0] for s in content.find_all('div', class_='set')]
-    return value.Player(name=name, seed=seed, player_module=draw_mapping['player_module'], scores=scores)
+    match_state = model.MatchState.RET if content('span', class_='abandon') else None
+    return value.Player(name=name,
+                        seed=seed,
+                        match_state=match_state,
+                        player_module=draw_mapping['player_module'],
+                        scores=scores)
 
 
 def _match_id_fn(match_id):

@@ -117,7 +117,7 @@ def womens_draw_round_1():
             (43, wta_players.Sherif, wta_players.Brengle),
             (44, wta_players.Townsend, wta_players.Potapova),
             (45, wta_players.Mertens, wta_players.Hruncakova),
-            (46, wta_players.Mcnally, wta_players.Bogdan),
+            (46, wta_players.Osorio, wta_players.Bogdan),
             (47, wta_players.Cornet, wta_players.Giorgi),
             (48, wta_players.Collins, wta_players.Pegula),
             (49, wta_players.Garcia, wta_players.Wang_Xinyu),

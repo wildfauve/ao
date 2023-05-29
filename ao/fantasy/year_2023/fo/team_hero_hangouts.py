@@ -17,7 +17,7 @@ def mens_singles_round_2(mens_singles):
     return TEAM
 
 
-def womens_singles_round_2(mens_singles):
+def womens_singles_round_2(womens_singles):
     return TEAM
 
 def mens_singles_round_1(mens_singles):
@@ -135,7 +135,7 @@ def womens_singles_round_1(womens_singles):
     TEAM.draw(womens_singles).match('1.43').winner(women.Sherif).in_sets(3)  # (   ) Mayar Sherif  OR  (   ) Madison Brengle
     TEAM.draw(womens_singles).match('1.44').winner(women.Potapova).in_sets(3)  # (  Q) Taylor Townsend  OR  ( 24) Anastasia Potapova
     TEAM.draw(womens_singles).match('1.45').winner(women.Mertens).in_sets(3)  # ( 28) Elise Mertens  OR  (  L) V.Hruncakova
-    TEAM.draw(womens_singles).match('1.46').winner(women.Bogdan).in_sets(3)  # (   ) Catherine McNally  OR  (   ) Ana Bogdan
+    TEAM.draw(womens_singles).match('1.46').winner(women.Bogdan).in_sets(3)  # (   ) Osorio  OR  (   ) Ana Bogdan
     TEAM.draw(womens_singles).match('1.47').winner(women.Giorgi).in_sets(3)  # (   ) Alize Cornet  OR  (   ) Camila Giorgi
     TEAM.draw(womens_singles).match('1.48').winner(women.Pegula).in_sets(3)  # (   ) Danielle Collins  OR  (  3) Jessica Pegula
     TEAM.draw(womens_singles).match('1.49').winner(women.Garcia).in_sets(3)  # (  5) Caroline Garcia  OR  (   ) Xinyu Wang

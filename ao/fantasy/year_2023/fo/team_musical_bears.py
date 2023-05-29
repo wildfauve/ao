@@ -17,7 +17,7 @@ def mens_singles_round_2(mens_singles):
     return TEAM
 
 
-def womens_singles_round_2(mens_singles):
+def womens_singles_round_2(womens_singles):
     return TEAM
 
 
@@ -202,8 +202,8 @@ def womens_singles_round_1(womens_singles):
         women.Potapova).in_sets(2)  # (  Q) Taylor Townsend  OR  ( 24) Anastasia Potapova
     TEAM.draw(womens_singles).match('1.45').winner(women.Mertens).in_sets(
         2)  # ( 28) Elise Mertens  OR  (  L) V.Hruncakova
-    TEAM.draw(womens_singles).match('1.46').winner(women.Mcnally).in_sets(
-        3)  # (   ) Catherine McNally  OR  (   ) Ana Bogdan
+    TEAM.draw(womens_singles).match('1.46').winner(women.Osorio).in_sets(
+        3)  # (   ) Osorio  OR  (   ) Ana Bogdan
     TEAM.draw(womens_singles).match('1.47').winner(women.Cornet).in_sets(
         3)  # (   ) Alize Cornet  OR  (   ) Camila Giorgi
     TEAM.draw(womens_singles).match('1.48').winner(women.Pegula).in_sets(
