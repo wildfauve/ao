@@ -1,5 +1,6 @@
 from typing import Dict
 from functools import reduce, partial
+from itertools import accumulate
 from enum import Enum
 from rich.console import Console
 from rich.table import Table
@@ -42,13 +43,9 @@ def scores_plot(file: str, tournie, fantasy_teams, position: bool = False):
 
 
 def _team_scores_df(tournie, fantasy_teams, accum: bool):
-    scores = _format_team_scores(tournie, accum, teams_points_per_round(fantasy_teams))
+    scores = _format_team_scores(tournie, accum, teams_points_per_round(fantasy_teams, accum))
 
-    if not accum:
-        return dataframe.build_df(scores)
-
-    return dataframe.build_df(_accumulate_scores(scores))
-
+    return dataframe.build_df(scores)
 
 
 def _show_df(df):
@@ -116,9 +113,14 @@ def _team_board_predicate(team, team_on_board):
     return team == team_on_board[0]
 
 
-def teams_points_per_round(fantasy_teams):
-    return [(team, team.points_per_round()) for team in fantasy_teams]
+def teams_points_per_round(fantasy_teams, accum):
+    return [(team, _accumulate(team.points_per_round(), accum)) for team in fantasy_teams]
 
+
+def _accumulate(scores, accum: bool):
+    if not accum:
+        return scores
+    return list(accumulate(scores))
 
 def sorted_teams(fantasy_teams, round_number):
     return sorted([(team, team.total_points(round_number)) for team in fantasy_teams], key=lambda t: t[1], reverse=True)
@@ -141,22 +143,3 @@ def _scores_dict(tournie, accum: bool, acc, score_column):
 
 def _transpose_scores(scores):
     return enumerate(list(zip(*[points for _, points in scores])))
-
-
-def _accumulate_scores(scores: Dict):
-    _teams, all_rounds = fn.fst_rst(list(scores.keys()))
-    if not all_rounds:
-        return scores
-
-    fst_round, *rounds = all_rounds
-    return {**{"teams": scores['teams']}, **acc_for_round(scores, {fst_round: scores[fst_round]}, fst_round, rounds)}
-
-
-def acc_for_round(scores, accums, loc_of_last_accum, rounds):
-    this_rd, nxt_rds = fn.fst_rst(list(rounds))
-    if not this_rd:
-        return accums
-    accums.update({this_rd: [x + y for x, y in zip(accums[loc_of_last_accum], scores[this_rd])]})
-    if not nxt_rds:
-        return accums
-    return acc_for_round(scores, accums, this_rd, nxt_rds)
