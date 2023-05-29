@@ -6,3 +6,8 @@ from .draw import (
     WomensSingles,
     find_draw_by_cls
 )
+
+
+from .fantasy import (
+    Selection
+)

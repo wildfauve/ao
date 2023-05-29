@@ -6,7 +6,6 @@ from rich.table import Table
 from ao.model.draw import Draw
 from ao.model.player import Player
 from ao.graph import rdf_prefix
-from ao.fantasy import points_strategy
 
 from ao.util import fn, identity
 
