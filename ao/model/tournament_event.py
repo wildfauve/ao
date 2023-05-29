@@ -1,3 +1,7 @@
+from typing import List
+from itertools import accumulate
+
+
 from rdflib import Graph, RDF, URIRef, Literal
 
 from ao.graph import rdf_prefix
@@ -34,5 +38,8 @@ class TournamentEvent:
         return g
 
 
-    def fantasy_points_schedule(self, rd_number):
-        return self.draws[0].fantasy_points_schedule(rd_number)
+    def fantasy_points_schedule(self, rd_number, accum:bool = False) -> List:
+        sched = [len(self.draws) * pt for pt in (self.draws[0].fantasy_points_schedule(rd_number))]
+        if not accum:
+            return sched
+        return list(accumulate(sched))

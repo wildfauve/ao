@@ -67,8 +67,7 @@ class PointsStrategyCalculator:
 
     def calc_points_schedule(self, number_of_matches):
         round_of = self._max_number_rds(number_of_matches)
-        return reduce(self._points_schedule_for_rd,
-                      zip(round_of, range(1, len(round_of))), [])
+        return reduce(self._points_schedule_for_rd, zip(round_of, range(1, len(round_of) + 1)), [])
 
     def _points_schedule_for_rd(self, acc: List, rd_match_numbers: Tuple):
         num_matches, rd = rd_match_numbers

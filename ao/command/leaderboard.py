@@ -41,8 +41,8 @@ def scores_plot(file: str, tournie, fantasy_teams, position: bool = False):
     return plot.rank_plot(file, tournie, df)
 
 
-def _team_scores_df(tournie, fantasy_teams, accum):
-    scores = _format_team_scores(tournie, teams_points_per_round(fantasy_teams))
+def _team_scores_df(tournie, fantasy_teams, accum: bool):
+    scores = _format_team_scores(tournie, accum, teams_points_per_round(fantasy_teams))
 
     if not accum:
         return dataframe.build_df(scores)
@@ -128,15 +128,15 @@ def sorted_f1_teams(fantasy_teams):
     return sorted([team for team in fantasy_teams], key=lambda t: t[1], reverse=True)
 
 
-def _format_team_scores(tournie, scores):
-    rd_scores = reduce(partial(_scores_dict, tournie), _transpose_scores(scores), {})
+def _format_team_scores(tournie, accum: bool, scores):
+    rd_scores = reduce(partial(_scores_dict, tournie, accum), _transpose_scores(scores), {})
     return {**{"teams": [team.name for team, _ in scores]}, **rd_scores}
 
 
-def _scores_dict(tournie, acc, score_column):
-    round, scores = score_column
-    schedule = tournie.fantasy_points_schedule(round + 1)
-    return {**acc, **{f"Round-{round + 1} ({schedule[round]})": list(scores)}}
+def _scores_dict(tournie, accum: bool, acc, score_column):
+    rd, scores = score_column
+    schedule = tournie.fantasy_points_schedule(rd + 1, accum)
+    return {**acc, **{f"Round-{rd + 1} ({schedule[rd]})": list(scores)}}
 
 
 def _transpose_scores(scores):
