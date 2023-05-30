@@ -146,8 +146,8 @@ def mens_singles_results(draw):
          .score(atp_players.Eubanks, (4, 6, 6, 2))),
 
         (draw.for_round(1).for_match(34)
-         .score(atp_players.Monfils, (3, 6, 6))
-         .score(atp_players.Baez, (6, 3, 5))),
+         .score(atp_players.Monfils, (3, 6, 7, 1, 7))
+         .score(atp_players.Baez, (6, 3, 5, 6, 5))),
 
         (draw.for_round(1).for_match(35)
          .score(atp_players.Mpetshi_Perricard, (6, 6, 6, 5, 1))
@@ -162,8 +162,8 @@ def mens_singles_results(draw):
          .score(atp_players.Munar, (1, 6, 6, 1))),
 
         (draw.for_round(1).for_match(38)
-         .score(atp_players.Monteiro, (3, 5, 7, 7, 2))
-         .score(atp_players.Hanfmann, (6, 7, 6, 6, 1))),
+         .score(atp_players.Monteiro, (3, 5, 7, 7, 4))
+         .score(atp_players.Hanfmann, (6, 7, 6, 6, 6))),
 
         (draw.for_round(1).for_match(39)
          .score(atp_players.Gasquet, (4, 6, 2, 6))
