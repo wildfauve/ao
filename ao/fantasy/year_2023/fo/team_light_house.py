@@ -51,11 +51,11 @@ def mens_singles_round_2(mens_singles):
 
 def womens_singles_round_2(womens_singles):
     TEAM.draw(womens_singles).match('2.1').winner(women.Swiatek).in_sets(3)  # (  1) Swiatek  OR  (   ) Liu
-    TEAM.draw(womens_singles).match('2.2').winner(women.Wang_Xiyu).in_sets(3)  # (   ) Peterson  OR  (   ) Wang_Xinyu
+    TEAM.draw(womens_singles).match('2.2').winner(women.Wang_Xinyu).in_sets(3)  # (   ) Peterson  OR  (   ) Wang_Xinyu
     TEAM.draw(womens_singles).match('2.3').winner(women.Andreescu).in_sets(2)  # (   ) Andreescu  OR  (  W) Navarro
     TEAM.draw(womens_singles).match('2.4').winner(women.Tsurenko).in_sets(3)  # (   ) Davis  OR  (   ) Tsurenko
     TEAM.draw(womens_singles).match('2.5').winner(women.Schmiedlova).in_sets(2)  # (   ) Schmiedlova  OR  (  L) Bolsova
-    TEAM.draw(womens_singles).match('2.6').winner(women.Key).in_sets(3)  # (  Q) Day  OR  ( 20) Keys
+    TEAM.draw(womens_singles).match('2.6').winner(women.Keys).in_sets(3)  # (  Q) Day  OR  ( 20) Keys
     TEAM.draw(womens_singles).match('2.7').winner(women.Andreeva_Mirra).in_sets(2)  # (  W) Parry  OR  (  Q) Andreeva_Mirra
     TEAM.draw(womens_singles).match('2.8').winner(women.Gauff).in_sets()  # (   ) Grabher  OR  (  6) Gauff
     TEAM.draw(womens_singles).match('2.9').winner(women.Rybakina).in_sets(2)  # (  4) Rybakina  OR  (   ) Noskova
