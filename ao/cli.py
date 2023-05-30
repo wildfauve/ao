@@ -168,13 +168,13 @@ def draw_scrap(tournament, entries_file, draws_file, results_file, round_number,
 @click.option("--tournament", "-t",
               type=click.Choice(tournament_names()),
               help="The name of the tournament")
-@click.option("--position/--accum", "-p/-a", required=True, help="Plot Position, or plot total scores")
+@click.option("--ranking-plot/--accum-totals-plot", "-r/-a", required=True, help="Plot Position, or plot total scores")
 @click.command()
-def ranking_plot(file, tournament, position):
+def ranking_plot(file, tournament, ranking_plot):
     """
     Generate a Ranking Graph
     """
-    command.rank_plot(file=file, tournament_name=tournament, position=position)
+    command.rank_plot(file=file, tournament_name=tournament, ranking_plot=ranking_plot)
     pass
 
 

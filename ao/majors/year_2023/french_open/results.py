@@ -1,17 +1,29 @@
 from typing import List
+import re
+import sys
 from ao.players import wta_players, atp_players
 from ao import model
 
+this = sys.modules[__name__]
+
 
 def add_results(draws: List[model.Draw]):
-    mens_singles = model.find_draw_by_cls(model.MensSingles, draws)
-    womens_singles = model.find_draw_by_cls(model.WomensSingles, draws)
-    mens_singles_results(mens_singles)
-    womens_singles_results(womens_singles)
-    return mens_singles, womens_singles
+    mens, womens = for_round(model.find_draw_by_cls(model.MensSingles, draws),
+                             model.find_draw_by_cls(model.WomensSingles, draws))
+    return mens, womens
 
 
-def mens_singles_results(draw):
+def for_round(mens_singles, womens_singles):
+    return _for_rd_fn_caller(this, [mens_singles, womens_singles])
+
+
+def _for_rd_fn_caller(results_module, draws: List):
+    for draw in draws:
+        [getattr(results_module, f)(draw) for f in dir(results_module) if re.match(f"^{draw.fn_symbol}_", f)]
+    return draws
+
+
+def mens_singles_results_r1(draw):
     return [
         (draw.for_round(1).for_match(1)
          .score(atp_players.Alcaraz, (6, 6, 7))
@@ -269,12 +281,11 @@ def mens_singles_results(draw):
 
         (draw.for_round(1).for_match(64)
          .score(atp_players.Seyboth_Wild, (7, 6, 2, 6, 6))
-         .score(atp_players.Medvedev, (6, 7, 6, 3, 4))),
-
+         .score(atp_players.Medvedev, (6, 7, 6, 3, 4)))
     ]
 
 
-def womens_singles_results(draw):
+def womens_singles_results_r1(draw):
     return [
         (draw.for_round(1).for_match(1)
          .score(wta_players.Swiatek, (6, 6))
@@ -531,6 +542,5 @@ def womens_singles_results(draw):
 
         (draw.for_round(1).for_match(64)
          .score(wta_players.Kostyuk, (3, 2))
-         .score(wta_players.Sabalenka, (6, 6))),
-
+         .score(wta_players.Sabalenka, (6, 6)))
     ]

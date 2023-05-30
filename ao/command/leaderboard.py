@@ -33,13 +33,12 @@ def current_leaderboard(tournie,
     return _team_scores_df(tournie, fantasy_teams, accum)
 
 
-def scores_plot(file: str, tournie, fantasy_teams, position: bool = False):
-    df = _team_scores_df(fantasy_teams, True)
+def scores_plot(file: str, tournie, fantasy_teams, ranking_plot: bool = False):
+    df = _team_scores_df(tournie, fantasy_teams, True)
 
-    if position:
-        return plot.total_score_plot(file, tournie, df)
-
-    return plot.rank_plot(file, tournie, df)
+    if ranking_plot:
+        return plot.rank_plot(file, tournie, df)
+    return plot.total_score_plot(file, tournie, df)
 
 
 def _team_scores_df(tournie, fantasy_teams, accum: bool):
