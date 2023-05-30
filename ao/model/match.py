@@ -53,7 +53,8 @@ class Match:
         if not self.is_finished():
             return ""
         chevon = "<" if for_player == self.match_winner else ""
-        return f"{' '.join([str(s) for s in self.scores[for_player]])}  {chevon}"
+        ret = "(RET)" if self.entry_retirement == for_player else ""
+        return f"{' '.join([str(s) for s in self.scores[for_player]])} {ret}  {chevon}"
 
     def result_template(self, event_name, round_number):
         match_part = f"{event_name}.for_round({round_number}).for_match({self.number})"

@@ -141,6 +141,46 @@ def mens_singles_results(draw):
          .score(atp_players.Djere, (1, 6, 3, 4))
          .score(atp_players.Rublev, (6, 3, 6, 6))),
 
+        (draw.for_round(1).for_match(33)
+         .score(atp_players.Rune, (6, 3, 7, 6))
+         .score(atp_players.Eubanks, (4, 6, 6, 2))),
+
+        (draw.for_round(1).for_match(34)
+         .score(atp_players.Monfils, (3, 6, 6))
+         .score(atp_players.Baez, (6, 3, 5))),
+
+        (draw.for_round(1).for_match(35)
+         .score(atp_players.Mpetshi_Perricard, (6, 6, 6, 5, 1))
+         .score(atp_players.Olivieri, (7, 4, 4, 7, 6))),
+
+        (draw.for_round(1).for_match(36)
+         .score(atp_players.Vavassori, (5, 2, 7, 7, 7))
+         .score(atp_players.Kecmanovic, (7, 6, 6, 6, 6))),
+
+        (draw.for_round(1).for_match(37)
+         .score(atp_players.Cerundolo_Francisco, (6, 2, 7, 6))
+         .score(atp_players.Munar, (1, 6, 6, 1))),
+
+        (draw.for_round(1).for_match(38)
+         .score(atp_players.Monteiro, (3, 5, 7, 7, 2))
+         .score(atp_players.Hanfmann, (6, 7, 6, 6, 1))),
+
+        (draw.for_round(1).for_match(39)
+         .score(atp_players.Gasquet, (4, 6, 2, 6))
+         .score(atp_players.Rinderknech, (6, 2, 6, 7))),
+
+        (draw.for_round(1).for_match(40)
+         .score(atp_players.Mmoh, (2, 1, 1))
+         .score(atp_players.Fritz, (6, 6, 6))),
+
+        (draw.for_round(1).for_match(41)
+         .score(atp_players.Paul, (6, 6, 6))
+         .score(atp_players.Stricker, (3, 2, 4))),
+
+        (draw.for_round(1).for_match(42)
+         .score(atp_players.Jarry, (6, 6, 6))
+         .score(atp_players.Dellien, (4, 4, 2))),
+
         (draw.for_round(1).for_match(43)
          .score(atp_players.Medjedovic, (0, 2, 6, 0))
          .score(atp_players.Giron, (6, 6, 1, 6))),
@@ -158,6 +198,14 @@ def mens_singles_results(draw):
          .score(atp_players.Lajovic, (1, 1))
          .retirement(atp_players.Lajovic)),
 
+        (draw.for_round(1).for_match(47)
+         .score(atp_players.Bublik, (0, 6, 6, 3, 5))
+         .score(atp_players.Zeppieri, (6, 4, 4, 6, 7))),
+
+        (draw.for_round(1).for_match(48)
+         .score(atp_players.Ymer_Elias, (4, 3, 2))
+         .score(atp_players.Ruud, (6, 6, 6))),
+
         (draw.for_round(1).for_match(49)
          .score(atp_players.Sinner, (6, 6, 6))
          .score(atp_players.Muller, (1, 4, 1))),
@@ -165,6 +213,22 @@ def mens_singles_results(draw):
         (draw.for_round(1).for_match(50)
          .score(atp_players.Altmaier, (6, 6, 6))
          .score(atp_players.Huesler, (3, 4, 4))),
+
+        (draw.for_round(1).for_match(51)
+         .score(atp_players.Ruusuvuori, (6, 6, 5, 6, 6))
+         .score(atp_players.Barrere, (2, 7, 7, 1, 4))),
+
+        (draw.for_round(1).for_match(52)
+         .score(atp_players.Skatov, (0, 3, 2))
+         .score(atp_players.Dimitrov, (6, 6, 6))),
+
+        (draw.for_round(1).for_match(53)
+         .score(atp_players.Zverev, (7, 7, 6))
+         .score(atp_players.Harris, (6, 6, 1))),
+
+        (draw.for_round(1).for_match(54)
+         .score(atp_players.Gaston, (1, 6, 4))
+         .score(atp_players.Molcan, (6, 7, 6))),
 
         (draw.for_round(1).for_match(55)
          .score(atp_players.Popyrin, (3, 7, 1, 2))
@@ -191,11 +255,59 @@ def mens_singles_results(draw):
          .score(atp_players.Ivashka, (1, 7, 1, 3))
          .score(atp_players.De_Minaur, (6, 5, 6, 6))),
 
+        (draw.for_round(1).for_match(61)
+         .score(atp_players.Nishioka, (1, 3, 6, 6, 6))
+         .score(atp_players.Wolf, (6, 6, 4, 3, 3))),
+
+        (draw.for_round(1).for_match(62)
+         .score(atp_players.Purcell, (7, 1, 6, 6))
+         .score(atp_players.Thompson, (5, 6, 4, 4))),
+
+        (draw.for_round(1).for_match(63)
+         .score(atp_players.Halys, (4, 7, 6, 6, 6))
+         .score(atp_players.Pella, (6, 6, 2, 7, 7))),
+
+        (draw.for_round(1).for_match(64)
+         .score(atp_players.Seyboth_Wild, (7, 6, 2, 6, 6))
+         .score(atp_players.Medvedev, (6, 7, 6, 3, 4))),
+
     ]
 
 
 def womens_singles_results(draw):
     return [
+        (draw.for_round(1).for_match(1)
+         .score(wta_players.Swiatek, (6, 6))
+         .score(wta_players.Bucsa, (4, 0))),
+
+        (draw.for_round(1).for_match(2)
+         .score(wta_players.In_Albon, (1, 4))
+         .score(wta_players.Liu, (6, 6))),
+
+        (draw.for_round(1).for_match(3)
+         .score(wta_players.Peterson, (6, 6))
+         .score(wta_players.Ferro, (2, 0))),
+
+        (draw.for_round(1).for_match(4)
+         .score(wta_players.Wang_Xinyu, (6, 7))
+         .score(wta_players.Bouzkova, (4, 6))),
+
+        (draw.for_round(1).for_match(5)
+         .score(wta_players.Azarenka, (6, 3, 4))
+         .score(wta_players.Andreescu, (2, 6, 6))),
+
+        (draw.for_round(1).for_match(6)
+         .score(wta_players.Andreeva_Erika, (2, 6, 4))
+         .score(wta_players.Navarro, (6, 3, 6))),
+
+        (draw.for_round(1).for_match(7)
+         .score(wta_players.Zhu, (3, 3))
+         .score(wta_players.Davis, (6, 6))),
+
+        (draw.for_round(1).for_match(8)
+         .score(wta_players.Tsurenko, (6, 6))
+         .score(wta_players.Krejcikova, (2, 4))),
+
         (draw.for_round(1).for_match(9)
          .score(wta_players.Kudermetova_Veronika, (3, 1))
          .score(wta_players.Schmiedlova, (6, 6))),
@@ -211,6 +323,39 @@ def womens_singles_results(draw):
         (draw.for_round(1).for_match(12)
          .score(wta_players.Kanepi, (1, 6, 1))
          .score(wta_players.Keys, (6, 3, 6))),
+
+        (draw.for_round(1).for_match(13)
+         .score(wta_players.Kalinina, (2, 3))
+         .score(wta_players.Parry, (6, 6))),
+
+        (draw.for_round(1).for_match(14)
+         .score(wta_players.Andreeva_Mirra, (6, 6))
+         .score(wta_players.Riske_Amritraj, (2, 1))),
+
+        (draw.for_round(1).for_match(15)
+         .score(wta_players.Rus, (2, 3))
+         .score(wta_players.Grabher, (6, 6))),
+
+        (draw.for_round(1).for_match(16)
+         .score(wta_players.Masarova, (6, 1, 2))
+         .score(wta_players.Gauff, (3, 6, 6))),
+
+        (draw.for_round(1).for_match(17)
+         .score(wta_players.Rybakina, (6, 6))
+         .score(wta_players.Fruhvirtova_Brenda, (4, 2))),
+
+        (draw.for_round(1).for_match(18)
+         .score(wta_players.Noskova, (6, 2))
+         .score(wta_players.Kovinic, (3, 1))
+         .retirement(wta_players.Kovinic)),
+
+        (draw.for_round(1).for_match(19)
+         .score(wta_players.Burel, (6, 2))
+         .score(wta_players.Sorribes_Tormo, (7, 6))),
+
+        (draw.for_round(1).for_match(20)
+         .score(wta_players.Martic, (3, 6, 6))
+         .score(wta_players.Rogers, (6, 3, 2))),
 
         (draw.for_round(1).for_match(21)
          .score(wta_players.Alexandrova, (6, 2, 6))
@@ -243,6 +388,22 @@ def womens_singles_results(draw):
         (draw.for_round(1).for_match(28)
          .score(wta_players.Yastremska, (2, 5))
          .score(wta_players.Vekic, (6, 7))),
+
+        (draw.for_round(1).for_match(29)
+         .score(wta_players.Cirstea, (5, 6, 2))
+         .score(wta_players.Paolini, (7, 2, 6))),
+
+        (draw.for_round(1).for_match(30)
+         .score(wta_players.Danilovic, (6, 6))
+         .score(wta_players.Baindl, (3, 2))),
+
+        (draw.for_round(1).for_match(31)
+         .score(wta_players.Janicijevic, (6, 2, 1))
+         .score(wta_players.Dodin, (0, 6, 6))),
+
+        (draw.for_round(1).for_match(32)
+         .score(wta_players.Bronzetti, (4, 1))
+         .score(wta_players.Jabeur, (6, 6))),
 
         (draw.for_round(1).for_match(33)
          .score(wta_players.Sakkari, (6, 5))

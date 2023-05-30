@@ -2,14 +2,10 @@ from typing import List
 from functools import partial
 from rdflib import Graph, URIRef, Literal, RDF
 from ao.graph import rdf_prefix
-from ao.util import fn
+from ao.util import fn, tokeniser
 
 
 class Player:
-    klass_name_replace_set = [("-", "_"), (" ", "_"), ("'", "")]
-    dot_name_split_char = "."
-    sp_name_split_char = " "
-
 
     def __init__(self, name, tour_symbol: str, klass_name: str, alt_names: List = None):
         self.name = name
@@ -21,10 +17,8 @@ class Player:
     def _format_player_klass_name(self, name):
         nm = name.rstrip().lstrip()
         if "." in nm:
-            splitter = self.dot_name_split_char
-        else:
-            splitter = self.sp_name_split_char
-        return fn.multi_replace(nm.split(splitter)[-1], self.klass_name_replace_set)
+            return tokeniser.string_tokeniser(nm, tokeniser.dot_splitter, tokeniser.special_char_set)
+        return tokeniser.string_tokeniser(nm, tokeniser.sp_splitter, tokeniser.special_char_set)
 
     def uri_name(self):
         return self.name.split(" ")[-1]

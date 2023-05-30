@@ -2,6 +2,8 @@ from ao.model import fantasy
 from ao.players import atp_players as men, wta_players as women
 
 TEAM = fantasy.Team("TEAM")
+
+
 def mens_singles_round_2(mens_singles):
     TEAM.draw(mens_singles).match('2.1').winner(men).in_sets()  # (  1) Alcaraz  OR  (   ) Daniel
     TEAM.draw(mens_singles).match('2.2').winner(men).in_sets()  # (   ) Arnaldi  OR  ( 26) Shapovalov
@@ -39,22 +41,22 @@ def mens_singles_round_2(mens_singles):
 
 
 def womens_singles_round_2(womens_singles):
-    TEAM.draw(womens_singles).match('2.1').winner(women).in_sets()  # TBD  OR  TBD
-    TEAM.draw(womens_singles).match('2.2').winner(women).in_sets()  # TBD  OR  TBD
-    TEAM.draw(womens_singles).match('2.3').winner(women).in_sets()  # TBD  OR  TBD
-    TEAM.draw(womens_singles).match('2.4').winner(women).in_sets()  # TBD  OR  TBD
+    TEAM.draw(womens_singles).match('2.1').winner(women).in_sets()  # (  1) Swiatek  OR  (   ) Liu
+    TEAM.draw(womens_singles).match('2.2').winner(women).in_sets()  # (   ) Peterson  OR  (   ) Wang_Xinyu
+    TEAM.draw(womens_singles).match('2.3').winner(women).in_sets()  # (   ) Andreescu  OR  (  W) Navarro
+    TEAM.draw(womens_singles).match('2.4').winner(women).in_sets()  # (   ) Davis  OR  (   ) Tsurenko
     TEAM.draw(womens_singles).match('2.5').winner(women).in_sets()  # (   ) Schmiedlova  OR  (  L) Bolsova
     TEAM.draw(womens_singles).match('2.6').winner(women).in_sets()  # (  Q) Day  OR  ( 20) Keys
-    TEAM.draw(womens_singles).match('2.7').winner(women).in_sets()  # TBD  OR  TBD
-    TEAM.draw(womens_singles).match('2.8').winner(women).in_sets()  # TBD  OR  TBD
-    TEAM.draw(womens_singles).match('2.9').winner(women).in_sets()  # TBD  OR  TBD
-    TEAM.draw(womens_singles).match('2.10').winner(women).in_sets()  # TBD  OR  TBD
+    TEAM.draw(womens_singles).match('2.7').winner(women).in_sets()  # (  W) Parry  OR  (  Q) Andreeva_Mirra
+    TEAM.draw(womens_singles).match('2.8').winner(women).in_sets()  # (   ) Grabher  OR  (  6) Gauff
+    TEAM.draw(womens_singles).match('2.9').winner(women).in_sets()  # (  4) Rybakina  OR  (   ) Noskova
+    TEAM.draw(womens_singles).match('2.10').winner(women).in_sets()  # (   ) Sorribes_Tormo  OR  (   ) Martic
     TEAM.draw(womens_singles).match('2.11').winner(women).in_sets()  # ( 23) Alexandrova  OR  (   ) Friedsam
     TEAM.draw(womens_singles).match('2.12').winner(women).in_sets()  # (   ) Shnaider  OR  ( 14) Haddad_Maia
     TEAM.draw(womens_singles).match('2.13').winner(women).in_sets()  # (   ) Cocciaretto  OR  (  Q) Waltert
     TEAM.draw(womens_singles).match('2.14').winner(women).in_sets()  # (   ) Pera  OR  ( 22) Vekic
-    TEAM.draw(womens_singles).match('2.15').winner(women).in_sets()  # TBD  OR  TBD
-    TEAM.draw(womens_singles).match('2.16').winner(women).in_sets()  # TBD  OR  TBD
+    TEAM.draw(womens_singles).match('2.15').winner(women).in_sets()  # (   ) Paolini  OR  (  Q) Danilovic
+    TEAM.draw(womens_singles).match('2.16').winner(women).in_sets()  # (   ) Dodin  OR  (  7) Jabeur
     TEAM.draw(womens_singles).match('2.17').winner(women).in_sets()  # (   ) Muchova  OR  (   ) Podoroska
     TEAM.draw(womens_singles).match('2.18').winner(women).in_sets()  # (   ) Errani  OR  ( 27) Begu
     TEAM.draw(womens_singles).match('2.19').winner(women).in_sets()  # (   ) Fernandez  OR  (  Q) Tauson
