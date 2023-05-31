@@ -113,6 +113,9 @@ class Draw:
     def fantasy_points_schedule(self, rd_number):
         return self.points_strategy.calc_points_schedule(self.number_of_matches)
 
+    def fantasy_points_allocation(self, rd_number):
+        return self.points_strategy.explain_points_for_round(rd_number)
+
     def _next_rd_match_number(self, rd_id, this_rd_match_number):
         if len(self.rounds[rd_id].matches) == 1:
             return 1

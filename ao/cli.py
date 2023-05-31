@@ -20,18 +20,18 @@ def cli():
 @click.option("--tournament", "-t",
               type=click.Choice(tournament_names()),
               help="The name of the tournament")
-@click.option("--round_number", "-r", type=int, default=None, help="Leaderboard for specific round")
-@click.option("--board_type", "-b",
+@click.option("--round", "-r", type=int, default=None, help="Leaderboard for specific round")
+@click.option("--board-type", "-b",
               type=click.Choice(['f1', 'fantasy']),
               default='fantasy',
               help="Either the Fantasy Leaderboard or the F1 leaderboard")
 @click.option("--to-discord/--to-shell", "-d/-s", required=True, default=False, help="To discord or to the shell")
-def leaderboard(tournament, round_number, board_type, to_discord):
+def leaderboard(tournament, round, board_type, to_discord):
     """
     Starts the tournament,  applies the results, applies the fantasy selection and prints the leaderboard
     """
     presenter.event_team_scores_table(
-        command.leaderboard_df(tournament, command.BoardType(board_type), round_number),
+        command.leaderboard_df(tournament, command.BoardType(board_type), round),
         to_discord
     )
     pass
@@ -46,7 +46,6 @@ def leaderboard(tournament, round_number, board_type, to_discord):
               help="team name to explain points")
 @click.option("--round_number", "-r", type=int, default=None, help="Leaderboard for specific round")
 def show_draw(tournament, fantasy_team_name, round_number):
-
     command.show_draw(tournament_name=tournament, round=round_number, team_name=fantasy_team_name)
     pass
 
@@ -153,19 +152,19 @@ def player_scrap(file):
 @click.option("--tournament", "-t",
               type=click.Choice(tournament_names()),
               help="The name of the tournament")
-@click.option("--entries_file", "-e", type=str, default=None, help="Entries class file")
-@click.option("--draws_file", "-d", type=str, default=None, help="draws class file")
-@click.option("--results_file", "-s", type=str, default=None, help="results file")
-@click.option("--round_number", "-r", type=int, default=1, help="The round number to show.")
+@click.option("--entries-file", "-e", type=str, default=None, help="Entries class file")
+@click.option("--draws-file", "-d", type=str, default=None, help="draws class file")
+@click.option("--results-file", "-s", type=str, default=None, help="results file")
+@click.option("--round", "-r", type=int, default=1, help="The round number to show.")
 @click.option('--scores-only/--full-draw', "-o/-f", default=False)
-def draw_scrap(tournament, entries_file, draws_file, results_file, round_number, scores_only):
+def draw_scrap(tournament, entries_file, draws_file, results_file, round, scores_only):
     """
     """
     command.draw_scrap(tournament=tournament,
                        entries_file=entries_file,
                        draws_file=draws_file,
                        results_file=results_file,
-                       round_number=round_number,
+                       round_number=round,
                        scores_only=scores_only)
     pass
 
@@ -175,12 +174,15 @@ def draw_scrap(tournament, entries_file, draws_file, results_file, round_number,
               type=click.Choice(tournament_names()),
               help="The name of the tournament")
 @click.option("--ranking-plot/--accum-totals-plot", "-r/-a", required=True, help="Plot Position, or plot total scores")
+@click.option("--to-discord", "channel", required=False, flag_value="to-discord", default=False,
+              help="Post the plot to Discord")
 @click.command()
-def ranking_plot(file, tournament, ranking_plot):
+def plot(file, tournament, ranking_plot, channel):
     """
     Generate a Ranking Graph
     """
     command.rank_plot(file=file, tournament_name=tournament, ranking_plot=ranking_plot)
+    presenter.plot_to_channel(file, channel)
     pass
 
 
@@ -192,5 +194,5 @@ cli.add_command(result_template)
 cli.add_command(generate_graph)
 cli.add_command(player_scrap)
 cli.add_command(draw_scrap)
-cli.add_command(ranking_plot)
+cli.add_command(plot)
 cli.add_command(fantasy_score_template)

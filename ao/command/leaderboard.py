@@ -137,7 +137,8 @@ def _format_team_scores(tournie, accum: bool, scores):
 def _scores_dict(tournie, accum: bool, acc, score_column):
     rd, scores = score_column
     schedule = tournie.fantasy_points_schedule(rd + 1, accum)
-    return {**acc, **{f"Round-{rd + 1} ({schedule[rd]})": list(scores)}}
+    pts_allocation = tournie.fantasy_points_allocation(rd + 1)
+    return {**acc, **{f"Round-{rd + 1}\n({schedule[rd]})\n({pts_allocation})": list(scores)}}
 
 
 def _transpose_scores(scores):

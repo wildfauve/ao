@@ -118,7 +118,7 @@ class Match:
         self._init_scores(player2)
         return self
 
-    def score(self, for_player, set_games: Tuple[int, int, int]):
+    def score(self, for_player, set_games: Tuple[int]):
         pl = draw.find_entry_for_player(for_player, [self.player1, self.player2])
         self.scores[pl] = set_games
         [self.sets[set_number].result_for_player(pl, set_games[set_number]) for set_number in range(len(set_games))]

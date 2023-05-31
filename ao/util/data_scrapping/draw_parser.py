@@ -1,5 +1,5 @@
 from typing import Tuple, Dict
-from functools import reduce
+from functools import reduce, partial
 
 from ao.players import atp_players as players
 from .event_web_parser import fo_draw_parser
@@ -14,21 +14,15 @@ def build_draw(tournament: str,
     (_format_results(
         _format_brackets(
             _format_entries(
-                    _parser_for_event(tournament).build_draw(for_round, scores_only),
+                _parser_for_event(tournament).build_draw(for_round, scores_only),
                 entries_file),
             draws_file),
-        results_file))
+        results_file,
+        for_round))
 
 
 def _parser_for_event(_tournament):
     return fo_draw_parser
-
-
-# def _match_number(matches):
-#     for _, draw_matches in matches.items():
-#         for num in range(0, len(draw_matches)):
-#             draw_matches[num].set_match_number(num + 1)
-#     return matches
 
 
 def _format_entries(draws: Dict, entries_file):
@@ -47,10 +41,10 @@ def _format_brackets(draws, draws_file):
     return draws
 
 
-def _format_results(draws, results_file):
+def _format_results(draws, results_file, for_round):
     if not results_file:
         return draws
-    py = reduce(_results_def, draws.items(), _results_mod_def())
+    py = reduce(partial(_results_def, for_round), draws.items(), _results_mod_def())
     _write_file(results_file, py)
     return draws
 
@@ -69,19 +63,7 @@ from ao import model"""
 
 
 def _results_mod_def():
-    return """from typing import List
-from ao.players import wta_players, atp_players
-from ao import model
-
-
-def add_results(draws: List[model.Draw]):
-    mens_singles = model.find_draw_by_cls(model.MensSingles, draws)
-    womens_singles = model.find_draw_by_cls(model.WomensSingles, draws)
-    mens_singles_results(mens_singles)
-    womens_singles_results(womens_singles)
-    return mens_singles, womens_singles
-
-"""
+    return ""
 
 
 def _entry_def(py, draw_tuple):
@@ -94,9 +76,9 @@ def _bracket_def(py, draw_tuple):
     return reduce(_players_bracket, matches, _match_function(py, draw_name)) + f"\n{']':>4}"
 
 
-def _results_def(py, draw_tuple):
+def _results_def(for_round, py, draw_tuple):
     draw_name, matches = draw_tuple
-    return reduce(_match_result, matches, _result_function(py, draw_name)) + f"\n{']':>4}"
+    return reduce(_match_result, matches, _result_function(py, draw_name, for_round)) + f"\n{']':>4}"
 
 
 def _players_bracket(acc, match):
@@ -135,9 +117,10 @@ def {'mens_draw_round_1()' if name == "FO2023MensSingles" else "womens_draw_roun
 """
 
 
-def _result_function(py, name):
+def _result_function(py, name, for_round):
+    defn = f"mens_singles_results_r{for_round}(draw)" if name == "FO2023MensSingles" else f"womens_singles_results_r{for_round}(draw)"
     return py + f"""
-def {'mens_singles_results(draw)' if name == "FO2023MensSingles" else "womens_singles_results(draw)"}:
+def {defn}:
         return [
     """
 

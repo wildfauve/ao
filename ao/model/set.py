@@ -3,28 +3,34 @@ from ao.util import error
 
 
 class Set:
-    def __init__(self, number, player1, player2):
+    def __init__(self, number, entry1, entry2):
         self.number = number
-        self.player1 = player1
-        self.player2 = player2
+        self.entry1 = entry1
+        self.entry2 = entry2
         self.games = []
         self.winner = None
 
-    def result_for_player(self, for_player, score):
-        en = entry.find_player_from_entry(for_player, [self.player1, self.player2])
+    def result_for_player(self, for_entry, score):
+        en = entry.find_player_from_entry(for_entry, self._entries())
         self.games.append((en, score))
         if self._set_completed():
             self.winner = self.determine_winner()
         return self
 
+    def _entries(self):
+        return [self.entry1, self.entry2]
+
     def _set_completed(self):
-        return len([g for pl, g in self.games]) == 2
+        return self.games and (len([g for pl, g in self.games]) == 2) and self._set_score_atleast_6()
+
+    def _set_score_atleast_6(self):
+        return [g[1] for g in self.games if g[1] >= 6]
 
     def determine_winner(self) -> bool:
-        if not self.games or len(self.games) != 2:
+        if not self._set_completed():
             return None
-        pl1, pl1_games = self.games[0]
-        pl2, pl2_games = self.games[1]
-        if pl1_games == pl2_games:
-            raise error.ConfigException(f"{pl1.name} games {pl1_games} same as {pl2.name} games {pl2_games}")
-        return pl1 if pl1_games > pl2_games else pl2
+        en1, en1_games = self.games[0]
+        en2, en2_games = self.games[1]
+        if en1_games == en2_games:
+            raise error.ConfigException(f"{en1.player().name} games {en1_games} same as {en2.player().name} games {en2_games}")
+        return en1 if en1_games > en2_games else en2

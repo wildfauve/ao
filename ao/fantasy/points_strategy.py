@@ -42,6 +42,12 @@ class WinNumSetsLossMaxSets(PointsStrategyCalculator):
     + n points for not selecting the correct winner, but getting the sets correct.
     """
 
+    def explain_points_for_round(self, for_round):
+        w = self._points_with_factor(self.pts_strategy.WINNER.value[1], for_round)
+        s = self._points_with_factor(self.pts_strategy.NUMBER_OF_SETS.value[1], for_round)
+        ls = self._points_with_factor(self.pts_strategy.LOST_WITH_MAX_SETS.value[1], for_round)
+        return f"w({w}) s({s}) ls({ls})"
+
     def calc(self, selection: model.Selection, explain: bool = False) -> Union[int, Dict]:
         result = [strategy(selection, explain) for strategy in self.points_strategy_fns()]
         if explain:

@@ -43,3 +43,6 @@ class TournamentEvent:
         if not accum:
             return sched
         return list(accumulate(sched))
+
+    def fantasy_points_allocation(self, rd_number: int) -> str:
+        return self.draws[0].fantasy_points_allocation(rd_number)

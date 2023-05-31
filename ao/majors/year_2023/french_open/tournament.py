@@ -26,4 +26,4 @@ FO2023WomensSingles = (draw.WomensSingles("WomensSingles",
 
 FrenchOpen2023.has_draw(FO2023WomensSingles).has_draw(FO2023MensSingles)
 
-results.add_results([FO2023MensSingles, FO2023WomensSingles])
+tournaments.add_results(draws=[FO2023MensSingles, FO2023WomensSingles], results_module=results)

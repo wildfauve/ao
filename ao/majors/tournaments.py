@@ -1,8 +1,11 @@
-from ao.model import tournament
+from typing import List
 import importlib
+import re
 
-AustralianOpen = tournament.GrandSlam(name="Australian Open", subject_name="AustralianOpen", perma_id="ao")
-FrenchOpen = tournament.GrandSlam(name="French Open", subject_name="FrenchOpen", perma_id="fo")
+from ao import model
+
+AustralianOpen = model.GrandSlam(name="Australian Open", subject_name="AustralianOpen", perma_id="ao")
+FrenchOpen = model.GrandSlam(name="French Open", subject_name="FrenchOpen", perma_id="fo")
 
 TournamentLoaderConfig = {
     'AustralianOpen2023': (2023, "australian_open"),
@@ -28,3 +31,20 @@ def tournament_in_fantasy(name):
     year, tournament_module_name = TournamentLoaderConfig.get(name)
     tournament_module = importlib.import_module(f"ao.majors.year_{year}.{tournament_module_name}.tournament")
     return getattr(tournament_module, name)
+
+
+def add_results(draws: List[model.Draw], results_module):
+    mens, womens = _for_round(model.find_draw_by_cls(model.MensSingles, draws),
+                              model.find_draw_by_cls(model.WomensSingles, draws),
+                              results_module)
+    return mens, womens
+
+
+def _for_round(mens_singles, womens_singles, results_module):
+    return _for_rd_fn_caller(results_module, [mens_singles, womens_singles])
+
+
+def _for_rd_fn_caller(results_module, draws: List):
+    for draw in draws:
+        [getattr(results_module, f)(draw) for f in dir(results_module) if re.match(f"^{draw.fn_symbol}_", f)]
+    return draws

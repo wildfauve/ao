@@ -7,6 +7,9 @@ from .draw import (
     find_draw_by_cls
 )
 
+from .tournament import (
+    GrandSlam
+)
 
 from .fantasy import (
     Selection

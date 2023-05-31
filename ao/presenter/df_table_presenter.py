@@ -26,7 +26,7 @@ def event_team_scores_table(df: pl.DataFrame, to_discord: bool = False):
 def _send_to_discord(table):
     cons = console.to_string_console()
     cons.print(table)
-    discord.send(_format(cons.file.getvalue()))
+    discord.send_basic_text(_format(cons.file.getvalue()))
     pass
 
 
