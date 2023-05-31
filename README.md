@@ -6,5 +6,6 @@ poetry run ao draw-scrap --results-file s.py --tournament FrenchOpen2023 --round
 poetry run ao leaderboard --tournament FrenchOpen2023 --to-discord
 
 
-poetry run ao plot --file totals.png --tournament FrenchOpen2023 --accum-totals-plot --to-discord    
+poetry run ao plot --file totals.png --tournament FrenchOpen2023 --accum-totals-plot --to-discord
+poetry run ao plot --file rank.png --tournament FrenchOpen2023 --ranking-plot --to-discord    
 ```

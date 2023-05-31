@@ -71,7 +71,7 @@ def womens_singles_round_2(womens_singles):
     TEAM.draw(womens_singles).match('2.20').winner(women.Avanesyan).in_sets(3)  # (  W) Jeanjean  OR  (  L) Avanesyan
     TEAM.draw(womens_singles).match('2.21').winner(women.Samsonova).in_sets(2)  # ( 15) Samsonova  OR  (   ) Pavlyuchenkova
     TEAM.draw(womens_singles).match('2.22').winner(women.Potapova).in_sets(3)  # (   ) Sherif  OR  ( 24) Potapova
-    TEAM.draw(womens_singles).match('2.23').winner(women.Osorio.in_sets(2)  # ( 28) Mertens  OR  (  L) Osorio
+    TEAM.draw(womens_singles).match('2.23').winner(women.Osorio).in_sets(2)  # ( 28) Mertens  OR  (  L) Osorio
     TEAM.draw(womens_singles).match('2.24').winner(women.Pegula).in_sets(3)  # (   ) Giorgi  OR  (  3) Pegula
     TEAM.draw(womens_singles).match('2.25').winner(women.Blinkova).in_sets(2)  # (  5) Garcia  OR  (   ) Blinkova
     TEAM.draw(womens_singles).match('2.26').winner(women.Hunter).in_sets(3)  # (  Q) Hunter  OR  (   ) Svitolina
