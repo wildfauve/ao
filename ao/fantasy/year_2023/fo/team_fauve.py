@@ -14,38 +14,38 @@ def team_fauve(mens_singles, womens_singles):
 
 
 def mens_singles_round_2(mens_singles):
-    TEAM.draw(mens_singles).match('2.1').winner(men).in_sets()  # (  1) Alcaraz  OR  (   ) Daniel
-    TEAM.draw(mens_singles).match('2.2').winner(men).in_sets()  # (   ) Arnaldi  OR  ( 26) Shapovalov
-    TEAM.draw(mens_singles).match('2.3').winner(men).in_sets()  # ( 17) Musetti  OR  (   ) Shevchenko
-    TEAM.draw(mens_singles).match('2.4').winner(men).in_sets()  # (  Q) Pouille  OR  ( 14) Norrie
-    TEAM.draw(mens_singles).match('2.5').winner(men).in_sets()  # (   ) Fognini  OR  (   ) Kubler
-    TEAM.draw(mens_singles).match('2.6').winner(men).in_sets()  # (  Q) Ofner  OR  ( 24) Korda
-    TEAM.draw(mens_singles).match('2.7').winner(men).in_sets()  # (   ) Schwartzman  OR  (   ) Borges
-    TEAM.draw(mens_singles).match('2.8').winner(men).in_sets()  # (   ) Carballes_Baena  OR  (  5) Tsitsipas
-    TEAM.draw(mens_singles).match('2.9').winner(men).in_sets()  # (  3) Djokovic  OR  (   ) Fucsovics
-    TEAM.draw(mens_singles).match('2.10').winner(men).in_sets()  # (   ) Van_Assche  OR  ( 29) Davidovich_Fokina
-    TEAM.draw(mens_singles).match('2.11').winner(men).in_sets()  # ( 19) Bautista_Agut  OR  (   ) Varillas
-    TEAM.draw(mens_singles).match('2.12').winner(men).in_sets()  # (   ) Griekspoor  OR  ( 13) Hurkacz
-    TEAM.draw(mens_singles).match('2.13').winner(men).in_sets()  # ( 11) Khachanov  OR  (  Q) Albot
-    TEAM.draw(mens_singles).match('2.14').winner(men).in_sets()  # (   ) Wawrinka  OR  (  W) Kokkinakis
-    TEAM.draw(mens_singles).match('2.15').winner(men).in_sets()  # (   ) Sonego  OR  (   ) Humbert
-    TEAM.draw(mens_singles).match('2.16').winner(men).in_sets()  # (   ) Moutet  OR  (  7) Rublev
-    TEAM.draw(mens_singles).match('2.17').winner(men).in_sets()  # (  6) Rune  OR  (   ) Monfils
-    TEAM.draw(mens_singles).match('2.18').winner(men).in_sets()  # (  Q) Olivieri  OR  (  Q) Vavassori
-    TEAM.draw(mens_singles).match('2.19').winner(men).in_sets()  # ( 23) Cerundolo_Francisco  OR  (  L) Hanfmann
-    TEAM.draw(mens_singles).match('2.20').winner(men).in_sets()  # (   ) Rinderknech  OR  (  9) Fritz
-    TEAM.draw(mens_singles).match('2.21').winner(men).in_sets()  # ( 16) Paul  OR  (   ) Jarry
-    TEAM.draw(mens_singles).match('2.22').winner(men).in_sets()  # (   ) Giron  OR  (   ) Lehecka
-    TEAM.draw(mens_singles).match('2.23').winner(men).in_sets()  # (  Q) Tirante  OR  (   ) Zhang_Zhizhen
-    TEAM.draw(mens_singles).match('2.24').winner(men).in_sets()  # (  Q) Zeppieri  OR  (  4) Ruud
-    TEAM.draw(mens_singles).match('2.25').winner(men).in_sets()  # (  8) Sinner  OR  (   ) Altmaier
-    TEAM.draw(mens_singles).match('2.26').winner(men).in_sets()  # (   ) Ruusuvuori  OR  ( 28) Dimitrov
-    TEAM.draw(mens_singles).match('2.27').winner(men).in_sets()  # ( 22) Zverev  OR  (   ) Molcan
-    TEAM.draw(mens_singles).match('2.28').winner(men).in_sets()  # (  Q) Karatsev  OR  ( 12) Tiafoe
-    TEAM.draw(mens_singles).match('2.29').winner(men).in_sets()  # ( 15) Coric  OR  (   ) Cachin
-    TEAM.draw(mens_singles).match('2.30').winner(men).in_sets()  # (   ) Etcheverry  OR  ( 18) De_Minaur
-    TEAM.draw(mens_singles).match('2.31').winner(men).in_sets()  # ( 27) Nishioka  OR  (   ) Purcell
-    TEAM.draw(mens_singles).match('2.32').winner(men).in_sets()  # (   ) Pella  OR  (  Q) Seyboth_Wild
+    TEAM.draw(mens_singles).match('2.1').winner(men.Alcaraz).in_sets(3)  # (  1) Alcaraz  OR  (   ) Daniel
+    TEAM.draw(mens_singles).match('2.2').winner(men.Shapovalov).in_sets(4)  # (   ) Arnaldi  OR  ( 26) Shapovalov
+    TEAM.draw(mens_singles).match('2.3').winner(men.Musetti).in_sets(4)  # ( 17) Musetti  OR  (   ) Shevchenko
+    TEAM.draw(mens_singles).match('2.4').winner(men.Norrie).in_sets(4)  # (  Q) Pouille  OR  ( 14) Norrie
+    TEAM.draw(mens_singles).match('2.5').winner(men.Fognini).in_sets(4)  # (   ) Fognini  OR  (   ) Kubler
+    TEAM.draw(mens_singles).match('2.6').winner(men.Korda).in_sets(4)  # (  Q) Ofner  OR  ( 24) Korda
+    TEAM.draw(mens_singles).match('2.7').winner(men.Schwartzman).in_sets(4)  # (   ) Schwartzman  OR  (   ) Borges
+    TEAM.draw(mens_singles).match('2.8').winner(men.Tsitsipas).in_sets(4)  # (   ) Carballes_Baena  OR  (  5) Tsitsipas
+    TEAM.draw(mens_singles).match('2.9').winner(men.Djokovic).in_sets(3)  # (  3) Djokovic  OR  (   ) Fucsovics
+    TEAM.draw(mens_singles).match('2.10').winner(men.Van_Assche).in_sets(4)  # (   ) Van_Assche  OR  ( 29) Davidovich_Fokina
+    TEAM.draw(mens_singles).match('2.11').winner(men.Bautista_Agut).in_sets(3)  # ( 19) Bautista_Agut  OR  (   ) Varillas
+    TEAM.draw(mens_singles).match('2.12').winner(men.Hurkacz).in_sets(4)  # (   ) Griekspoor  OR  ( 13) Hurkacz
+    TEAM.draw(mens_singles).match('2.13').winner(men.Khachanov).in_sets(3)  # ( 11) Khachanov  OR  (  Q) Albot
+    TEAM.draw(mens_singles).match('2.14').winner(men.Kokkinakis).in_sets(4)  # (   ) Wawrinka  OR  (  W) Kokkinakis
+    TEAM.draw(mens_singles).match('2.15').winner(men.Humbert).in_sets(4)  # (   ) Sonego  OR  (   ) Humbert
+    TEAM.draw(mens_singles).match('2.16').winner(men.Rublev).in_sets(3)  # (   ) Moutet  OR  (  7) Rublev
+    TEAM.draw(mens_singles).match('2.17').winner(men.Rune).in_sets(4)  # (  6) Rune  OR  (   ) Monfils
+    TEAM.draw(mens_singles).match('2.18').winner(men.Vavassori).in_sets(4)  # (  Q) Olivieri  OR  (  Q) Vavassori
+    TEAM.draw(mens_singles).match('2.19').winner(men.Cerundolo_Francisco).in_sets(4)  # ( 23) Cerundolo_Francisco  OR  (  L) Hanfmann
+    TEAM.draw(mens_singles).match('2.20').winner(men.Fritz).in_sets(3)  # (   ) Rinderknech  OR  (  9) Fritz
+    TEAM.draw(mens_singles).match('2.21').winner(men.Paul).in_sets(4)  # ( 16) Paul  OR  (   ) Jarry
+    TEAM.draw(mens_singles).match('2.22').winner(men.Giron).in_sets(4)  # (   ) Giron  OR  (   ) Lehecka
+    TEAM.draw(mens_singles).match('2.23').winner(men.Zhang_Zhizhen).in_sets(4)  # (  Q) Tirante  OR  (   ) Zhang_Zhizhen
+    TEAM.draw(mens_singles).match('2.24').winner(men.Ruud).in_sets(3)  # (  Q) Zeppieri  OR  (  4) Ruud
+    TEAM.draw(mens_singles).match('2.25').winner(men.Sinner).in_sets(4)  # (  8) Sinner  OR  (   ) Altmaier
+    TEAM.draw(mens_singles).match('2.26').winner(men.Dimitrov).in_sets(4)  # (   ) Ruusuvuori  OR  ( 28) Dimitrov
+    TEAM.draw(mens_singles).match('2.27').winner(men.Zverev).in_sets(4)  # ( 22) Zverev  OR  (   ) Molcan
+    TEAM.draw(mens_singles).match('2.28').winner(men.Tiafoe).in_sets(3)  # (  Q) Karatsev  OR  ( 12) Tiafoe
+    TEAM.draw(mens_singles).match('2.29').winner(men.Coric).in_sets(4)  # ( 15) Coric  OR  (   ) Cachin
+    TEAM.draw(mens_singles).match('2.30').winner(men.De_Minaur).in_sets(4)  # (   ) Etcheverry  OR  ( 18) De_Minaur
+    TEAM.draw(mens_singles).match('2.31').winner(men.Nishioka).in_sets(4)  # ( 27) Nishioka  OR  (   ) Purcell
+    TEAM.draw(mens_singles).match('2.32').winner(men.Pella).in_sets(5)  # (   ) Pella  OR  (  Q) Seyboth_Wild
     return TEAM
 
 
