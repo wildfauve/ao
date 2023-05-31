@@ -4,6 +4,8 @@ from ao import command, presenter
 from .majors import tournaments
 from .fantasy import teams
 
+from ao.initialiser import environment
+
 
 def tournament_names():
     return tournaments.tournament_names()
@@ -23,11 +25,15 @@ def cli():
               type=click.Choice(['f1', 'fantasy']),
               default='fantasy',
               help="Either the Fantasy Leaderboard or the F1 leaderboard")
-def leaderboard(tournament, round_number, board_type):
+@click.option("--to-discord/--to-shell", "-d/-s", required=True, default=False, help="To discord or to the shell")
+def leaderboard(tournament, round_number, board_type, to_discord):
     """
     Starts the tournament,  applies the results, applies the fantasy selection and prints the leaderboard
     """
-    presenter.event_team_scores_table(command.leaderboard_df(tournament, command.BoardType(board_type), round_number))
+    presenter.event_team_scores_table(
+        command.leaderboard_df(tournament, command.BoardType(board_type), round_number),
+        to_discord
+    )
     pass
 
 
