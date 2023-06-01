@@ -77,8 +77,7 @@ def explain_team_points(tournament_name, team_name):
     tournie = _find_tournament_by_name(tournament_name)
     if not tournie:
         return
-    teams.explain_points_for_team(team_name, _apply_fantasy(_start(tournie)))
-    pass
+    return teams.explain_points_for_team(team_name, _apply_fantasy(_start(tournie)))
 
 
 def generate_graph(ttl_file):

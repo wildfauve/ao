@@ -83,7 +83,8 @@ class WinNumSetsLossMaxSets(PointsStrategyCalculator):
                           self.pts_strategy.NUMBER_OF_SETS)
 
     def lost_but_in_max_sets(self, selection: model.Selection, explain: bool = False) -> int:
-        if (selection.match.match_winner != selection.selected_winner) and selection.match.max_sets_played():
+        if ((selection.match.match_winner != selection.selected_winner) and
+                selection.match.number_of_sets_played() == selection.in_number_sets):
             return self._calc(self.pts_strategy.LOST_WITH_MAX_SETS,
                               selection.round_id,
                               explain)

@@ -120,11 +120,13 @@ def fantasy_score_template(tournament, round, draw, template_name, format):
 @click.option("--fantasy-team-name", "-f",
               type=click.Choice(teams.symbolised_names()),
               help="team name to explain points")
-def explain_team_score(tournament, fantasy_team_name):
+@click.option("--to-discord", "channel", required=False, flag_value="to-discord", default=False,
+              help="Post the plot to Discord")
+def explain_team_score(tournament, fantasy_team_name, channel):
     """
     Shows the round of an event
     """
-    command.explain_team_points(tournament, fantasy_team_name)
+    presenter.explain(fantasy_team_name, command.explain_team_points(tournament, fantasy_team_name), channel)
     pass
 
 

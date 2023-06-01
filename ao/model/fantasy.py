@@ -149,7 +149,7 @@ class Selection:
             "result-in-sets": self.match.number_of_sets_played(),
             "selected-winner": self.selected_winner.player().name if self.selected_winner else None,
             "selected-in-sets": self.in_number_sets if self.in_number_sets else None,
-            "points": [self.points_strategy.calc(self, explain=True)]
+            "points": self.points_strategy.calc(self, explain=True)
         }
 
     def show(self, draw_name: str, table: Table):

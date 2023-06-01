@@ -13,5 +13,7 @@ poetry run ao show-round --tournament FrenchOpen2023 --draw MensSingles --round 
 
 poetry run ao fantasy-score-template --tournament FrenchOpen2023 --draw MensSingles --template-name mens_singles --round 2 
 
-poetry run ao draw-scrap --results-file s.py  --round 1 --scores-only 
+poetry run ao draw-scrap --results-file s.py  --round 1 --scores-only
+
+poetry run ao explain-team-score --tournament FrenchOpen2023 --fantasy-team-name TeamPolarPrecision
 ```

@@ -41,8 +41,7 @@ def explain_points_for_team(team_name, teams):
     if not team:
         echo.echo("Team Not Found")
         return None
-    echo.echo(json.dumps(team.explain_points(), indent=4))
-    pass
+    return team.explain_points()
 
 def show_draw_for_team(team_name, teams, round):
     team = find_team_by_name(team_name, teams)
