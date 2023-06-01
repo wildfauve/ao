@@ -11,5 +11,7 @@ poetry run ao plot --file rank.png --tournament FrenchOpen2023 --ranking-plot --
 
 poetry run ao show-round --tournament FrenchOpen2023 --draw MensSingles --round 2
 
+poetry run ao fantasy-score-template --tournament FrenchOpen2023 --draw MensSingles --template-name mens_singles --round 2 
+
 poetry run ao draw-scrap --results-file s.py  --round 1 --scores-only 
 ```

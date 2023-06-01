@@ -81,8 +81,8 @@ def mens_singles_results_r2(draw):
          .score(atp_players.Hanfmann, (3, 3, 4))),
 
         (draw.for_round(2).for_match(20)
-         .score(atp_players.Rinderknech, (6, 4, 3, 1))
-         .score(atp_players.Fritz, (2, 6, 6, 0))),
+         .score(atp_players.Rinderknech, (6, 4, 3, 4))
+         .score(atp_players.Fritz, (2, 6, 6, 6))),
 
         (draw.for_round(2).for_match(21)
          .score(atp_players.Paul, (6, 1, 4, 5))
@@ -109,7 +109,7 @@ def mens_singles_results_r2(draw):
          .score(atp_players.Dimitrov, (7, 6, 6))),
 
         (draw.for_round(2).for_match(27)
-         .score(atp_players.Zverev, (6, 6, 5))
+         .score(atp_players.Zverev, (6, 6, 6))
          .score(atp_players.Molcan, (4, 2, 1))),
 
         (draw.for_round(2).for_match(28)
