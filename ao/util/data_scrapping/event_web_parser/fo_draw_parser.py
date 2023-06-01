@@ -116,12 +116,19 @@ def _player(draw_mapping, content):
 
     name = content.find('div', class_='name').text.lstrip().rstrip()
     scores = [s.contents[0] for s in content.find_all('div', class_='set')]
-    match_state = model.MatchState.RET if content('span', class_='abandon') else None
     return value.Player(name=name,
                         seed=seed,
-                        match_state=match_state,
+                        match_state=_determine_match_state_exceptions(content),
                         player_module=draw_mapping['player_module'],
                         scores=scores)
+
+
+def _determine_match_state_exceptions(content):
+    if content('span', class_='abandon'):
+        return model.MatchState.RET
+    if content('span', class_='forfait'):
+        return model.MatchState.WITHDRAWN
+    return None
 
 
 def _match_id_fn(match_id):

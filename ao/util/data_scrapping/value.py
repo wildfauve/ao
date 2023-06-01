@@ -5,6 +5,7 @@ import bs4
 
 from ao.players import players
 from ao import model
+from ao.util import fn
 
 
 @dataclass
@@ -41,6 +42,13 @@ class Player:
 
     def _player_mod_name(self):
         return self.player_module.__name__.split(".")[-1]
+
+    def has_retired(self):
+        return self if self.match_state == model.MatchState.RET else None
+
+    def has_withdrawn(self):
+        return self if self.match_state == model.MatchState.WITHDRAWN else None;
+
 
 
 @dataclass
@@ -82,7 +90,7 @@ class MatchBlock:
         """
         return f"""{sp}({self._rd_and_match()}
 {sp}.score({self.player1.score()})
-{sp}.score({self.player2.score()}){self._has_retirement(sp)}),
+{sp}.score({self.player2.score()}){self._has_retirement(sp)}{self._has_withdrawal(sp)}),
 
 """
         pass
@@ -91,10 +99,23 @@ class MatchBlock:
         return f"draw.for_round({self.round}).for_match({self.match_number})"
 
     def _has_retirement(self, sp):
-        if not self.player1.match_state and not self.player2.match_state:
+        ret = fn.remove_none([pl.has_retired() for pl in [self.player1, self.player2]])
+        if not ret:
             return ""
-        retired_player = self.player1 if self.player1.match_state == model.MatchState.RET else self.player2
-        return f"\n{sp}.retirement({retired_player.player_definition()})"
+        return f"\n{sp}.retirement({ret[0].player_definition()})"
+
+    def _has_withdrawal(self, sp):
+        wd = fn.remove_none([pl.has_withdrawn() for pl in [self.player1, self.player2]])
+        if not wd:
+            return ""
+        return f"\n{sp}.withdrawal({wd[0].player_definition()})"
+
 
     def has_result(self):
-        return self.player1.scores and self.player2.scores
+        return (self.player1.scores and self.player2.scores) or self._match_has_exception([self.player1, self.player2])
+
+    def _match_has_exception(self, players: List):
+        return any([self._player_has_match_exception(pl) for pl in players])
+
+    def _player_has_match_exception(self, pl):
+        return pl.has_retired() or pl.has_withdrawn()

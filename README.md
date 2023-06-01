@@ -7,5 +7,9 @@ poetry run ao leaderboard --tournament FrenchOpen2023 --to-discord
 
 
 poetry run ao plot --file totals.png --tournament FrenchOpen2023 --accum-totals-plot --to-discord
-poetry run ao plot --file rank.png --tournament FrenchOpen2023 --ranking-plot --to-discord    
+poetry run ao plot --file rank.png --tournament FrenchOpen2023 --ranking-plot --to-discord
+
+poetry run ao show-round --tournament FrenchOpen2023 --draw MensSingles --round 2
+
+poetry run ao draw-scrap --results-file s.py  --round 1 --scores-only 
 ```

@@ -58,12 +58,12 @@ def show_draw(tournament, fantasy_team_name, round_number):
               type=click.Choice(['MensSingles', 'WomensSingles']),
               default='MensSingles',
               help="Show the state of a round for an event.")
-@click.option("--round_number", "-r", type=int, default=1, help="The round number to show.")
-def show_round(tournament, round_number, draw):
+@click.option("--round", "-r", type=int, default=1, help="The round number to show.")
+def show_round(tournament, round, draw):
     """
     Shows the round of an event
     """
-    command.show_round(tournament, draw, round_number)
+    command.show_round(tournament, draw, round)
     pass
 
 

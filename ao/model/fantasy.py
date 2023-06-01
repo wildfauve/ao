@@ -169,6 +169,8 @@ class Selection:
             self.selected_winner = self.match.find_player_by_player(player_name)
         elif isinstance(player_name, str):
             self.selected_winner = self.match.player_from_player_name(player_name)
+            if not self.selected_winner:
+                breakpoint()
         else:
             return self
         return self

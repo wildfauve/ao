@@ -3,10 +3,13 @@ import math
 from enum import Enum
 
 from . import player, set, entry, draw
+from ao.presenter import console
 from ao.util import fn, error, echo
+
 
 class MatchState(Enum):
     RET = 'retired'
+    WITHDRAWN = 'withdrawn'
 
 
 def split_match_id(match_id):
@@ -25,6 +28,7 @@ class Match:
         self.sets = []
         self.match_winner = None
         self.entry_retirement = None
+        self.entry_withdrawal = None
 
     def show(self, table):
         table.add_row(self.match_id,
@@ -54,7 +58,8 @@ class Match:
             return ""
         chevon = "<" if for_player == self.match_winner else ""
         ret = "(RET)" if self.entry_retirement == for_player else ""
-        return f"{' '.join([str(s) for s in self.scores[for_player]])} {ret}  {chevon}"
+        wd = "(WD)" if self.entry_withdrawal == for_player else ""
+        return f"{' '.join([str(s) for s in self.scores[for_player]])} {ret}{wd}  {chevon}"
 
     def result_template(self, event_name, round_number):
         match_part = f"{event_name}.for_round({round_number}).for_match({self.number})"
@@ -131,16 +136,23 @@ class Match:
         self.winner()
         return self
 
+    def withdrawal(self, wd_player):
+        pl = draw.find_entry_for_player(wd_player, [self.player1, self.player2])
+        self.entry_withdrawal = pl
+        self.winner()
+        return self
+
+
     def number_of_sets_played(self):
         return len(fn.remove_none([s.winner for s in self.sets]))
 
     def max_sets_played(self):
-        return self.best_of == self.number_of_sets_played() or self.entry_retirement
+        return self.best_of == self.number_of_sets_played() or self.entry_retirement or self.entry_withdrawal
 
     def is_finished(self) -> bool:
         if not self.scores:
             return False
-        if self.entry_retirement:
+        if self.entry_retirement or self.entry_withdrawal:
             return True
         set_winners = fn.remove_none([s.determine_winner() for s in self.sets])
         if not set_winners:
@@ -157,9 +169,11 @@ class Match:
             return self.match_winner
         self.match_winner = self._determine_winner()
 
-        echo.echo(f"""Match {self.match_id} Winner {self.match_winner.player().name} 
+        console.print(console.panel().fit(f"""Match {self.match_id} Winner {self.match_winner.player().name}
+
         {self.match_winner.player().name}: {self.show_set_and_winner(self.match_winner)}
-        {self._losing_player().player().name}: {self.show_set_and_winner(self._losing_player())}""")
+        {self._losing_player().player().name}: {self.show_set_and_winner(self._losing_player())}
+        """))
 
         self.advance_winner_fn(self)
         return self.match_winner
@@ -182,10 +196,10 @@ class Match:
 
     def _determine_winner(self):
         if self.entry_retirement:
-            if self.entry_retirement == self.player1:
-                return self.player2
-            else:
-                return self.player1
+            return self.player2 if self.entry_retirement == self.player1 else self.player1
+        if self.entry_withdrawal:
+            return self.player2 if self.entry_withdrawal == self.player1 else self.player1
+
         winners_by_sets = fn.remove_none([s.winner for s in self.sets])
         if winners_by_sets.count(self.player1) > winners_by_sets.count(self.player2):
             return self.player1
