@@ -27,15 +27,13 @@ draw_map = {
 
 round_map = {'first round': 1,
              'second round': 2,
-             'third round': 3}
+             'third round': 3,
+             'fourth round': 4}
 
 draws = [("https://www.rolandgarros.com/en-us/results/SM?round={}", 'FO2023MensSingles'),
          ("https://www.rolandgarros.com/en-us/results/SD?round={}", 'FO2023WomensSingles')]
 
-# draws = [('ao/util/data_scrapping/data/fo_q_mens_with_results.html', 'FO2023QualMensSingles')]
-
 match_ids = {'mens_singles': [], 'womens_singles': []}
-
 
 def build_draw(for_rd, scores_only):
     return _assign_match_numbers(_brackets(_get_pages(draws, for_rd), for_rd, scores_only))
@@ -101,10 +99,13 @@ def _player_and_scoring_bloc(draw_mapping, player_bloc, klass):
 
 
 def _round(match_html):
-    rd = match_html.find('div', class_='roundLabel')
-    if not rd:
+    rd_div = match_html.find('div', class_='roundLabel')
+    if not rd_div:
         return None
-    return round_map[rd.text.lstrip().rstrip()]
+    rd = rd_div.text.lstrip().rstrip()
+    if rd not in round_map.keys():
+        breakpoint()
+    return round_map[rd]
 
 
 def _player(draw_mapping, content):

@@ -53,7 +53,7 @@ def mens_singles_results(draw):
 
     # Quarter Final Results
 
-    draw.for_round(2).for_match(1).score(Khachanov, (7, 6, 3)).score(Korda, (6, 3, 0))
+    draw.for_round(2).for_match(1).score(Khachanov, (7, 6, 3)).score(Korda, (6, 3, 0)).retirement(Korda)
     draw.for_round(2).for_match(2).score(Tsitsipas, (6, 7, 6)).score(Lehecka, (3, 6, 4))
     draw.for_round(2).for_match(3).score(Rublev, (1, 2, 4)).score(Djokovic, (6, 6, 6))
     draw.for_round(2).for_match(4).score(Shelton, (6, 3, 7, 4)).score(Paul, (7, 6, 5, 6))
