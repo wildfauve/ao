@@ -17,10 +17,10 @@ def event_team_scores_table(df: pl.DataFrame, to_discord: bool = False):
     for row in df.rows():
         table.add_row(*[str(item) for item in row])
 
+    console.terminal_console().print(table)
+
     if to_discord:
         _send_to_discord(table)
-    else:
-        console.terminal_console().print(table)
 
 
 def _send_to_discord(table):

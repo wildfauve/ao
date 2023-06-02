@@ -46,7 +46,7 @@ class WinNumSetsLossMaxSets(PointsStrategyCalculator):
         w = self._points_with_factor(self.pts_strategy.WINNER.value[1], for_round)
         s = self._points_with_factor(self.pts_strategy.NUMBER_OF_SETS.value[1], for_round)
         ls = self._points_with_factor(self.pts_strategy.LOST_WITH_MAX_SETS.value[1], for_round)
-        return f"w({w}) s({s}) ls({ls})"
+        return f"w({w}) s({s}) lms({ls})"
 
     def calc(self, selection: model.Selection, explain: bool = False) -> Union[int, Dict]:
         result = [strategy(selection, explain) for strategy in self.points_strategy_fns()]
@@ -84,7 +84,8 @@ class WinNumSetsLossMaxSets(PointsStrategyCalculator):
 
     def lost_but_in_max_sets(self, selection: model.Selection, explain: bool = False) -> int:
         if ((selection.match.match_winner != selection.selected_winner) and
-                selection.match.number_of_sets_played() == selection.in_number_sets):
+            selection.match.max_sets_played()):
+                # selection.match.number_of_sets_played() == selection.in_number_sets):
             return self._calc(self.pts_strategy.LOST_WITH_MAX_SETS,
                               selection.round_id,
                               explain)
