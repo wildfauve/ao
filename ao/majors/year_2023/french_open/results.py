@@ -4,8 +4,8 @@ from ao.players import wta_players, atp_players
 def mens_singles_results_r3(draw):
     return [
         (draw.for_round(3).for_match(1)
-         .score(atp_players.Alcaraz, (6, 6, 0))
-         .score(atp_players.Shapovalov, (1, 4, 0))),
+         .score(atp_players.Alcaraz, (6, 6, 6))
+         .score(atp_players.Shapovalov, (1, 4, 2))),
 
         (draw.for_round(3).for_match(2)
          .score(atp_players.Musetti, (6, 6, 6))
@@ -24,8 +24,8 @@ def mens_singles_results_r3(draw):
          .score(atp_players.Davidovich_Fokina, (6, 6, 2))),
 
         (draw.for_round(3).for_match(6)
-         .score(atp_players.Varillas, (3, 6, 7, 1))
-         .score(atp_players.Hurkacz, (6, 3, 6, 2))),
+         .score(atp_players.Varillas, (3, 6, 7, 4, 6))
+         .score(atp_players.Hurkacz, (6, 3, 6, 6, 2))),
 
         (draw.for_round(3).for_match(7)
          .score(atp_players.Khachanov, (6, 6, 3, 7))
@@ -41,7 +41,7 @@ def mens_singles_results_r3(draw):
 def womens_singles_results_r3(draw):
     return [
         (draw.for_round(3).for_match(9)
-         .score(wta_players.Muchova, (6, 4))
+         .score(wta_players.Muchova, (6, 6))
          .score(wta_players.Begu, (3, 2))),
 
         (draw.for_round(3).for_match(10)
@@ -73,6 +73,7 @@ def womens_singles_results_r3(draw):
          .score(wta_players.Sabalenka, (6, 6))),
 
     ]
+
 
 def mens_singles_results_r2(draw):
     return [
