@@ -1,6 +1,47 @@
 from ao.players import wta_players, atp_players
 
 
+def mens_singles_results_r4(draw):
+        return [
+            (draw.for_round(4).for_match(1)
+        .score(atp_players.Alcaraz, (6, 6, 6))
+        .score(atp_players.Musetti, (3, 2, 2))),
+
+        (draw.for_round(4).for_match(2)
+        .score(atp_players.Ofner, (5, 3, 0))
+        .score(atp_players.Tsitsipas, (7, 6, 6))),
+
+        (draw.for_round(4).for_match(3)
+        .score(atp_players.Djokovic, (6, 6, 6))
+        .score(atp_players.Varillas, (3, 2, 2))),
+
+        (draw.for_round(4).for_match(4)
+        .score(atp_players.Khachanov, (1, 6, 7, 6))
+        .score(atp_players.Sonego, (6, 4, 6, 1))),
+
+
+   ]
+def womens_singles_results_r4(draw):
+        return [
+            (draw.for_round(4).for_match(5)
+        .score(wta_players.Muchova, (6, 6))
+        .score(wta_players.Avanesyan, (4, 3))),
+
+        (draw.for_round(4).for_match(6)
+        .score(wta_players.Pavlyuchenkova, (3, 7, 6))
+        .score(wta_players.Mertens, (6, 6, 3))),
+
+        (draw.for_round(4).for_match(7)
+        .score(wta_players.Svitolina, (6, 7))
+        .score(wta_players.Kasatkina, (4, 6))),
+
+        (draw.for_round(4).for_match(8)
+        .score(wta_players.Stephens, (6, 4))
+        .score(wta_players.Sabalenka, (7, 6))),
+
+
+   ]
+
 def mens_singles_results_r3(draw):
         return [
             (draw.for_round(3).for_match(1)

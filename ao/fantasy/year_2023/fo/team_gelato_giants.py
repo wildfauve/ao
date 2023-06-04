@@ -16,7 +16,7 @@ def mens_singles_round_4(mens_singles):
     TEAM.draw(mens_singles).match('4.1').winner(men.Musetti).in_sets(4)  # (  1) Alcaraz  OR  ( 17) Musetti
     TEAM.draw(mens_singles).match('4.2').winner(men.Tsitsipas).in_sets(3)  # (  Q) Ofner  OR  (  5) Tsitsipas
     TEAM.draw(mens_singles).match('4.3').winner(men.Djokovic).in_sets(3)  # (  3) Djokovic  OR  (   ) Varillas
-    TEAM.draw(mens_singles).match('4.4').winner(men).Sonego.in_sets(5)  # ( 11) Khachanov  OR  (   ) Sonego
+    TEAM.draw(mens_singles).match('4.4').winner(men.Sonego).in_sets(5)  # ( 11) Khachanov  OR  (   ) Sonego
     TEAM.draw(mens_singles).match('4.5').winner(men.Rune).in_sets(3)  # (  6) Rune  OR  ( 23) Cerundolo_Francisco
     TEAM.draw(mens_singles).match('4.6').winner(men.Ruud).in_sets(4)  # (   ) Jarry  OR  (  4) Ruud
     TEAM.draw(mens_singles).match('4.7').winner(men.Zverev).in_sets(4)  # ( 28) Dimitrov  OR  ( 22) Zverev
