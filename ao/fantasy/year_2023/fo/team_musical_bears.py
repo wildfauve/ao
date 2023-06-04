@@ -13,27 +13,30 @@ def team_musical_bears(mens_singles, womens_singles):
     helpers.selection_fn_caller(this, [mens_singles, womens_singles])
     return TEAM
 
-
 def mens_singles_round_4(mens_singles):
-    TEAM.draw(mens_singles).match('4.1').winner(men).in_sets()  # (  1) Alcaraz  OR  ( 17) Musetti
-    TEAM.draw(mens_singles).match('4.2').winner(men).in_sets()  # (  Q) Ofner  OR  (  5) Tsitsipas
-    TEAM.draw(mens_singles).match('4.3').winner(men).in_sets()  # (  3) Djokovic  OR  (   ) Varillas
-    TEAM.draw(mens_singles).match('4.4').winner(men).in_sets()  # ( 11) Khachanov  OR  (   ) Sonego
-    TEAM.draw(mens_singles).match('4.5').winner(men).in_sets()  # (  6) Rune  OR  ( 23) Cerundolo_Francisco
-    TEAM.draw(mens_singles).match('4.6').winner(men).in_sets()  # (   ) Jarry  OR  (  4) Ruud
-    TEAM.draw(mens_singles).match('4.7').winner(men).in_sets()  # ( 28) Dimitrov  OR  ( 22) Zverev
-    TEAM.draw(mens_singles).match('4.8').winner(men).in_sets()  # (   ) Etcheverry  OR  ( 27) Nishioka
+    TEAM.draw(mens_singles).match('4.1').winner(men. Alcaraz).in_sets(4)  # (  1) Alcaraz  OR  ( 17) Musetti
+    TEAM.draw(mens_singles).match('4.2').winner(men.Tsitsipas).in_sets(3)  # (  Q) Ofner  OR  (  5) Tsitsipas
+    TEAM.draw(mens_singles).match('4.3').winner(men.Djokovic).in_sets(3)  # (  3) Djokovic  OR  (   ) Varillas
+    TEAM.draw(mens_singles).match('4.4').winner(men.Khachanov).in_sets(3)  # ( 11) Khachanov  OR  (   ) Sonego
+
+    TEAM.draw(mens_singles).match('4.5').winner(men.Rune).in_sets(4)  # (  6) Rune  OR  ( 23) Cerundolo_Francisco
+    TEAM.draw(mens_singles).match('4.6').winner(men.Ruud).in_sets(5)  # (   ) Jarry  OR  (  4) Ruud
+    TEAM.draw(mens_singles).match('4.7').winner(men.Dimitrov).in_sets(4)  # ( 28) Dimitrov  OR  ( 22) Zverev
+    TEAM.draw(mens_singles).match('4.8').winner(men.Nishioka).in_sets(5)  # (   ) Etcheverry  OR  ( 27) Nishioka
+
 
 
 def womens_singles_round_4(womens_singles):
-    TEAM.draw(womens_singles).match('4.1').winner(women).in_sets()  # (  1) Swiatek  OR  (   ) Tsurenko
-    TEAM.draw(womens_singles).match('4.2').winner(women).in_sets()  # (   ) Schmiedlova  OR  (  6) Gauff
-    TEAM.draw(womens_singles).match('4.3').winner(women).in_sets()  # (   ) Sorribes_Tormo  OR  ( 14) Haddad_Maia
-    TEAM.draw(womens_singles).match('4.4').winner(women).in_sets()  # (   ) Pera  OR  (  7) Jabeur
-    TEAM.draw(womens_singles).match('4.5').winner(women).in_sets()  # (   ) Muchova  OR  (  L) Avanesyan
-    TEAM.draw(womens_singles).match('4.6').winner(women).in_sets()  # (   ) Pavlyuchenkova  OR  ( 28) Mertens
-    TEAM.draw(womens_singles).match('4.7').winner(women).in_sets()  # (   ) Svitolina  OR  (  9) Kasatkina
-    TEAM.draw(womens_singles).match('4.8').winner(women).in_sets()  # (   ) Stephens  OR  (  2) Sabalenka
+    TEAM.draw(womens_singles).match('4.1').winner(women.Swiatek).in_sets(2)  # (  1) Swiatek  OR  (   ) Tsurenko
+    TEAM.draw(womens_singles).match('4.2').winner(women.Gauff).in_sets(3)  # (   ) Schmiedlova  OR  (  6) Gauff
+    TEAM.draw(womens_singles).match('4.3').winner(women.Haddad_Maia).in_sets(3)  # (   ) Sorribes_Tormo  OR  ( 14) Haddad_Maia
+    TEAM.draw(womens_singles).match('4.4').winner(women.Jabeur).in_sets(3)  # (   ) Pera  OR  (  7) Jabeur
+
+    TEAM.draw(womens_singles).match('4.5').winner(women.Muchova).in_sets(2)  # (   ) Muchova  OR  (  L) Avanesyan
+    TEAM.draw(womens_singles).match('4.6').winner(women.Pavlyuchenkova).in_sets(3)  # (   ) Pavlyuchenkova  OR  ( 28) Mertens
+    TEAM.draw(womens_singles).match('4.7').winner(women.Kasatkina).in_sets(2)  # (   ) Svitolina  OR  (  9) Kasatkina
+    TEAM.draw(womens_singles).match('4.8').winner(women.Sabalenka).in_sets(2)  # (   ) Stephens  OR  (  2) Sabalenka
+
 
 
 def mens_singles_round_3(mens_singles):
