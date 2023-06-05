@@ -1,4 +1,5 @@
 from discord_webhook import DiscordWebhook, DiscordEmbed
+from pathlib import Path
 
 from ao.util import env
 
@@ -9,7 +10,7 @@ def send_basic_text(message_text):
     pass
 
 
-def send_attachment(msg_title: str, description: str, file_path: str, file_name: str, as_attachment: bool = False):
+def send_attachment(msg_title: str, description: str, file_path: Path, file_name: str, as_attachment: bool = False):
     hook = DiscordWebhook(url=_channel_url())
     with open(file_path, "rb") as f:
         hook.add_file(file=f.read(), filename=file_name)
