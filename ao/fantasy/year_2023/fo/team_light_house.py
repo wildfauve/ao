@@ -13,10 +13,10 @@ def team_light_house(mens_singles, womens_singles):
     return TEAM
 
 def mens_singles_round_5(mens_singles):
-    TEAM.draw(mens_singles).match('5.1').winner(men).in_sets()  # (  1) Alcaraz  OR  (  5) Tsitsipas
-    TEAM.draw(mens_singles).match('5.2').winner(men).in_sets()  # (  3) Djokovic  OR  ( 11) Khachanov
-    TEAM.draw(mens_singles).match('5.3').winner(men).in_sets()  # (  6) Rune  OR  (  4) Ruud
-    TEAM.draw(mens_singles).match('5.4').winner(men).in_sets()  # ( 22) Zverev  OR  (   ) Etcheverry
+    TEAM.draw(mens_singles).match('5.1').winner(men.Alcaraz).in_sets(5)  # (  1) Alcaraz  OR  (  5) Tsitsipas
+    TEAM.draw(mens_singles).match('5.2').winner(men.Djokovic).in_sets(3)  # (  3) Djokovic  OR  ( 11) Khachanov
+    TEAM.draw(mens_singles).match('5.3').winner(men.Rune).in_sets(5)  # (  6) Rune  OR  (  4) Ruud
+    TEAM.draw(mens_singles).match('5.4').winner(men.Zverev).in_sets(4)  # ( 22) Zverev  OR  (   ) Etcheverry
 
 
 def womens_singles_round_5(womens_singles):
