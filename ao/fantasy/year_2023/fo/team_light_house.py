@@ -20,10 +20,10 @@ def mens_singles_round_5(mens_singles):
 
 
 def womens_singles_round_5(womens_singles):
-    TEAM.draw(womens_singles).match('5.1').winner(women).in_sets()  # (  1) Swiatek  OR  (  6) Gauff
-    TEAM.draw(womens_singles).match('5.2').winner(women).in_sets()  # ( 14) Haddad_Maia  OR  (  7) Jabeur
-    TEAM.draw(womens_singles).match('5.3').winner(women).in_sets()  # (   ) Muchova  OR  (   ) Pavlyuchenkova
-    TEAM.draw(womens_singles).match('5.4').winner(women).in_sets()  # (   ) Svitolina  OR  (  2) Sabalenka
+    TEAM.draw(womens_singles).match('5.1').winner(women.Swiatek).in_sets(3)  # (  1) Swiatek  OR  (  6) Gauff
+    TEAM.draw(womens_singles).match('5.2').winner(women.Jabeur).in_sets(3)  # ( 14) Haddad_Maia  OR  (  7) Jabeur
+    TEAM.draw(womens_singles).match('5.3').winner(women.Pavlyuchenkova).in_sets(3)  # (   ) Muchova  OR  (   ) Pavlyuchenkova
+    TEAM.draw(womens_singles).match('5.4').winner(women.Sabalenka).in_sets(2)  # (   ) Svitolina  OR  (  2) Sabalenka
 
 
 def mens_singles_round_4(mens_singles):

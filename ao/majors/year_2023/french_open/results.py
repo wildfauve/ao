@@ -1,6 +1,32 @@
 from ao.players import wta_players, atp_players
 
 
+def mens_singles_results_r5(draw):
+    return [
+        (draw.for_round(5).for_match(1)
+         .score(atp_players.Alcaraz, (6, 6, 7))
+         .score(atp_players.Tsitsipas, (2, 1, 6))),
+
+        (draw.for_round(5).for_match(2)
+         .score(atp_players.Djokovic, (4, 7, 6, 6))
+         .score(atp_players.Khachanov, (6, 6, 2, 4))),
+
+    ]
+
+
+def womens_singles_results_r5(draw):
+    return [
+        (draw.for_round(5).for_match(3)
+         .score(wta_players.Muchova, (7, 6))
+         .score(wta_players.Pavlyuchenkova, (5, 2))),
+
+        (draw.for_round(5).for_match(4)
+         .score(wta_players.Svitolina, (4, 4))
+         .score(wta_players.Sabalenka, (6, 6))),
+
+    ]
+
+
 def mens_singles_results_r4(draw):
     return [
         (draw.for_round(4).for_match(1)
