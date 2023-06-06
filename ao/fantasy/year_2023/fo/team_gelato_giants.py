@@ -13,19 +13,19 @@ def team_gelato_giants(mens_singles, womens_singles):
     return TEAM
 
 def mens_singles_round_5(mens_singles):
-    TEAM.draw(mens_singles).match('5.1').winner(men).in_sets()  # (  1) Alcaraz  OR  (  5) Tsitsipas
-    TEAM.draw(mens_singles).match('5.2').winner(men).in_sets()  # (  3) Djokovic  OR  ( 11) Khachanov
-    TEAM.draw(mens_singles).match('5.3').winner(men).in_sets()  # (  6) Rune  OR  (  4) Ruud
-    TEAM.draw(mens_singles).match('5.4').winner(men).in_sets()  # ( 22) Zverev  OR  (   ) Etcheverry
+    TEAM.draw(mens_singles).match('5.1').winner(men.Tsitsipas).in_sets(5)  # (  1) Alcaraz  OR  (  5) Tsitsipas
+    TEAM.draw(mens_singles).match('5.2').winner(men.Khachanov.in_sets(4)  # (  3) Djokovic  OR  ( 11) Khachanov
+    TEAM.draw(mens_singles).match('5.3').winner(men.Rune).in_sets(3)  # (  6) Rune  OR  (  4) Ruud
+    TEAM.draw(mens_singles).match('5.4').winner(men.Zverev).in_sets(4)  # ( 22) Zverev  OR  (   ) Etcheverry
 
 
 def womens_singles_round_5(womens_singles):
-    TEAM.draw(womens_singles).match('5.1').winner(women).in_sets()  # (  1) Swiatek  OR  (  6) Gauff
-    TEAM.draw(womens_singles).match('5.2').winner(women).in_sets()  # ( 14) Haddad_Maia  OR  (  7) Jabeur
-    TEAM.draw(womens_singles).match('5.3').winner(women).in_sets()  # (   ) Muchova  OR  (   ) Pavlyuchenkova
-    TEAM.draw(womens_singles).match('5.4').winner(women).in_sets()  # (   ) Svitolina  OR  (  2) Sabalenka
+    TEAM.draw(womens_singles).match('5.1').winner(women.Swiatek).in_sets(2)  # (  1) Swiatek  OR  (  6) Gauff
+    TEAM.draw(womens_singles).match('5.2').winner(women.Jabeur).in_sets(2)  # ( 14) Haddad_Maia  OR  (  7) Jabeur
+    TEAM.draw(womens_singles).match('5.3').winner(women.Jabeur).in_sets()  # (   ) Jabeur  OR  (   ) Pavlyuchenkova
 
-
+               
+                                                
 def mens_singles_round_4(mens_singles):
     TEAM.draw(mens_singles).match('4.1').winner(men.Musetti).in_sets(4)  # (  1) Alcaraz  OR  ( 17) Musetti
     TEAM.draw(mens_singles).match('4.2').winner(men.Tsitsipas).in_sets(3)  # (  Q) Ofner  OR  (  5) Tsitsipas
