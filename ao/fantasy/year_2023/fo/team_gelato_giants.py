@@ -12,6 +12,16 @@ def team_gelato_giants(mens_singles, womens_singles):
     helpers.selection_fn_caller(this, [mens_singles, womens_singles])
     return TEAM
 
+def mens_singles_round_6(mens_singles):
+    TEAM.draw(mens_singles).match('6.1').winner(men).in_sets()  # (  1) Alcaraz  OR  (  3) Djokovic
+    TEAM.draw(mens_singles).match('6.2').winner(men).in_sets()  # (  4) Ruud  OR  ( 22) Zverev
+
+
+def womens_singles_round_6(womens_singles):
+    TEAM.draw(womens_singles).match('6.1').winner(women).in_sets()  # (  1) Swiatek  OR  ( 14) Haddad_Maia
+    TEAM.draw(womens_singles).match('6.2').winner(women).in_sets()  # (   ) Muchova  OR  (  2) Sabalenka
+
+
 def mens_singles_round_5(mens_singles):
     TEAM.draw(mens_singles).match('5.1').winner(men.Tsitsipas).in_sets(5)  # (  1) Alcaraz  OR  (  5) Tsitsipas
     TEAM.draw(mens_singles).match('5.2').winner(men.Khachanov).in_sets(4)  # (  3) Djokovic  OR  ( 11) Khachanov

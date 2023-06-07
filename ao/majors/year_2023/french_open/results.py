@@ -11,11 +11,27 @@ def mens_singles_results_r5(draw):
          .score(atp_players.Djokovic, (4, 7, 6, 6))
          .score(atp_players.Khachanov, (6, 6, 2, 4))),
 
+        (draw.for_round(5).for_match(3)
+         .score(atp_players.Rune, (1, 2, 6, 3))
+         .score(atp_players.Ruud, (6, 6, 3, 6))),
+
+        (draw.for_round(5).for_match(4)
+         .score(atp_players.Zverev, (6, 3, 6, 6))
+         .score(atp_players.Etcheverry, (4, 6, 3, 4))),
+
     ]
 
 
 def womens_singles_results_r5(draw):
     return [
+        (draw.for_round(5).for_match(1)
+         .score(wta_players.Swiatek, (6, 6))
+         .score(wta_players.Gauff, (4, 2))),
+
+        (draw.for_round(5).for_match(2)
+         .score(wta_players.Haddad_Maia, (3, 7, 6))
+         .score(wta_players.Jabeur, (6, 6, 1))),
+
         (draw.for_round(5).for_match(3)
          .score(wta_players.Muchova, (7, 6))
          .score(wta_players.Pavlyuchenkova, (5, 2))),
