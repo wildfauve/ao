@@ -70,7 +70,7 @@ class Match:
             score_part = f"score(?, ()).score(?, ())"
         return f"{match_part}.{score_part}"
 
-    def fantasy_score_template(self, event_name, round_number, format):
+    def fantasy_score_template(self, event_name, round_number, format, sp):
         """
         TeamBearNecessities.draw(mens_singles).match("1.1").winner(Khachanov).in_sets(5)
         """
@@ -85,7 +85,7 @@ class Match:
                 entries
             ]
         entries = f"{self.player_klass_and_seed(self.player1)}  OR  {self.player_klass_and_seed(self.player2)}"
-        return f"TEAM.draw({event_name}).match('{self.match_id}').winner({mod}).in_sets()  # {entries}"
+        return f"{sp}TEAM.draw({event_name}).match('{self.match_id}').winner({mod}).in_sets()  # {entries}"
 
     def find_player_by_player(self, for_player: player.Player):
         if not self.has_draw():

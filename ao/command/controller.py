@@ -51,26 +51,25 @@ def result_template(tournament_name, draw_name, round_number, template_name):
         echo.echo(result)
 
 
-def fantasy_score_template(tournament_name, draw_name, round_number, template_name, format):
+def fantasy_score_template(tournament_name, draw_name, round_number, format):
     tournie = _find_tournament_by_name(tournament_name)
     if not tournie:
         return
     _start(tournie)
-    for_draw = draw.find_draw(draw_name, tournie.draws)
-    if not for_draw:
-        echo.echo(f"Draw with name {draw_name} not found in {tournie.label}")
-        return
-    results = for_draw.for_round(round_number).fantasy_score_template(template_name, format)
-    if format == 'csv':
-        with open(f"{draw_name}-{round_number}.csv", 'w', newline='') as csvfile:
-            writer = csv.writer(csvfile, delimiter=',',
-                                quotechar=',', quoting=csv.QUOTE_MINIMAL)
-            writer.writerow(['draw', 'match', 'winner', 'sets', 'match up'])
-            for row in results:
-                writer.writerow(row)
-    else:
-        for result in results:
-            echo.echo(result)
+    sp = f"{'':>4}"
+    for for_draw in tournie.draws:
+        defn = f"\n\ndef {for_draw.fn_symbol}_round_{round_number}({for_draw.fn_symbol}):"
+        results = for_draw.for_round(round_number).fantasy_score_template(for_draw.fn_symbol, format, sp)
+        if format == 'csv':
+            with open(f"{draw_name}-{round_number}.csv", 'w', newline='') as csvfile:
+                writer = csv.writer(csvfile, delimiter=',',
+                                    quotechar=',', quoting=csv.QUOTE_MINIMAL)
+                writer.writerow(['draw', 'match', 'winner', 'sets', 'match up'])
+                for row in results:
+                    writer.writerow(row)
+        else:
+            for result in [defn] + results:
+                echo.echo(result)
 
 
 def explain_team_points(tournament_name, team_name):

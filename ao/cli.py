@@ -97,19 +97,15 @@ def result_template(tournament, round_number, draw, template_name):
               type=click.Choice(['MensSingles', 'WomensSingles']),
               default='MensSingles',
               help="Show the state of a round for an event.")
-@click.option("--template-name", "-n",
-              type=click.Choice(['mens_singles', 'womens_singles']),
-              default='mens_singles',
-              help="A result template to cut and paste")
 @click.option("--format", "-f",
               type=click.Choice(['py', 'csv']),
               default='py',
               help="PY or CSV")
-def fantasy_score_template(tournament, round, draw, template_name, format):
+def fantasy_score_template(tournament, round, draw, format):
     """
     Get a result DSL template
     """
-    command.fantasy_score_template(tournament, draw, round, template_name, format)
+    command.fantasy_score_template(tournament, draw, round, format)
     pass
 
 

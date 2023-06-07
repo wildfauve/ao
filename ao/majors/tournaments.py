@@ -6,10 +6,13 @@ from ao import model
 
 AustralianOpen = model.GrandSlam(name="Australian Open", subject_name="AustralianOpen", perma_id="ao")
 FrenchOpen = model.GrandSlam(name="French Open", subject_name="FrenchOpen", perma_id="fo")
+Wimbledon = model.GrandSlam(name="Wimbledon", subject_name="Wimbledon", perma_id="wm")
+USOpen = model.GrandSlam(name="US Open", subject_name="UsOpen", perma_id="us")
 
 TournamentLoaderConfig = {
     'AustralianOpen2023': (2023, "australian_open"),
-    'FrenchOpen2023': (2023, "french_open")
+    'FrenchOpen2023': (2023, "french_open"),
+    'Wimbledon2023': (2023, "wimbledon")
 }
 
 

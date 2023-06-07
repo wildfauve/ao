@@ -37,8 +37,8 @@ class Round:
         return [match.result_template(event_name, self.round_id) for match in self.matches]
 
 
-    def fantasy_score_template(self, event_name, format):
-        return [match.fantasy_score_template(event_name, self.round_id, format) for match in self.matches]
+    def fantasy_score_template(self, draw_fn_symbol, format, sp):
+        return [match.fantasy_score_template(draw_fn_symbol, self.round_id, format, sp) for match in self.matches]
 
     def add_winner_to_match(self, match_number, player):
         if len(self.matches) < match_number:
