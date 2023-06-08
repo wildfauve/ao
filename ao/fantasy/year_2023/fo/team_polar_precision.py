@@ -19,8 +19,8 @@ def mens_singles_round_6(mens_singles):
 
 
 def womens_singles_round_6(womens_singles):
-    TEAM.draw(womens_singles).match('6.1').winner(women).in_sets()  # (  1) Swiatek  OR  ( 14) Haddad_Maia
-    TEAM.draw(womens_singles).match('6.2').winner(women).in_sets()  # (   ) Muchova  OR  (  2) Sabalenka
+    TEAM.draw(womens_singles).match('6.1').winner(women.SWiatek).in_sets(2)  # (  1) Swiatek  OR  ( 14) Haddad_Maia
+    TEAM.draw(womens_singles).match('6.2').winner(women.Sabalenka).in_sets(2)  # (   ) Muchova  OR  (  2) Sabalenka
 
 
 def mens_singles_round_5(mens_singles):
