@@ -51,25 +51,15 @@ def result_template(tournament_name, draw_name, round_number, template_name):
         echo.echo(result)
 
 
-def fantasy_score_template(tournament_name, draw_name, round_number, format):
+def fantasy_score_template(tournament_name, round_number):
     tournie = _find_tournament_by_name(tournament_name)
     if not tournie:
         return
     _start(tournie)
-    sp = f"{'':>4}"
+    results = {}
     for for_draw in tournie.draws:
-        defn = f"\n\ndef {for_draw.fn_symbol}_round_{round_number}({for_draw.fn_symbol}):"
-        results = for_draw.for_round(round_number).fantasy_score_template(for_draw.fn_symbol, format, sp)
-        if format == 'csv':
-            with open(f"{draw_name}-{round_number}.csv", 'w', newline='') as csvfile:
-                writer = csv.writer(csvfile, delimiter=',',
-                                    quotechar=',', quoting=csv.QUOTE_MINIMAL)
-                writer.writerow(['draw', 'match', 'winner', 'sets', 'match up'])
-                for row in results:
-                    writer.writerow(row)
-        else:
-            for result in [defn] + results:
-                echo.echo(result)
+        results[for_draw.fn_symbol] = for_draw.for_round(round_number).fantasy_score_template(for_draw.fn_symbol)
+    return results
 
 
 def explain_team_points(tournament_name, team_name):

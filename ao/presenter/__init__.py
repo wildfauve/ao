@@ -9,3 +9,7 @@ from .plot_channel_sender import (
 from .explain_presenter import (
     explain
 )
+
+from .code_creator_presenter import (
+    fantasy_score_template
+)
