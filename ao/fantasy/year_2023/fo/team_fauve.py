@@ -12,6 +12,13 @@ def team_fauve(mens_singles, womens_singles):
     helpers.selection_fn_caller(this, [mens_singles, womens_singles])
     return TEAM
 
+def womens_singles_round_7(womens_singles):
+    TEAM.draw(womens_singles).match('7.1').winner(women.Swiatek).in_sets(2)  # (  1) Swiatek  OR  (   ) Muchova
+
+
+def mens_singles_round_7(mens_singles):
+    TEAM.draw(mens_singles).match('7.1').winner(men).in_sets()  # (  3) Djokovic  OR  (  4) Ruud
+
 
 def mens_singles_round_6(mens_singles):
     TEAM.draw(mens_singles).match('6.1').winner(men.Djokovic).in_sets(4)  # (  1) Alcaraz  OR  (  3) Djokovic

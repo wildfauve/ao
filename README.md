@@ -11,7 +11,7 @@ poetry run ao plot --file _temp/rank.png --tournament FrenchOpen2023 --ranking-p
 
 poetry run ao show-round --tournament FrenchOpen2023 --draw MensSingles --round 2
 
-poetry run ao fantasy-score-template --tournament FrenchOpen2023 --draw MensSingles --round 2 
+poetry run ao fantasy-score-template --tournament FrenchOpen2023 --round 1 
 
 poetry run ao explain-team-score --tournament FrenchOpen2023 --fantasy-team-name TeamPolarPrecision
 ```

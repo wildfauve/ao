@@ -31,7 +31,7 @@ round_map = {'first round': 1,
              'fourth round': 4,
              'quarterfinals': 5,
              'semifinals': 6,
-             'finals': 7}
+             'final': 7}
 
 draws = [("https://www.rolandgarros.com/en-us/results/SM?round={}", 'FO2023MensSingles'),
          ("https://www.rolandgarros.com/en-us/results/SD?round={}", 'FO2023WomensSingles')]
