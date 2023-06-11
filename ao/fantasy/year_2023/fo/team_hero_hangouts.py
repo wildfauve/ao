@@ -18,7 +18,7 @@ def womens_singles_round_7(womens_singles):
 
 
 def mens_singles_round_7(mens_singles):
-    TEAM.draw(mens_singles).match('7.1').winner(men).in_sets()  # (  3) Djokovic  OR  (  4) Ruud
+    TEAM.draw(mens_singles).match('7.1').winner(men.Djokovic).in_sets(3)  # (  3) Djokovic  OR  (  4) Ruud
 
 
 def mens_singles_round_6(mens_singles):

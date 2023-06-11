@@ -1,6 +1,24 @@
 from ao.players import wta_players, atp_players
 
 
+def mens_singles_results_r7(draw):
+    return [
+        (draw.for_round(7).for_match(1)
+         .score(atp_players.Djokovic, (7, 6, 7))
+         .score(atp_players.Ruud, (6, 3, 5))),
+
+    ]
+
+
+def womens_singles_results_r7(draw):
+    return [
+        (draw.for_round(7).for_match(1)
+         .score(wta_players.Swiatek, (6, 5, 6))
+         .score(wta_players.Muchova, (2, 7, 4))),
+
+    ]
+
+
 def mens_singles_results_r6(draw):
     return [
         (draw.for_round(6).for_match(1)
