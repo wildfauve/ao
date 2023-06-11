@@ -4,7 +4,7 @@ import math
 from rdflib import URIRef, Graph, RDF, Literal
 
 from . import round, match
-from ao.model import tournament_event, player, entry
+from ao.model import tournament_event, player, entry, errors
 from ao.graph import rdf_prefix
 from ao.util import fn, error, echo
 
@@ -47,6 +47,7 @@ class Draw:
         self.rounds = []
         self.tournament = tournament
         self.entries = []
+        self.errors = []
         self.points_strategy = None
         self.round_factor_strategy = None
         self.subject = URIRef(f"{self.tournament.subject.toPython()}/{self.name}")
@@ -89,7 +90,12 @@ class Draw:
 
     def init_draw(self, match_ups):
         if len(match_ups) != self.number_of_matches:
-            raise error.ConfigException
+            er = errors.ConfigError(type_of_error=errors.TypeOfError.INITIALISAION,
+                                    error_severity=errors.ErrorSeverity.FATAL,
+                                    message_fn=errors.entry_mismatch_on_initialise_draw)
+            self.errors.append(er)
+            echo.echo(er.message_fn(self.name))
+            return self
         [self._place_in_first_round(match_up) for match_up in match_ups]
         return self
 

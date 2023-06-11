@@ -113,6 +113,8 @@ def _team_board_predicate(team, team_on_board):
 
 
 def teams_points_per_round(fantasy_teams, accum):
+    if not fantasy_teams:
+        return []
     return [(team, _accumulate(team.points_per_round(), accum)) for team in fantasy_teams]
 
 
