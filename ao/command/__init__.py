@@ -1,4 +1,5 @@
 from .controller import (
+    atomic_points_for_all_teams,
     leaderboard_df,
     show_round,
     result_template,

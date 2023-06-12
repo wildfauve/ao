@@ -1,6 +1,7 @@
 from typing import Callable, List, Tuple, Union, Type, Optional, Dict
 from functools import reduce
 from enum import Enum
+from collections import ChainMap
 
 from ao import model
 
@@ -150,3 +151,7 @@ def strategy_5_2_1_double():
 
 def strategy_2_1_point5_double():
     return WinNumSetsLossMaxSets(Points21Half, doubling_per_round_strategy)
+
+
+def points_list_to_dict(points: List[Dict[str, int]]):
+    return dict(ChainMap(*points))

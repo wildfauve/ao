@@ -1,16 +1,15 @@
-from functools import partial
+from typing import Union
+from functools import partial, reduce
 import json
 
 from rich.console import Console
 from rich.table import Table
 from rich import box
 
-
 from ao.model import fantasy
 from ao.util import fn, echo
 
 console = Console()
-
 
 TeamGelatoGiants = fantasy.Team("Team Gelato Giants", "Bronzie, Juki & Lemmie")
 TeamPolarPrecision = fantasy.Team("Team Polar Precision", "IceT, Pepsi, Rollie & Gertie")
@@ -30,18 +29,31 @@ teams = [TeamGelatoGiants,
          TeamLightHouse,
          TeamFauve]
 
+
 def build_graph(g):
     [team.build_graph(g) for team in teams]
+
 
 def symbolised_names():
     return [t.symbolic_name for t in teams]
 
-def explain_points_for_team(team_name, teams):
-    team = find_team_by_name(team_name, teams)
-    if not team:
+
+def points_details_all_teams(teams):
+    return reduce(_team_points_aggregate, teams, {})
+
+
+def _team_points_aggregate(accum, team):
+    for_team = explain_points_for_team(team)
+    return {**accum, **{team: for_team}}
+
+
+def explain_points_for_team(team: Union[str, fantasy.Team], teams=None):
+    tm = find_team_by_name(team, teams) if isinstance(team, str) else team
+    if not tm:
         echo.echo("Team Not Found")
         return None
-    return team.explain_points()
+    return tm.explain_points()
+
 
 def show_draw_for_team(team_name, teams, round):
     team = find_team_by_name(team_name, teams)
@@ -62,14 +74,12 @@ def show_draw_for_team(team_name, teams, round):
     console.print(table)
 
 
-
-
 def find_team_by_name(team_name, teams):
     return fn.find(partial(_team_name_predicate, team_name), teams)
 
+
 def find_team(team, teams):
     return fn.find(partial(_team_predicate, team), teams)
-
 
 
 def _team_name_predicate(team_name, team):

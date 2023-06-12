@@ -5,7 +5,7 @@ from ao.model import draw
 from . import leaderboard, graph_generator
 from ao.fantasy import teams, selections
 from ao.majors import tournaments
-from ao import fantasy
+from ao import fantasy, dataframe
 from ao.util import echo
 from ao.util.data_scrapping import atp_rankings, draw_parser
 
@@ -62,11 +62,18 @@ def fantasy_score_template(tournament_name, round_number):
     return results
 
 
+def atomic_points_for_all_teams(tournament_name):
+    tournie = _find_tournament_by_name(tournament_name)
+    if not tournie:
+        return
+    return dataframe.explain_df_builder(tournie, teams.points_details_all_teams(_apply_fantasy(_start(tournie))))
+
+
 def explain_team_points(tournament_name, team_name):
     tournie = _find_tournament_by_name(tournament_name)
     if not tournie:
         return
-    return teams.explain_points_for_team(team_name, _apply_fantasy(_start(tournie)))
+    return  teams.explain_points_for_team(team_name, _apply_fantasy(_start(tournie)))
 
 
 def generate_graph(ttl_file):

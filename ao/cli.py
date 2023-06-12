@@ -123,6 +123,19 @@ def explain_team_score(tournament, fantasy_team_name, channel):
 
 
 @click.command()
+@click.option("--tournament", "-t",
+              type=click.Choice(tournament_names()),
+              help="The name of the tournament")
+@click.option("--file", "-f", type=str, default=None, help="Parquet File Location")
+def points_atomic(file, tournament):
+    """
+    Shows the round of an event
+    """
+    presenter.to_parquet(file, command.atomic_points_for_all_teams(tournament))
+    pass
+
+
+@click.command()
 @click.option("--ttl-file", "-f", type=str, default=None, help="location of TTL Graph output")
 def generate_graph(ttl_file):
     """
@@ -190,3 +203,4 @@ cli.add_command(player_scrap)
 cli.add_command(draw_scrap)
 cli.add_command(plot)
 cli.add_command(fantasy_score_template)
+cli.add_command(points_atomic)

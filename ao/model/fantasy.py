@@ -1,5 +1,6 @@
 from enum import Enum
 from functools import partial
+
 from rdflib import URIRef, Graph, RDF, Literal
 from rich.table import Table
 
@@ -180,3 +181,5 @@ class Selection:
             return self
         self.in_number_sets = number_of_sets
         return self
+
+
