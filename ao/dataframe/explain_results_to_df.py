@@ -12,12 +12,13 @@ def explain_df_builder(tournie, explain: Dict):
         'team': series[0],
         'tournament': series[1],
         'draw': series[2],
-        'match': series[3],
-        'selectedWinner': series[4],
-        'selectedSets': series[5],
-        'ptsForWinner': series[6],
-        'ptsForSets': series[7],
-        'ptsForLossMaxSets': series[8]
+        'round': series[3],
+        'match': series[4],
+        'selectedWinner': series[5],
+        'selectedSets': series[6],
+        'ptsForWinner': series[7],
+        'ptsForSets': series[8],
+        'ptsForLossMaxSets': series[9]
     }).with_columns([(pl.col('ptsForWinner') + pl.col('ptsForSets') + pl.col('ptsForLossMaxSets')).alias("totalPts")])
     return df
 
@@ -37,11 +38,12 @@ def _team_draw_match(tournie, team, draw, accum, match) -> List[Tuple]:
         team.name,
         tournie.name,
         draw,
+        int(match.get('match').split(".")[0]),
         match.get('match', None),
         match.get('selected-winner', None),
         match.get('selected-in-sets', None),
-        pts.get('correct-winner', None),
-        pts.get('correct-sets', None),
-        pts.get('bonus-for-loss-in-max-sets', None),
+        float(pts.get('correct-winner', None)),
+        float(pts.get('correct-sets', None)),
+        float(pts.get('bonus-for-loss-in-max-sets', None)),
     ))
     return accum

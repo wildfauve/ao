@@ -8,7 +8,7 @@ from . import wta_players, atp_players
 player_cache = {'atp_players': [], 'wta_players': []}
 
 
-def match_player_by_name(name, player_module):
+def search_player_by_name(name, player_module):
     print(f"finding...{name}")
     result = list(fn.select(partial(_player_finder, name), _player_cache(player_module)))
     if len(result) == 1:
@@ -19,7 +19,7 @@ def match_player_by_name(name, player_module):
 
 
 def _player_finder(name, player):
-    return player.match_by_name(name)
+    return player.search_by_name(name)
 
 
 def format_player_klass_name(self):

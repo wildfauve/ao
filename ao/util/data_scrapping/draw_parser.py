@@ -2,7 +2,7 @@ from typing import Tuple, Dict
 from functools import reduce, partial
 
 from ao.players import atp_players as players
-from .event_web_parser import fo_draw_parser
+from .event_web_parser import wm_parser
 
 
 def build_draw(tournament: str,
@@ -22,7 +22,7 @@ def build_draw(tournament: str,
 
 
 def _parser_for_event(_tournament):
-    return fo_draw_parser
+    return wm_parser
 
 
 def _format_entries(draws: Dict, entries_file):
@@ -105,14 +105,14 @@ def _player_definition(entry: Tuple[str, str, str]):
 
 def _entry_function(py, name):
     return py + f"""
-def {'mens_singles_entries()' if name == "FO2023MensSingles" else "womens_singles_entries()"}:
+def {'womens_singles_entries()' if "WomensSingles" in name else "mens_singles_entries()"}:
     return [
 """
 
 
 def _match_function(py, name):
     return py + f"""
-def {'mens_draw_round_1()' if name == "FO2023MensSingles" else "womens_draw_round_1()"}:
+def {'womens_draw_round_1()' if "WomensSingles" in name else "mens_draw_round_1()"}:
     return [
 """
 

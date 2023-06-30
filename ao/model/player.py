@@ -31,12 +31,16 @@ class Player:
             breakpoint()
         return self.name == other.name
 
-    def match_by_name(self, on_name):
+    def search_by_name(self, on_name):
+        # if on_name == "Marc-Andrea Huesler" and "Huesler" in self.name:
+        #     breakpoint()
         if self._format_player_klass_name(on_name) == self.klass_name:
             return self
         if self.name == on_name:
             return self
-        if self._format_player_klass_name(on_name) in self.klass_name:
+        if self.alt_names:
+        # if (self._format_player_klass_name(on_name) in self.klass_name) or (
+        #         self.klass_name in self._format_player_klass_name(on_name)):
             if any([alt_name == on_name for alt_name in self.alt_names]):
                 return self
         return None

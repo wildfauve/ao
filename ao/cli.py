@@ -162,7 +162,7 @@ def player_scrap(file):
 @click.option("--entries-file", "-e", type=str, default=None, help="Entries class file")
 @click.option("--draws-file", "-d", type=str, default=None, help="draws class file")
 @click.option("--results-file", "-s", type=str, default=None, help="results file")
-@click.option("--round", "-r", type=int, default=1, help="The round number to show.")
+@click.option("--round", "-r", type=int, default=1, help="The round number to scrap.  Defaults to 1.")
 @click.option('--scores-only/--full-draw', "-o/-f", default=False)
 def draw_scrap(tournament, entries_file, draws_file, results_file, round, scores_only):
     """

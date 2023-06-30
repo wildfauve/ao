@@ -1,4 +1,4 @@
-from typing import Callable, List
+from typing import Callable, List, Dict
 from dataclasses import dataclass
 
 import bs4
@@ -7,6 +7,7 @@ from ao.players import players
 from ao import model
 from ao.util import fn
 
+file = open('missing.py', 'a')
 
 @dataclass
 class Player:
@@ -18,9 +19,11 @@ class Player:
     player_klass: model.Player = None
 
     def __post_init__(self):
-        self.player_klass = players.match_player_by_name(self.name, self.player_module)
+        self.player_klass = players.search_player_by_name(self.name, self.player_module)
         if not self.player_klass:
-            breakpoint()
+            plyr_def = (f"{self.name} = Player('{self.name}', tour_symbol=TOUR, klass_name='{self.name}', alt_names=[])\n")
+            print(plyr_def)
+            file.write(plyr_def)
 
     def player_entry_klass_name(self):
         return self.player_klass.klass_name
@@ -55,11 +58,12 @@ class Player:
 class MatchBlock:
     href: str
     match_id_fn: Callable
-    html: bs4.element.Tag
     round: int
     draw_attr_name: str
     player1: Player
     player2: Player
+    json: Dict = None
+    html: bs4.element.Tag = None
     match_number: int = None
     match_id: int = None
 

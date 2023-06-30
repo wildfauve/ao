@@ -53,7 +53,7 @@ Auger_Aliassime = Player("Felix Auger-Aliassime", tour_symbol=TOUR, klass_name="
 
 Davidovich_Fokina = Player("Alejandro Davidovich Fokina", tour_symbol=TOUR, klass_name="Davidovich_Fokina")
 
-Van_De_Zandschulp = Player('B.Van De Zandschulp', tour_symbol=TOUR, klass_name="Van_De_Zandschulp")
+Van_De_Zandschulp = Player('B.Van De Zandschulp', tour_symbol=TOUR, klass_name="Van_De_Zandschulp", alt_names=['Botic Van De Zandschulp'])
 
 Dimitrov = Player("Grigor Dimitrov", tour_symbol=TOUR, klass_name="Dimitrov")
 
@@ -153,7 +153,7 @@ Koolhof = Player("Wesley Koolhof", tour_symbol=TOUR, klass_name="Koolhof")
 
 Skupski = Player("Neal Skupski", tour_symbol=TOUR, klass_name="Skupski")
 
-Huesler = Player("Marc-Andrea Huesler ", tour_symbol=TOUR, klass_name="Huesler")
+Huesler = Player("Marc-Andrea Huesler", tour_symbol=TOUR, klass_name="Huesler", alt_names=['Marc Andrea Huesler'])
 
 Halys = Player("Quentin Halys", tour_symbol=TOUR, klass_name="Halys")
 
@@ -428,10 +428,40 @@ Diaz_Acosta = Player('Diaz Acosta', tour_symbol=TOUR, klass_name="Diaz_Acosta")
 
 Olivieri = Player('GA.Olivieri', tour_symbol=TOUR, klass_name="Olivieri")
 
-Stricker = Player('D.Stricker', tour_symbol=TOUR, klass_name="Stricker")
+Stricker = Player('D.Stricker', tour_symbol=TOUR, klass_name="Stricker", alt_names=['Dominic Stricker'])
 
-Medjedovic = Player('H.Medjedovic', tour_symbol=TOUR, klass_name="Medjedovic")
+Medjedovic = Player('H.Medjedovic', tour_symbol=TOUR, klass_name="Medjedovic", alt_names=['Hamad Medjedovic'])
 
 Tirante = Player('TA.Tirante', tour_symbol=TOUR, klass_name="Tirante")
 
 Seyboth_Wild = Player('T.Seyboth Wild', tour_symbol=TOUR, klass_name="Seyboth_Wild")
+
+
+Coppejans = Player('Kimmer Coppejans', tour_symbol=TOUR, klass_name='Coppejans', alt_names=[])
+
+Shimabukuro = Player('Sho Shimabukuro', tour_symbol=TOUR, klass_name='Shimabukuro', alt_names=[])
+
+Loffhagen = Player('George Loffhagen', tour_symbol=TOUR, klass_name='Loffhagen', alt_names=[])
+
+Fery = Player('Arthur Fery', tour_symbol=TOUR, klass_name='Fery', alt_names=[])
+
+Raonic = Player('Milos Raonic', tour_symbol=TOUR, klass_name='Raonic', alt_names=[])
+
+Novak = Player('Dennis Novak', tour_symbol=TOUR, klass_name='Novak', alt_names=[])
+
+Mochizuki = Player('Shintaro Mochizuki', tour_symbol=TOUR, klass_name='Mochizuki', alt_names=[])
+
+Peniston = Player('Ryan Peniston', tour_symbol=TOUR, klass_name='Peniston', alt_names=[])
+
+Koepfer = Player('Dominik Koepfer', tour_symbol=TOUR, klass_name='Koepfer', alt_names=[])
+
+Mayot = Player('Harold Mayot', tour_symbol=TOUR, klass_name='Mayot', alt_names=[])
+
+Broady = Player('Liam Broady', tour_symbol=TOUR, klass_name='Broady', alt_names=[])
+
+Kyrgios = Player('Nick Kyrgios', tour_symbol=TOUR, klass_name='Kyrgios', alt_names=[])
+
+Marterer = Player('Maximilian Marterer', tour_symbol=TOUR, klass_name='Marterer', alt_names=[])
+
+Choinski = Player('Jan Choinski', tour_symbol=TOUR, klass_name='Choinski', alt_names=[])
+

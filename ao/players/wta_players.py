@@ -124,7 +124,7 @@ Putintseva = Player("Yulia Putintseva", tour_symbol=TOUR, klass_name="Putintseva
 
 Hunter = Player("Storm Hunter", tour_symbol=TOUR, klass_name="Hunter")
 
-Mcnally = Player("Catherine McNally", tour_symbol=TOUR, klass_name="Mcnally")
+Mcnally = Player("Catherine McNally", tour_symbol=TOUR, klass_name="Mcnally", alt_names=['Caty McNally'])
 
 Kenin = Player("Sofia Kenin", tour_symbol=TOUR, klass_name="Kenin")
 
@@ -412,13 +412,14 @@ Panova = Player("Alexandra Panova", tour_symbol=TOUR, klass_name="Panova")
 
 Knepi = Player("Knepi", tour_symbol=TOUR, klass_name="Knepi")
 
-Sorribes_Tormo = Player("Sorribes Tormo", tour_symbol=TOUR, klass_name="Sorribes_Tormo")
+Sorribes_Tormo = Player("Sorribes Tormo", tour_symbol=TOUR, klass_name="Sorribes_Tormo",
+                        alt_names=['Sara Sorribes Tormo'])
 
 Dodin = Player("Dodin", tour_symbol=TOUR, klass_name="Dodin")
 
 Ponchet = Player("Ponchet", tour_symbol=TOUR, klass_name="Ponchet")
 
-Svitolina = Player("Svitolina", tour_symbol=TOUR, klass_name="Svitolina")
+Svitolina = Player("Svitolina", tour_symbol=TOUR, klass_name="Svitolina", alt_names=['Elina Svitolina'])
 
 In_Albon = Player('Y.In-Albon', tour_symbol=TOUR, klass_name="In_Albon")
 
@@ -428,6 +429,27 @@ Day = Player('K.Day', tour_symbol=TOUR, klass_name="Day")
 
 Tauson = Player('C.Tauson', tour_symbol=TOUR, klass_name="Tauson")
 
-Hruncakova = Player('V.Hruncakova', tour_symbol=TOUR, klass_name="Hruncakova")
+Hruncakova = Player('V.Hruncakova', tour_symbol=TOUR, klass_name="Hruncakova", alt_names=['Viktoria Hruncakova'])
 
 Shymanovich = Player('I.Shymanovich', tour_symbol=TOUR, klass_name="Shymanovich")
+
+Stevanovic = Player('Natalija Stevanovic', tour_symbol=TOUR, klass_name='Stevanovic', alt_names=[])
+
+Bai = Player("Zhuoxuan Bai", tour_symbol=TOUR, klass_name='Bai', alt_names=[])
+
+Williams = Player('Venus Williams', tour_symbol=TOUR, klass_name="Williams", alt_names=[])
+
+Strycova = Player('Barbora Strycova', tour_symbol=TOUR, klass_name="Strycova", alt_names=[])
+
+Zhao = Player('Carol Zhao', tour_symbol=TOUR, klass_name='Zhao', alt_names=[])
+
+Boulter = Player('Katie Boulter', tour_symbol=TOUR, klass_name='Boulter', alt_names=[])
+
+Saville = Player('Daria Saville', tour_symbol=TOUR, klass_name='Saville', alt_names=[])
+
+Kartal = Player('Sonay Kartal', tour_symbol=TOUR, klass_name='Kartal', alt_names=[])
+
+Naef = Player('Celine Naef', tour_symbol=TOUR, klass_name='Naef', alt_names=[])
+
+Betova = Player('Margarita Betova', tour_symbol=TOUR, klass_name='Betova', alt_names=[])
+Wickmayer = Player('Yanina Wickmayer', tour_symbol=TOUR, klass_name='Wickmayer', alt_names=[])
