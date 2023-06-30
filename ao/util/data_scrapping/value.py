@@ -7,7 +7,7 @@ from ao.players import players
 from ao import model
 from ao.util import fn
 
-file = open('missing.py', 'a')
+file = open('_temp/missing.py', 'a')
 
 @dataclass
 class Player:

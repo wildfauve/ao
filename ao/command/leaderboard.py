@@ -12,10 +12,6 @@ from ao.util import fn
 
 console = Console()
 
-total_rounds = 4
-
-f1_points = [15, 10, 8, 5, 4, 3, 2, 1]
-
 
 class BoardType(Enum):
     FANTASY = "fantasy"
@@ -78,30 +74,6 @@ def show_f1_leaderboard(fantasy_teams, round_number=None):
     for team, score in rankings:
         table.add_row(f"{str(score).ljust(ljust_len)}", team.name)
     console.print(table)
-
-
-def f1_score_for_round(rd, fantasy_teams):
-    sorted_scores_for_round = sorted_teams(fantasy_teams, rd)
-    if all([sc[1] for sc in sorted_scores_for_round]):
-        return [f1_by_team(team_f1_pos) for team_f1_pos in zip(sorted_scores_for_round, f1_points)]
-    return None
-
-
-def f1_by_team(f1_pos):
-    return [f1_pos[0][0], f1_pos[1]]
-
-
-def total_f1_pts(f1_scores):
-    return reduce(aggregate_f1_team_score, [team for rd in f1_scores for team in rd], [])
-
-
-def aggregate_f1_team_score(board, team_f1_score_for_rd):
-    tm = find_team_on_board(team_f1_score_for_rd[0], board)
-    if not tm:
-        board.append(team_f1_score_for_rd)
-        return board
-    tm[1] += team_f1_score_for_rd[1]
-    return board
 
 
 def find_team_on_board(team, board):
