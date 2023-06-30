@@ -91,7 +91,7 @@ def mens_singles_round_1(mens_singles):
     TEAM.draw(mens_singles).match('1.8').winner(men.De_Minaur).in_sets(3)  # (  Q) Coppejans  OR  ( 15) De_Minaur
     TEAM.draw(mens_singles).match('1.9').winner(men.Tiafoe).in_sets(3)  # ( 10) Tiafoe  OR  (   ) Wu
     TEAM.draw(mens_singles).match('1.10').winner(men.Popyrin).in_sets(3)  # (  Q) Stricker  OR  (   ) Popyrin
-    TEAM.draw(mens_singles).match('1.11').winner(men.Coric).in_sets(4)  # (   ) Ivashka  OR  (   ) Coria
+    TEAM.draw(mens_singles).match('1.11').winner(men.Coria).in_sets(4)  # (   ) Ivashka  OR  (   ) Coria
     TEAM.draw(mens_singles).match('1.12').winner(men.Dimitrov).in_sets(3)  # (  Q) Shimabukuro  OR  ( 21) Dimitrov
     TEAM.draw(mens_singles).match('1.13').winner(men.Davidovich_Fokina).in_sets(3)  # ( 31) Davidovich_Fokina  OR  ( WC) Fils
     TEAM.draw(mens_singles).match('1.14').winner(men.Van_De_Zandschulp).in_sets(4)  # (   ) Zhang_Zhizhen  OR  (   ) Van_De_Zandschulp

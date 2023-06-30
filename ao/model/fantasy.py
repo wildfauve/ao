@@ -26,6 +26,7 @@ class Team:
         return g
 
     def draw(self, for_draw: Draw):
+        # print(f"Team: {self.name} Draw: {for_draw.name}")
         fantasy = self._find_fantasy_draw(for_draw)
         if not fantasy:
             fantasy = FantasyDraw(for_draw, self)
@@ -168,6 +169,7 @@ class Selection:
             return self
         if isinstance(player_name, Player):
             self.selected_winner = self.match.find_player_by_player(player_name)
+            # print(f"Winner: Match: {self.match.match_id} {self.selected_winner.player().name}")
         elif isinstance(player_name, str):
             self.selected_winner = self.match.player_from_player_name(player_name)
             if not self.selected_winner:
