@@ -87,13 +87,19 @@ class Match:
         entries = f"{self.player_klass_and_seed(self.player1)}  OR  {self.player_klass_and_seed(self.player2)}"
         return f"{'':>4}TEAM.draw({event_name}).match('{self.match_id}').winner({mod}).in_sets()  # {entries}"
 
-    def find_player_by_player(self, for_player: player.Player):
+    def find_player_by_player(self, for_player: player.Player, raise_error: bool = True):
         if not self.has_draw():
-            raise error.ConfigException(
+            err = error.ConfigException(
                 f"Match {self.match_id} has no draw when trying to find player {for_player.name}")
+            if not raise_error:
+                return err
+            raise err
         pl = entry.find_player_from_entry(for_player, [self.player1, self.player2])
         if not pl:
-            raise error.ConfigException(f"{for_player.name} is either not found or is not in Match: {self.match_id}")
+            err = error.ConfigException(f"{for_player.name} is either not found or is not in Match: {self.match_id}")
+            if not raise_error:
+                return err
+            raise err
         return pl
 
     def player_from_player_name(self, player_name):

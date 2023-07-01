@@ -6,6 +6,7 @@ from rich.table import Table
 
 from ao.model.draw import Draw
 from ao.model.player import Player
+from ao.model.entry import Entry
 from ao.graph import rdf_prefix
 
 from ao.util import fn, identity
@@ -167,15 +168,16 @@ class Selection:
     def winner(self, player_name=None):
         if not player_name:
             return self
+        if (not isinstance(player_name, Player)) and (not isinstance(player_name, str)):
+            return self
         if isinstance(player_name, Player):
-            self.selected_winner = self.match.find_player_by_player(player_name)
-            # print(f"Winner: Match: {self.match.match_id} {self.selected_winner.player().name}")
-        elif isinstance(player_name, str):
+            self.selected_winner = self.match.find_player_by_player(player_name, raise_error=False)
+        else:
             self.selected_winner = self.match.player_from_player_name(player_name)
             if not self.selected_winner:
                 breakpoint()
-        else:
-            return self
+        if not isinstance(self.selected_winner, Entry):
+            breakpoint()
         return self
 
     def in_sets(self, number_of_sets=None):
