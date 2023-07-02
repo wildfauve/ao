@@ -5,13 +5,25 @@ import re
 from ao import model
 
 AustralianOpen = model.GrandSlam(name="Australian Open", subject_name="AustralianOpen", perma_id="ao")
-FrenchOpen = model.GrandSlam(name="French Open", subject_name="FrenchOpen", perma_id="fo")
+RolandGarros = model.GrandSlam(name="Roland Garros", subject_name="RolandGarros", perma_id="rg")
 Wimbledon = model.GrandSlam(name="Wimbledon", subject_name="Wimbledon", perma_id="wm")
 USOpen = model.GrandSlam(name="US Open", subject_name="UsOpen", perma_id="uo")
 
+"""
+Add every new tournament to this Dict.  This allows an individual tournament and its results to be loaded without having
+to load all the others.
++ Key is the name which is used to refer to the tournament in the CLI.
++ Value: Tuple[tournament_year, tournament_module].
+         This provides the arguments for the `importlib.import_module()` module name.  tournament modules are relative
+         to this module, and are made up of a year and the name of the module.
+         
+For example `'Wimbledon2023': (2023, "wimbledon")` 
++ the CLI refers to the tournament as Wimbledon2023
++ the tournament module to load is .year_2023.wimbledon.tournament
+"""
 TournamentLoaderConfig = {
     'AustralianOpen2023': (2023, "australian_open"),
-    'FrenchOpen2023': (2023, "french_open"),
+    'RolandGarros2023': (2023, "roland_garros"),
     'Wimbledon2023': (2023, "wimbledon")
 }
 
