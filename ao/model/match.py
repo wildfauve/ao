@@ -102,9 +102,12 @@ class Match:
             raise err
         return pl
 
-    def player_from_player_name(self, player_name):
+    def player_from_player_name(self, player_name, raise_error: bool = True):
         if not self.has_draw():
-            raise error.ConfigException("No draw has been set for match")
+            err = error.ConfigException("No draw has been set for match")
+            if not raise_error:
+                return err
+            raise err
         return entry.find_player_by_name(player_name, [self.player1, self.player2])
 
     def add_player(self, player_to_add: entry.Entry):

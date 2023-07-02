@@ -35,7 +35,10 @@ class Player:
         """
         men.Medvedev, (6, 6, 6)
         """
-        return f"{self.player_definition()}, ({', '.join(self.scores)})"
+        return f"{self.player_definition()}, ({', '.join(self.scores_to_string())})"
+
+    def scores_to_string(self):
+        return [str(s) for s in self.scores]
 
     def _seed(self):
         return f"'{self.seed}'" if self.seed else None

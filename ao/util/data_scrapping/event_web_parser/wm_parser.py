@@ -28,9 +28,9 @@ round_code_map = {'1': 1,
                   'S': 6,
                   'F': 7}
 
-draws = [("https://2023.wimbledon.com/en_GB/scores/feeds/2023/draws/LS.json", 'WM2023WomensSingles'),
-         ('https://2023.wimbledon.com/en_GB/scores/feeds/2023/draws/MS.json', 'WM2023MensSingles')]
-# draws = [('ao/util/data_scrapping/data/men_draw.json', 'WM2023MensSingles')]
+# draws = [("https://2023.wimbledon.com/en_GB/scores/feeds/2023/draws/LS.json", 'WM2023WomensSingles'),
+#          ('https://2023.wimbledon.com/en_GB/scores/feeds/2023/draws/MS.json', 'WM2023MensSingles')]
+draws = [('ao/util/data_scrapping/data/men_draw.json', 'WM2023MensSingles')]
 
 match_ids = {'mens_singles': [], 'womens_singles': []}
 
@@ -83,21 +83,28 @@ def _match(draw_mapping, for_rd, scores_only, match):
                                   json=match,
                                   round=rd,
                                   draw_attr_name=draw_mapping['name'],
-                                  player1=_player(draw_mapping, match.get('team1'), match.get('scores')),
-                                  player2=_player(draw_mapping, match.get('team2'), match.get('scores')),
+                                  player1=_player(draw_mapping, match.get('team1'), team=1, scores=match.get('scores')),
+                                  player2=_player(draw_mapping, match.get('team2'), team=2, scores=match.get('scores')),
                                   match_id_fn=_match_id_fn)
     if scores_only and not match_bloc.has_result():
         return None
     return match_bloc
 
-def _player(draw_mapping, player_content, scores_content):
+def _player(draw_mapping, player_content, team, scores):
     seed = player_content.get('seed', None) if player_content.get('seed', None) else player_content.get('entryStatus',
                                                                                                         None)
     return value.Player(name=f"{player_content.get('firstNameA')} {player_content.get('lastNameA')}",
                         seed=seed,
                         match_state=_determine_match_state_exceptions(player_content),
                         player_module=draw_mapping['player_module'],
-                        scores=None)
+                        scores=_scores(scores, team))
+
+
+def _scores(content, team_number):
+    sets = content.get('sets', None)
+    if not sets:
+        return None
+    return [set_team_scores[team_number -1].get('score', None) for set_team_scores in sets]
 
 
 def _determine_match_state_exceptions(content):
